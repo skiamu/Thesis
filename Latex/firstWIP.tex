@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{abstract}
-work plan, problems 
+work plan, problems and partial results
 \end{abstract}
 
 \section{Introduction}
@@ -48,7 +48,7 @@ Asset class returns follow a Gaussian distribution ($ w_{k+1} \sim N(\mu,\Sigma)
 \paragraph{Mixture model}
 Two possible approaches: EM (Expectation Maximization) and MM (Method of Moments). The references for the first are (\cite{McNiel05}) while for the second are (\cite{MM93}, \cite{MM83}). I went for EM since it's already implemented in Matlab. The drowback is that it is not possible to impose an unique correlation matrix or unimodality. 
 \subsection{DP Algorithm}
-The general stochastic Reachability theory is presented following \cite{Inv}.
+The general Stochastic Reachability theory is presented following \cite{Inv}.
 The financial application of the algorithm is implemented following \cite{Pola2012}.
 The first draft of the code can be found here: 
 \url{https://github.com/skiamu/Thesis}.
@@ -87,13 +87,13 @@ and finally \begin{center}
 The target set were approximated in the following way:
 $X_k \approx [0.5, 1.9] \quad k = 1,\ldots,7$ and $ X_8 \approx [(1+\theta)^2,1.9]$. The discretization step $\eta = 10^{-3}$, $ \theta = 7\%$, $ V@R^{1m}_{99} = 7\%$.
 
-Here we report the allocations maps for different time instants:
 \begin{remark}
-	The results is very sensitive to the VaR constraint and the target return $\theta$. Another method for imposing this constraint is possible (e.g. \cite{Lue13}). 
+	The results is very sensitive to the VaR constraint, the target return $\theta$ and the distributions of the asset classes. Another method for imposing the VaR constraint is viable (e.g. \cite{Lue13}). 
 \end{remark}
 \begin{remark}
 	Another problem is the following: if the parameters are not carefully chosen it may happen that $J(x_0) > 1 $.
 \end{remark}
+Here we report the allocations maps for different time instants:
 \begin{figure}[H]
 	\subfloat[k = 1]{\includegraphics[width = 3in]{k1.png}} 
 	\subfloat[k = 2]{\includegraphics[width = 3in]{k2.png}}\\
@@ -114,6 +114,7 @@ not started yet
 \begin{itemize}
 	\item Levy model for the return $ w_{k+1}$ (plus the associated calibration and simulation problem)
 	\item Python implementation for better performance
+	\item $ \dots$
 \end{itemize}
 \begin{thebibliography}{9}
 	

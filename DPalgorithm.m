@@ -11,6 +11,9 @@ function [ U, J] = DPalgorithm(N,M,X,param,model,VaR,alpha)
 %      alpha = 
 %   OUTPUT:
 %      U = cell array of asset allocations
+%   Remarks:
+%      1) when the mixture is used, param is a cell array of the following
+%         form {{mu1, Sigma1, lambda1}, ..., {mu_n, Sigma_n, lambda_n}}
 
 if nargin < 8
 	freq = 1; % weekly frequency

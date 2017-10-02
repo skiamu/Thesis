@@ -7,7 +7,10 @@ function [ f ] = pf(z,x,u,param,model)
 %      param = vector of parameters
 %   OUTPUT:
 %      f = density function
-% REMARKS : implement the density also for other models
+% REMARKS:
+%      1) when the mixture is used, param is a cell array of the following
+%         form {{mu1, Sigma1, lambda1}, ..., {mu_n, Sigma_n, lambda_n}}
+%      2) implement the density also for other models
 
 switch model
 	case 'Gaussian'
