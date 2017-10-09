@@ -83,12 +83,12 @@ and finally \begin{center}
 	Let's suppose we want to impose a monthly V@R constraint, $V@R^{1m}_{99} = 7\%$. First we need to convert this V@R specification into our time horizon $\Delta = 3 m$. Using the compound rule we have \[ V@R^{3m}_{1-\alpha} = (1+V@R^{1m}_{1-\alpha})^3-1
 	\] and then impose the above relation.
 \end{remark}
-\paragraph{partial results}
-The target set were approximated in the following way:
+\subsection{partial results}
+The target sets were approximated in the following way:
 $X_k \approx [0.5, 1.9] \quad k = 1,\ldots,7$ and $ X_8 \approx [(1+\theta)^2,1.9]$. The discretization step $\eta = 10^{-3}$, $ \theta = 7\%$, $ V@R^{1m}_{99} = 7\%$.
 
 \begin{remark}
-	The results is very sensitive to the VaR constraint, the target return $\theta$ and the distributions of the asset classes. Another method for imposing the VaR constraint is viable (e.g. \cite{Lue13}). 
+	The results is very sensitive to the VaR constraint, the target return $\theta$ and the distributions of the asset classes. Another method for imposing the VaR constraint can be found in (e.g. \cite{Lue13}). 
 \end{remark}
 \begin{remark}
 	Another problem is the following: if the parameters are not carefully chosen it may happen that $J(x_0) > 1 $.
@@ -113,17 +113,20 @@ not started yet
 \subsection{Extensions}
 \begin{itemize}
 	\item Levy model for the return $ w_{k+1}$ (plus the associated calibration and simulation problem)
+	\item transaction costs
+	\item return estimation 
 	\item Python implementation for better performance
 	\item $ \dots$
 \end{itemize}
+
+\section{What next}
+\begin{itemize}
+	\item complete Comparison and Validation
+	\item improve the code from any point of view
+	\item study papers on Stochastic Hybrid System (\cite{SHS}) for possible extensions
+	\item $ \dots$
+\end{itemize}
 \begin{thebibliography}{9}
-	
-	\bibitem{lamport94}
-	Leslie Lamport,
-	\textit{\LaTeX: a document preparation system},
-	Addison Wesley, Massachusetts,
-	2nd edition,
-	1994.
 	
 	\bibitem{McNiel05}
 	A. McNeil, R. Frey, P. Embrechts,
@@ -172,6 +175,12 @@ not started yet
 	K.Fukunaga, T.Flick,
 	\text{Estimation of the Parameters of a Gaussian Mixture Using the Method of Moments},
 	1983
+	
+	\bibitem{SHS}
+	A.Abate,M.Prandini,J.Lygeros,S.Sastry,
+	\text{Probabilistic reachability and safety for controlled discrete time stochastic hybris systems},
+	Automatica,
+	2007
 \end{thebibliography}
 
 \end{document}

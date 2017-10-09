@@ -3,7 +3,7 @@ freq = 'wk';
 tickerMM = 'SHV';
 tickerBM = 'BGBRX';
 tickerEM = '^GSPC';
-InitialDate = '23012008';
+InitialDate = '23012000';
 EndDate = '15042016';
 
 cd hist_stock_data; % access the subfolder where the function is stored
@@ -23,5 +23,5 @@ minLength = min(cellfun('length',Returns)); % get the minimum length of each cel
 Returns = cellfun(@(x) x(1:minLength),Returns,'UniformOutput',false);
 Returns = cell2mat(Returns);
 meanReturn = mean(Returns)
-yearlyReturn = (1+meanReturn).^4 - 1
+yearlyReturn = (1+meanReturn).^4 - 1;
 cov(Returns)
