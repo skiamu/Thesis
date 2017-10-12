@@ -1,29 +1,17 @@
-function [w, p_star] = Validation(GM,X,U,param,Nsim,M,Nstep,simulationMethod,model)
-%Validation Summary of this function goes here
+function [p_star] = Validation(w,X,U,Nsim,M,Nstep)
+%Validation is a function for model validation. By giving in inputs maps,
+%target sets and simulated asset class returns this function builds up the
+%paths and computes the probability of reaching the target set.
 %   INPUT:
-%      GM = gaussian mixture object
+%      w = simulated asset class returns
 %      X = discretized target sets for each time step (0,..,Nstep) [cell array]
 %      U = asset allocation maps for each time step (0,..,Nstep-1) [cell array]
-%      param = model parameters
 %      Nsim = number of MC simulation
 %      M = asset allocation dimension
 %      Nstep = number of time steps
-%      simulationMethod =
-%      model = 'Gaussian', 'Mixture'
 %   OUTPUT:
-%      w = smulated asset returns matrix for each time step (1,...,Nstep)
 %      p_star = probability of reaching the target sets
-%% Simulation
-% simulate asset class returns according to the model
 
-switch model
-	case 'Gaussian'
-		
-	case 'Mixture'
-		[ w ] = SimulationGM(GM,param,Nsim,M,Nstep,simulationMethod);
-	otherwise
-		error('invalid model %s',model);
-end
 %% Portfolio paths
 xk = X{1}; % initial porftolio value
 u0 = U{1}'; % initial asset allocation

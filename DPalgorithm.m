@@ -104,9 +104,7 @@ switch model
 		end
 		
 	case 'GH'
-		% scrivere vincolo di var sia con metodo 1 che con metodo 2. sono
-		% entrambi possibili, basta calcolare la matrice di covarianza in
-		% forma analitica dalla propriata della GIG e .....
+		% scrivere vincolo var in forma analitica
 		lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
 		Sigma = param.sigma; gamma = param.gamma;
 		% 1) compute Cov[w(k+1)] = E[w(k+1)]*Sigma + Var[w(k+1)]*gamma*gamma'

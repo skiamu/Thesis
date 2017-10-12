@@ -24,6 +24,8 @@ logLik(fitted.ghyp)
 fitted.t <- fit.tmv(data = Returns,silent = T)
 logLik(fitted.t)
 
+filename <- paste("DistParam", ".mat", sep="")
+writeMat(filename, dist = dist)
 
 lik.ratio.test(fitted.ghyp,fitted.NIG, conf.level = 0.95)
 lik.ratio.test(fitted.ghyp,fitted.gauss, conf.level = 0.95)

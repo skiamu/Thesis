@@ -3,13 +3,13 @@ clc; close all; clear variables;
 
 %% 1) get data from Yahoo
 freqIn = 'wk'; % time-series frequency 
-% freqOut = 12; % return frequency (quarterly) used in the model
-% Returns = getTimeSeries(freqIn,freqOut); % get time-series from Yahoo
-Returns = getTimeSeries(freqIn); % get time-series from Yahoo
+freqOut = 12; % return frequency (quarterly) used in the model
+Returns = getTimeSeries(freqIn,freqOut); % get time-series from Yahoo
+% Returns = getTimeSeries(freqIn); % get time-series from Yahoo
 
 %% 2) model calibration
-model = 'GH';
-GHmodel = 'NIG';
+model = 'Mixture';
+GHmodel = '';
 CalibrationType = 'EM';
 [ param, Returns, Stat, CalibrationData] = CalibrationReturns( Returns, CalibrationType,...
 	model,GHmodel);
@@ -41,14 +41,18 @@ for yy = N :-1: 2
 	title(strcat('k = ',num2str(yy-1)))
 end
 
-%% 4) Validation
-% Nsim = 1e6; 
-% simulationMethod = 'Normal';
-% [w, p_star_MC] = Validation(GMM,X,U,param,Nsim,M,N,simulationMethod,model);
-
-%% 5) Comparison
-
-
-
+%% 4) Validation ODA
+Nsim = 1e6; 
+simulationMethod = 'built-in';
+GMM = CalibrationData;
+[ w ] = SimulationReturns(param,Nsim,M,N,simulationMethod,model,GMM);
+[p_star_MC] = Validation(w,X,U,Nsim,M,N);
+%% 5) Comparison CPPI
+u0 = U{1}';
+MeanReturns = mean(Returns);
+r = MeanReturns(1); % quarterly expected cash returns
+m = 6;
+[Ucppi,Floor,Cushion] = CPPI(u0,X,r,m,N,param,model,VaR,alpha);
+[p_star_cppi] = Validation(w,X,Ucppi,Nsim,M,N);
 
 
