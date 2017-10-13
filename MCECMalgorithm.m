@@ -4,8 +4,8 @@ function [theta,LogL,exitFlag,numIter] = MCECMalgorithm(toll,maxiter,X,GHmodel)
 %   INPUT:
 %      toll = stopping tolerance
 %      maxiter = maximum number of iterations
-%      X = data
-%      GHmodel
+%      X = returns data
+%      GHmodel = 't', 'VG', 'NIG'
 %   OUTPUT:
 %      theta = cell array of parameters
 %      LogL = log-likelihood at optimum

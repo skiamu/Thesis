@@ -9,9 +9,9 @@ function[U,Floor,Cushion] = CPPI(u0,X,r,m,N,param,model,VaR,alpha)
 %      m = CPPI multiplier
 %      N = number of time steps
 %      param = cell array or struct of parameters
-%      model = 
-%      VaR = 
-%      alpha = 
+%      model =
+%      VaR =
+%      alpha =
 %   OUTPUT:
 %      U = asset allocation maps [cell array]
 %      Floor = vector of portfolio floors, one at each time step
@@ -45,8 +45,8 @@ end
 end % CPPI
 
 function f = objfun(u,indexRiskyBasket,M)
-% the goal is to invest as much as possible in the risk asset (Equity asset 
-% class) 
+% the goal is to invest as much as possible in the risk asset (Equity asset
+% class)
 A = zeros([1 M]);
 A(indexRiskyBasket) = 1;
 f = A * u;
@@ -80,23 +80,31 @@ switch model
 						W = W + param{i}{3}*param{j}{3}*(param{i}{1}-param{j}{1})...
 							*(param{i}{1}-param{j}{1})';
 					end
-				end
-				% 2) setup the constrints
-				% By using this formula we suppose gaussianity, mu = 0 and
-				% scaling rule, see how it can be improved
-				sigma_max = VaR / norminv(1-alpha);
-				A = zeros([1 M]); A(indexRiskyBasket) = 1;
-				ceq = u' * ones(size(u)) - 1; % budget constraint
-				c = [-u;            % long-only constraint
-					u' * W * u - sigma_max^2; % variance constraint
-					A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
+				end	
 		end
-		
 	case 'GH'
-		
+		% scrivere vincolo var in forma analitica
+		lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
+		Sigma = param.sigma; gamma = param.gamma;
+		% 1) compute Cov[w(k+1)] = E[w(k+1)]*Sigma + Var[w(k+1)]*gamma*gamma'
+		wMean = (Chi/Psi) * besselk(lambda+1,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
+		wMoment2 = (Chi/Psi)^2 * besselk(lambda+2,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
+		wVar = wMoment2 - wMean^2;
+		wCov = wMean * Sigma + wVar * (gamma * gamma');
+		W = wCov;
 	otherwise
 		error('invalid model %s',model);
 end
+
+% 2) setup the constrints
+% By using this formula we suppose gaussianity, mu = 0 and
+% scaling rule, see how it can be improved
+sigma_max = VaR / norminv(1-alpha);
+A = zeros([1 M]); A(indexRiskyBasket) = 1;
+ceq = u' * ones(size(u)) - 1; % budget constraint
+c = [-u;            % long-only constraint
+	u' * W * u - sigma_max^2; % variance constraint
+	A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
 end
 
 

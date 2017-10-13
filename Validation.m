@@ -1,7 +1,7 @@
 function [p_star] = Validation(w,X,U,Nsim,M,Nstep)
-%Validation is a function for model validation. By giving in inputs maps,
-%target sets and simulated asset class returns this function builds up the
-%paths and computes the probability of reaching the target set.
+%Validation is a function for model validation. By giving in inputs asset 
+%allocation maps,target sets and simulated asset class returns this function 
+%builds up the paths and computes the probability of reaching the target set.
 %   INPUT:
 %      w = simulated asset class returns
 %      X = discretized target sets for each time step (0,..,Nstep) [cell array]
@@ -22,10 +22,10 @@ for k = 2 : Nstep
 	idx2 = xk < X{k}(1); % indexes ptf realizations smaller than target set lower bound
 	idx3 = ~(idx1 | idx2); % indexes ptf realization inside target sets
 	if ~isempty(Uinterp(idx1,:))
-		Uinterp(idx1,:) = U{k}(end,:);
+		Uinterp(idx1,:) = repmat(U{k}(end,:), [sum(idx1) 1]);
 	end
 	if ~isempty(Uinterp(idx2,:))
-		Uinterp(idx2,:) = U{k}(1,:);
+		Uinterp(idx2,:) = repmat(U{k}(1,:), [sum(idx2) 1]);
 	end
 	Uinterp(idx3,:) = interp1(X{k},U{k},xk(idx3)); % interpolate input maps on portfolio realizations
 	xk = xk .* (1 + sum(Uinterp .* w(:,:,k),2)); % update portfolio value

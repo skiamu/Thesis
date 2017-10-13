@@ -57,6 +57,9 @@ function [c, ceq] = confuneq(u,param,model,VaR,alpha)
 %   INPUT:
 %      u = asset allocation vector
 %      param = density parameters
+%      model = 'Gaussian','Mixture','GH'
+%      VaR = 
+%      alpha = 
 %   OUTPUT:
 %      c = inequality constraints
 %      ceq = equality constraints

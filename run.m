@@ -1,6 +1,6 @@
 % run script
 clc; close all; clear variables;
-
+addpath(genpath(pwd))
 %% 1) get data from Yahoo
 freqIn = 'wk'; % time-series frequency 
 freqOut = 12; % return frequency (quarterly) used in the model
@@ -9,10 +9,8 @@ Returns = getTimeSeries(freqIn,freqOut); % get time-series from Yahoo
 
 %% 2) model calibration
 model = 'Mixture';
-GHmodel = '';
-CalibrationType = 'EM';
-[ param, Returns, Stat, CalibrationData] = CalibrationReturns( Returns, CalibrationType,...
-	model,GHmodel);
+GHmodel = 'NIG';
+[ param, Returns, Stat, CalibrationData] = CalibrationReturns( Returns,model,GHmodel);
 save('Yahoo.mat','Returns');
 %% 3) Dynamic Programming Algorithm
 N = 8; % number of time step
@@ -44,8 +42,9 @@ end
 %% 4) Validation ODA
 Nsim = 1e6; 
 simulationMethod = 'built-in';
-GMM = CalibrationData;
-[ w ] = SimulationReturns(param,Nsim,M,N,simulationMethod,model,GMM);
+GM = CalibrationData;
+[ w ] = SimulationReturns(param,Nsim,M,N,model,simulationMethod,GM );
+% [ w ] = SimulationReturns(param,Nsim,M,N,model);
 [p_star_MC] = Validation(w,X,U,Nsim,M,N);
 %% 5) Comparison CPPI
 u0 = U{1}';

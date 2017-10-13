@@ -21,11 +21,8 @@ tickerEM = '^GSPC';
 InitialDate = '23012008';
 EndDate = '15042016';
 
-cd hist_stock_data; % access the subfolder where the function is stored (Linux command)
 stocks = hist_stock_data(InitialDate,EndDate,tickerMM,tickerBM,tickerEM,...
 	'frequency',freqIn);
-cd ..; % Linux command
-
 %% compute the return
 % Return is a cell array: Return{1} = Money market returns
 %                         Return{2} = Bond market returns
