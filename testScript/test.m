@@ -6,10 +6,8 @@ tickerEM = '^GSPC';
 InitialDate = '23012000';
 EndDate = '15042016';
 
-cd hist_stock_data; % access the subfolder where the function is stored
 stocks = hist_stock_data(InitialDate,EndDate,tickerMM,tickerBM,tickerEM,...
 	'frequency',freq);
-cd ..;
 
 
 

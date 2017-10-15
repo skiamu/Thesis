@@ -22,7 +22,7 @@ J{end} = ones([length(X{end}) 1]);  % indicator function of the last target set
 options = optimoptions(@fmincon,'Algorithm','sqp','Display','off');
 for k = N : -1 : 1
 	k % print the current iteration
-	u0 = [0.0; 0.4; 0.6]; % initial condition
+	u0 = [0.0; 0.6; 0.4]; % initial condition
 	% 	u0 = ones([M 1])/M; % equally-weighted portfolio, initial guess, (maybe better past solution)
 	dimXk = length(X{k});
 	Uk = zeros([dimXk M]);
@@ -68,9 +68,9 @@ switch model
 	case 'Gaussian'
 		S = param.S; mu = param.mu;
 		ceq = u' * ones(size(u)) - 1; % budget constraint
-		mu_p = -u' * mu; sigma_p = u' * S * u;
+		mu_p = -u' * mu; sigma_p = sqrt(u' * S * u);
 		c = [-u;                                        % long-only constraint
-			VaR - (mu_p + norminv(1-alpha) * sigma_p)];  % variance constraint
+			-VaR + (mu_p + norminv(1-alpha) * sigma_p)];  % variance constraint
 	case 'Mixture'
 		n = length(param);
 		switch VaRConstraintType

@@ -63,9 +63,15 @@ function [c, ceq] = confuneq(u,param,model,VaR,alpha,x,Cushion,m,indexRiskyBaske
 %      c = inequality constraints
 %      ceq = equality constraints
 VaRConstraintType = '2';
+A = zeros([1 M]); A(indexRiskyBasket) = 1;
 switch model
 	case 'Gaussian'
-		
+		S = param.S; mu = param.mu;
+		ceq = u' * ones(size(u)) - 1; % budget constraint
+		mu_p = -u' * mu; sigma_p = sqrt(u' * S * u);
+		c = [-u;                                        % long-only constraint
+			-VaR + (mu_p + norminv(1-alpha) * sigma_p);  % variance constraint
+			A*u*x - m*Cushion];  
 	case 'Mixture'
 		n = length(param);
 		switch VaRConstraintType
@@ -80,7 +86,15 @@ switch model
 						W = W + param{i}{3}*param{j}{3}*(param{i}{1}-param{j}{1})...
 							*(param{i}{1}-param{j}{1})';
 					end
-				end	
+				end
+				% 2) setup the constrints
+				% By using this formula we suppose gaussianity, mu = 0 and
+				% scaling rule, see how it can be improved
+				sigma_max = VaR / norminv(1-alpha);
+				ceq = u' * ones(size(u)) - 1; % budget constraint
+				c = [-u;            % long-only constraint
+					u' * W * u - sigma_max^2; % variance constraint
+					A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
 		end
 	case 'GH'
 		% scrivere vincolo var in forma analitica
@@ -92,19 +106,19 @@ switch model
 		wVar = wMoment2 - wMean^2;
 		wCov = wMean * Sigma + wVar * (gamma * gamma');
 		W = wCov;
+		% 2) setup the constrints
+		% By using this formula we suppose gaussianity, mu = 0 and
+		% scaling rule, see how it can be improved
+		sigma_max = VaR / norminv(1-alpha);
+		ceq = u' * ones(size(u)) - 1; % budget constraint
+		c = [-u;            % long-only constraint
+			u' * W * u - sigma_max^2; % variance constraint
+			A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
 	otherwise
 		error('invalid model %s',model);
 end
 
-% 2) setup the constrints
-% By using this formula we suppose gaussianity, mu = 0 and
-% scaling rule, see how it can be improved
-sigma_max = VaR / norminv(1-alpha);
-A = zeros([1 M]); A(indexRiskyBasket) = 1;
-ceq = u' * ones(size(u)) - 1; % budget constraint
-c = [-u;            % long-only constraint
-	u' * W * u - sigma_max^2; % variance constraint
-	A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
+
 end
 
 

@@ -11,17 +11,13 @@ Returns = getTimeSeries(freqIn,freqOut); % get time-series from Yahoo
 model = 'Mixture';
 GHmodel = 'NIG';
 [ param, Returns, Stat, CalibrationData] = CalibrationReturns( Returns,model,GHmodel);
-save('Yahoo.mat','Returns');
+% save('Yahoo.mat','Returns');
 %% 3) Dynamic Programming Algorithm
 N = 8; % number of time step
 M = 3; % asset allocation dimension
 theta = 0.07; % yearly target return
 eta = 1e-3; % target set discretization
-X = cell([N+1 1]); % initialization
-for i = 2 : N
-	X{i} = (0.5:eta:1.9)';
-end
-X{1} = 1; X{end} = ((1+theta)^2:eta:1.9)';
+[ X ] = makeTargetSet(N,theta,eta);
 VaR = 0.07; % monthly
 VaR = VaR*sqrt(3); % quarterly
 alpha = 0.01;
@@ -31,12 +27,21 @@ toc
 p_star = J{1}; % reachability problem probability
 
 % plot results
+I_E = 0; I_B = 0; I_C = 0;
 for yy = N :-1: 2
 	subplot(4,2,yy-1);
 	idx = find(X{yy} <= 1.2 & X{yy} >= 0.95);
 	area(X{yy}(idx),U{yy}(idx,:))
-% 	saveas(gcf,[pwd strcat('/Latex/k',num2str(yy-1),'.png')]);
+	% 	saveas(gcf,[pwd strcat('/Latex/k',num2str(yy-1),'.png')]);
 	title(strcat('k = ',num2str(yy-1)))
+	
+	x = X{yy}(idx);
+	U_E = U{yy}(idx,3);
+	U_B = U{yy}(idx,2);
+	U_C = U{yy}(idx,1);
+	I_E = I_E + trapz(x,U_E);
+	I_B = I_B + trapz(x,U_B);
+	I_C = I_C + trapz(x,U_C);
 end
 
 %% 4) Validation ODA

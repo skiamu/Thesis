@@ -13,7 +13,7 @@ function [ w ] = SimulationReturns(param,Nsim,M,Nstep,model,simulationMethod,GM 
 % REMARK : gestire l'input GM
 switch model
 	case 'Gaussian'
-		[ w ] = SimulationG(param,Nsim,Nstep);
+		[ w ] = SimulationG(param,Nsim,Nstep,M);
 	case 'Mixture'
 		[ w ] = SimulationGM(GM,param,Nsim,M,Nstep,simulationMethod);
 	case 'GH'
@@ -24,8 +24,8 @@ end
 
 end
 
-function [ w ] = SimulationG(param,Nsim,Nstep)
-mu = param.mu; Sigma = param.Sigma;
+function [ w ] = SimulationG(param,Nsim,Nstep,M)
+mu = param.mu; Sigma = param.S;
 w = zeros([Nsim M Nstep]); %initialization
 for k = 1 : Nstep
 	w(:,:,k) = mvnrnd(mu,Sigma,Nsim);
