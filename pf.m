@@ -28,7 +28,7 @@ switch model
 			f = f + lambda * exp(-0.5*((z - x.*(1 + u'*mu)).^2) ./ (x.^2 * u'*S*u)) ./ ...
 				sqrt(2*pi*x.^2*u'*S*u);
 		end
-	case 'GH'
+	case 'GH' % general case
 		% 1) extract parameters w(k+1) distribution (multivariate)
 		lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
 		mu = param.mu; sigma = param.sigma; gamma = param.gamma;
@@ -39,7 +39,7 @@ switch model
 		gamma_bar = x * u' * gamma;
 		
 		% 3) write explicitly the density function
-		c = sqrt(Chi*Psi)^(-lambda) * Psi^lambda * (Psi+gamma_bar^2 / sigma_bar)^(0.5-lambda) / ...
+		c = sqrt(Chi*Psi)^(-lambda) * Psi^(lambda) * (Psi+gamma_bar^2 / sigma_bar)^(0.5-lambda) / ...
 			(sqrt(2*pi*sigma_bar) * besselk(lambda,sqrt(Chi*Psi)));
 		
 		factor = sqrt((Chi + (z - mu_bar).^2 / sigma_bar) * (Psi + gamma_bar^2 / sigma_bar));

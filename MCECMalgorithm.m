@@ -12,6 +12,7 @@ function [theta,LogL,exitFlag,numIter] = MCECMalgorithm(toll,maxiter,X,GHmodel)
 %      exitFlag = 'maxiter' or 'condition'
 %      numIter = number of algorithm iterations
 % REMARKS: scrivere la funzione obiettivo Q2 anke per gli altri modelli
+
 exitFlag = 'maxiter';
 % 1) set initial conditions
 [N, d] = size(X);
@@ -38,14 +39,13 @@ for k = 2 : maxiter
 		D = D + delta(i) * (X(i,:)' - mu) * (X(i,:)' - mu)';
 	end
 	D = D/N - etaMean * (gamma * gamma');
-	Sigma = det(Sigma)^(1/d) * D / det(D)^(1/d); % take the root with lowest
-	% 	phase, complex
+	Sigma = det(Sigma)^(1/d) * D / det(D)^(1/d); % take the root with lowest phase, complex
 % 	Sigma = nthroot(det(Sigma),d) * D / nthroot(det(D),d);
 	% 5) update the weights
 	[delta,eta,csi] = ComputeWeight(lambda,Chi,Psi,d,X,mu,Sigma,gamma,GHmodel);
 	
 	% 6) maximize Q2(lambda,Chi,Psi)
-	options = optimoptions(@fmincon,'Algorithm','interior-point','Display','off');
+	options = optimoptions(@fmincon,'Algorithm','sqp','Display','off');
 	x0 = [lambda;Chi;Psi];
 	[A,b,Aeq,beq] = confuneq(GHmodel);
 	[x_star,f_star] = fmincon(@(x)objfun(x,delta,eta,csi,GHmodel), ...

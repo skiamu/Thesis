@@ -1,0 +1,18 @@
+
+
+1) multiGH_test.m - Example usage.Outlines calibrating a Multivariate (multidimensional) Generalized
+	Hyperbolic Distribution (M-GHD) for a portfolio of assets.
+
+
+2) multiGH_mcecm_clam_fit.m - Calibrates a M-GHD using the Multi-cycle Expectation Conditional
+ 	Maximization (MCECM) algorithm for a constant value of $\lambda$.
+
+
+3) multiGH_randvar.m - Draws samples from a M-GHD.
+
+
+4) l2max_mcecm_clam.m -	Used by multiGH_mcecm_clam_fit.m.
+
+
+5) debugmsg.m - Used to display debug messages.
+

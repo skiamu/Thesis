@@ -14,7 +14,8 @@ function [ U, J] = DPalgorithm(N,M,X,param,model,VaR,alpha)
 %   Remarks:
 %      1) when the mixture is used, param is a cell array of the following
 %         form {{mu1, Sigma1, lambda1}, ..., {mu_n, Sigma_n, lambda_n}}
-
+%      2) aggiungere VaR nel methodo 1 'Mixture', aggiungere metodo
+%      analitico nelle GH
 U = cell([N 1]); % cell array, in each position there'll be a matrix
 J = cell([N+1 1]); % optimal value function
 J{end} = ones([length(X{end}) 1]);  % indicator function of the last target set
@@ -107,12 +108,12 @@ switch model
 		end
 		
 	case 'GH'
-		% scrivere vincolo var in forma analitica
 		lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
 		Sigma = param.sigma; gamma = param.gamma;
+		
 		% 1) compute Cov[w(k+1)] = E[w(k+1)]*Sigma + Var[w(k+1)]*gamma*gamma'
-		wMean = (Chi/Psi) * besselk(lambda+1,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
-		wMoment2 = (Chi/Psi)^2 * besselk(lambda+2,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
+		wMean = (Chi/Psi)^0.5 * besselk(lambda+1,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
+		wMoment2 = (Chi/Psi) * besselk(lambda+2,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
 		wVar = wMoment2 - wMean^2;
 		wCov = wMean * Sigma + wVar * (gamma * gamma');
 		% 2) set up the constraints
