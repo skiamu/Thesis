@@ -1,14 +1,21 @@
-function f = GHdensity(param,u,z)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+function f = GHdensityPortfolioReturns(param,u,z,x)
+%GHdensityPortfolioReturns is a function that computes the density function
+%of the Portfolio's Return random variable
+%   INPUT:
+%      param = returns density parameters [struct]
+%      u = asset allocation vector
+%      z = density support
+%   OUTPUT:
+%      f = density value
+
 % 1) extract parameters w(k+1) distribution (multivariate)
 lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
 mu = param.mu; sigma = param.sigma; gamma = param.gamma;
 
 % 2) compute parameters f(x,u,w(k+1)) distribution (univariate)
-mu_bar = u' * mu;
-sigma_bar = u' * sigma * u;
-gamma_bar =  u' * gamma;
+mu_bar = x * (1 + u' * mu);
+sigma_bar = x^2 * u' * sigma * u;
+gamma_bar =  x * u' * gamma;
 
 % 3) write explicitly the density function
 c = sqrt(Chi*Psi)^(-lambda) * Psi^(lambda) * (Psi+gamma_bar^2 / sigma_bar)^(0.5-lambda) / ...

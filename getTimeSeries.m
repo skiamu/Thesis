@@ -17,8 +17,10 @@ function Returns = getTimeSeries(freqIn, freqOut)
 % freq = 'wk';
 tickerMM = 'SHV';
 tickerBM = 'BGBRX';
+% tickerMM = 'BSV';
+% tickerBM = 'BND';
 tickerEM = '^GSPC';
-InitialDate = '23012008';
+InitialDate = '23012009';
 EndDate = '15042016';
 
 stocks = hist_stock_data(InitialDate,EndDate,tickerMM,tickerBM,tickerEM,...

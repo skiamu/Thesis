@@ -1,4 +1,4 @@
-function [theta,LogL,exitFlag,numIter] = MCECMalgorithm(toll,maxiter,X,GHmodel)
+function [theta,LogL,exitFlag,numIter] = MCECMalgorithm2(toll,maxiter,X,GHmodel)
 %MCECMalgorithm implements a modified version of the EM algorithm for
 %fitting a Generalized Hyperbolic Distribution
 %   INPUT:

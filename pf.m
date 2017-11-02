@@ -16,17 +16,16 @@ switch model
 	case 'Gaussian'
 		mu = param.mu; % mean vector
 		S = param.S; % covariance matrix
-		f = exp(-0.5*((z - x.*(1 + u'*mu)).^2) ./ (x.^2 * u'*S*u)) ./ ...
-			sqrt(2*pi*x.^2*u'*S*u);
+		f = exp(-0.5*((z - x*(1 + u'*mu)).^2) / (x^2 * u'*S*u)) / ...
+			sqrt(2*pi*x.^2*(u'*S*u));
 	case 'Mixture'
 		n = length(param); % param is as long as the mixture addendum
 		f = 0;
 		for i = 1 : n
-			mu = param{i}{1};
-			S = param{i}{2};
+			mu = x * (1 + u' * param{i}{1}); % mean f(x,u,w(k+1))
+			sigma = sqrt(x^2 * u' * param{i}{2} * u); % std f(x,u,w(k+1))
 			lambda = param{i}{3};
-			f = f + lambda * exp(-0.5*((z - x.*(1 + u'*mu)).^2) ./ (x.^2 * u'*S*u)) ./ ...
-				sqrt(2*pi*x.^2*u'*S*u);
+			f = f + lambda * normpdf(z,mu,sigma);
 		end
 	case 'GH' % general case
 		% 1) extract parameters w(k+1) distribution (multivariate)

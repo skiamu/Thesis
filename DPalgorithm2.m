@@ -16,39 +16,25 @@ function [ U, J] = DPalgorithm(N,M,X,param,model,VaR,alpha)
 %         form {{mu1, Sigma1, lambda1}, ..., {mu_n, Sigma_n, lambda_n}}
 %      2) aggiungere VaR nel methodo 1 'Mixture', aggiungere metodo
 %      analitico nelle GH
-
 U = cell([N 1]); % cell array, in each position there'll be a matrix
 J = cell([N+1 1]); % optimal value function
 J{end} = ones([length(X{end}) 1]);  % indicator function of the last target set
-options = optimoptions(@fmincon,'Algorithm','active-set','SpecifyConstraintGradient',true,...
-	'Display','off','FiniteDifferenceType','central');
-% options = optimoptions(@fmincon,'Algorithm','active-set','Display','off','SpecifyConstraintGradient',true);
-Aeq = ones([1 M]); beq = 1; % budget constraint
-lb = zeros([M 1]); ub = ones([M 1]);
-eta = 1e-4; % quantization step for integration
+options = optimoptions(@fmincon,'Algorithm','sqp','Display','off');
+Aeq = ones([1 M]); beq = 1;
+A = -eye(M); b = zeros([M 1]);
 for k = N : -1 : 1
 	k % print the current iteration
-	u0 = [1; 0.; 0.]; % initial condition
+	u0 = [0.0; 0.25; 0.75]; % initial condition
+	% 	u0 = ones([M 1])/M; % equally-weighted portfolio, initial guess, (maybe better past solution)
 	dimXk = length(X{k});
 	Uk = zeros([dimXk M]);
 	Jk = zeros([dimXk 1]);
-	int_domain = (X{k+1}(1):eta:X{k+1}(end))'; % improve int domain finesse
-	Jinterp = interp1(X{k+1},J{k+1},int_domain); % interpolate optimal value function
-% 		int_domain = X{k+1};
-% 		Jinterp = J{k+1};
-	for j = dimXk : -1 : 1
-		[Uk(j,:), Jk(j)] = fmincon(@(u)-objfun(u,X{k}(j),int_domain,Jinterp,param,model), ...
-			u0,[],[],Aeq,beq,lb,ub,@(u)confuneq(u,param,model,VaR,alpha),options);
- 		u0 = Uk(j,:)'; % ititial condition = previuos optial solution
+	for j = 1 : dimXk
+		[Uk(j,:), Jk(j)] = fmincon(@(u)objfun(u,X{k}(j),X{k+1},J{k+1},param,model), ...
+			u0,A,b,Aeq,beq,[],[],@(u)confuneq(u,param,model,VaR,alpha),options);
+		u0 = Uk(j,:)'; % ititial condition = previuos optial solution
 	end
-	U{k} = Uk; J{k} = exp(-Jk);
-	if k ~= 1
-		idx = find(X{k} <= 1.15 & X{k} >= 0.98);
-		figure
-		area(X{k}(idx),U{k}(idx,:))
-		title(strcat('k = ',num2str(k-1)))
-		% 	saveas(gcf,[pwd strcat('/Latex/secondWIP/k',num2str(k-1),model,'.png')]);
-	end
+	U{k} = Uk; J{k} = -Jk;
 end
 end %  DPalgorithm
 
@@ -64,18 +50,19 @@ function f = objfun(u,x,int_domain,J,param,model)
 %      f = objective function
 
 f = trapz(int_domain, J .* pf(int_domain,x,u,param,model));
-f = log(f);
 % f = simpsons(J .* pf(int_domain,x,u,param,model),int_domain(1),int_domain(end),[]);
+f = -f; % solve the assocoated max problem
+
 end % objfun
 
-function [c, ceq, D, Deq] = confuneq(u,param,model,VaR,alpha)
+function [c, ceq] = confuneq(u,param,model,VaR,alpha)
 %confuneq states the max problem's constraints
 %   INPUT:
 %      u = asset allocation vector
 %      param = density parameters
 %      model = 'Gaussian','Mixture','GH'
-%      VaR =
-%      alpha =
+%      VaR = 
+%      alpha = 
 %   OUTPUT:
 %      c = inequality constraints
 %      ceq = equality constraints
@@ -83,9 +70,10 @@ VaRConstraintType = '2';
 switch model
 	case 'Gaussian'
 		S = param.S; mu = param.mu;
+		ceq = u' * ones(size(u)) - 1; % budget constraint
 		mu_p = -u' * mu; sigma_p = sqrt(u' * S * u);
-		ceq = [];
-		c = -VaR + (mu_p + norminv(1-alpha) * sigma_p);  % variance constraint
+		c = [-u;                                        % long-only constraint
+			-VaR + (mu_p + norminv(1-alpha) * sigma_p)];  % variance constraint
 	case 'Mixture'
 		n = length(param);
 		switch VaRConstraintType
@@ -99,8 +87,9 @@ switch model
 					Phi = Phi + lambda * normcdf((-VaR - mu) / sigma);
 				end
 				% 2) setup the constraints
-				ceq = [];
-				c = Phi - alpha;    % variance constraint
+				ceq = u' * ones(size(u)) - 1; % budget constraint
+				c = [-u;            % long-only constraint
+					Phi - alpha];    % variance constraint
 			case '2' % quadratic method
 				% 1) compute covariance matrix of asset return w(k+1)
 				W = zeros(length(u));
@@ -115,17 +104,17 @@ switch model
 				% By using this formula we suppose gaussianity, mu = 0 and
 				% scaling rule, see how it can be improved
 				sigma_max = VaR / norminv(1-alpha);
-				ceq = [];
+% 				ceq = u' * ones(size(u)) - 1; % budget constraint
+% 				c = [-u;            % long-only constraint
+% 					u' * W * u - sigma_max^2];    % variance constraint
+            ceq = [];
 				c = u' * W * u - sigma_max^2;
-				if nargout > 2
-					D = 2 * W * u;
-					Deq = [];
-				end
 		end
 		
 	case 'GH'
 		lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
 		Sigma = param.sigma; gamma = param.gamma;
+		
 		% 1) compute Cov[w(k+1)] = E[w(k+1)]*Sigma + Var[w(k+1)]*gamma*gamma'
 		wMean = (Chi/Psi)^0.5 * besselk(lambda+1,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
 		wMoment2 = (Chi/Psi) * besselk(lambda+2,sqrt(Chi*Psi)) / besselk(lambda,sqrt(Chi*Psi));
@@ -135,12 +124,9 @@ switch model
 		% By using this formula we suppose gaussianity, mu = 0 and
 		% scaling rule, see how it can be improved
 		sigma_max = VaR / norminv(1-alpha);
-		ceq = [];
-		c = u' * wCov * u - sigma_max^2;    % variance constraint
-		if nargout > 2
-			D = 2 * wCov * u;
-			Deq = [];
-		end
+		ceq = u' * ones(size(u)) - 1; % budget constraint
+		c = [-u;            % long-only constraint
+			u' * wCov * u - sigma_max^2];    % variance constraint
 	otherwise
 		error('invalid model %s',model);
 end

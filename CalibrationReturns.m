@@ -26,44 +26,57 @@ minLength = min(cellfun('length',Returns)); % get the minimum length of each cel
 Returns = cellfun(@(x) x(1:minLength),Returns,'UniformOutput',false);
 Returns = cell2mat(Returns); % convert cell to matrix
 %% model calibration
-
+[~, d] = size(Returns);
+CalibrationType = 'MM';
 switch model
 	case 'Mixture'
-		% 0) run method of moments for an initial estimate
-% 		[x0] = MethodMomentsGM(Returns);
-% 		D1 = diag(x0(5:7)); D2 = diag(x0(11:13));
-% 		rho12 = x0(14); rho13 = x0(15); rho23 = x0(16);
-% 		R = eye(3);
-% 		R(1,2) = rho12; R(2,1) = rho12; R(1,3) = rho13; R(3,1) = rho13;
-% 		R(2,3) = rho23; R(3,2) = rho23;
-% 		Sigma = zeros([3 3 2]);
-% 		Sigma(:,:,1) = D1' * R * D1; Sigma(:,:,2) = D2' * R * D2;
-% 		Mu = [x0(2:4)'; x0(8:10)'];
-% 		PComponents = [x0(1) 1-x0(1)];
-% 		S = struct('mu',Mu,'Sigma',Sigma,'ComponentProportion',PComponents);
-		
-		% 1) run calibration
-		k = 2; % number of gaussian mixture components
-% 		GMM = fitgmdist(Returns,k,'Start',S); % ER algorithm
-		GMM = fitgmdist(Returns,k,'Replicates',50); % ER algorithm
-		% 2) build the param cell array
-		param = {{GMM.mu(1,:)';GMM.Sigma(:,:,1);GMM.ComponentProportion(1)};
-			{GMM.mu(2,:)';GMM.Sigma(:,:,2);GMM.ComponentProportion(2)}};
-		% 3) return calibration information
-		CalibrationData = GMM;
+		if strcmp(CalibrationType,'MM')
+% 			Mean = mean(Returns);
+% 			Variance = var(Returns);
+% 			Skewness = skewness(Returns);
+%          Kurtosis = kurtosis(Returns);
+% 			Rho = corr(Returns);
+% 			Sample = zeros([15 1]);
+% 			k = 0;
+% 			for i = 1 : 3
+% 				Sample(4*k + 1) = Mean(i);
+% 				Sample(4*k + 2) =  Variance(i);
+% 				Sample(4*k + 3) = Skewness(i);
+% 				Sample(4*k + 4) = Kurtosis(i);
+% 				k = k + 1;
+% 			end
+% 			Sample(13) = Rho(1,2); Sample(14) = Rho(1,3); Sample(15) = Rho(2,3);
+			Sample = [0.0324;0;0;3;0.0546;0.0445;-0.46;4.25;0.1062;0.1477;-0.34;5.51;0;0;0.0342];
+         [ ~, error, ~, param ] = MethodofMomentsGM( Sample,2,3,'y' );
+			CalibrationData = min(error);
+		else
+			% 1) run calibration
+			k = 2; % number of gaussian mixture components
+			% 		GMM = fitgmdist(Returns,k,'Start',S); % ER algorithm
+			% 		GMM = fitgmdist(Returns,k); % ER algorithm
+			GMM = fitgmdist(Returns,k,'Start','plus','Replicates',20'); % ER algorithm
+			% 2) build the param cell array
+			param = {{GMM.mu(1,:)';GMM.Sigma(:,:,1);GMM.ComponentProportion(1)};
+				{GMM.mu(2,:)';GMM.Sigma(:,:,2);GMM.ComponentProportion(2)}};
+			% 3) return calibration information
+			CalibrationData = GMM;
+		end
 	case 'GH'
 		% 1) run calibration
-		toll = 1e-3; maxiter = 500; % optimization parameters
+		toll = 1e-8; maxiter = 2000; % optimization parameters
 		[theta,LogL,exitFlag,numIter] = MCECMalgorithm(toll,maxiter,Returns,GHmodel);
 		% 2) build the param struct
 		param.lambda = theta{numIter}{1};
-		param.Chi = theta{numIter}{2};
-		param.Psi = theta{numIter}{3};
-		param.mu = theta{numIter}{4};
-		param.sigma = theta{numIter}{5};
-		param.gamma = theta{numIter}{6};
+		param.alpha = theta{numIter}{2};
+		param.mu = theta{numIter}{3};
+		param.sigma = theta{numIter}{4};
+		param.gamma = theta{numIter}{5};
+		param.Chi = theta{numIter}{6};
+		param.Psi = theta{numIter}{7};
+		nParam =  1 + d + d*(d+1) / 2 + d; %NIG
+		AIC = -2 * LogL + 2 * nParam;
 		% 3) return calibration information
-		CalibrationData = {theta,LogL,exitFlag,numIter};
+		CalibrationData = {theta,LogL,exitFlag,numIter,AIC};
 	case 'Gaussian'
 		param.mu = mean(Returns)';
 		param.S = cov(Returns);

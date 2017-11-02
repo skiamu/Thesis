@@ -1,15 +1,16 @@
 clc;close all; clear variables;
 freq = 'wk';
-tickerMM = 'SHV';
-tickerBM = 'BGBRX';
+% 
+% tickerMM = 'SHV';
+% tickerBM = 'BGBRX';
+tickerMM = 'BSV';
+tickerBM = 'BND';
 tickerEM = '^GSPC';
-InitialDate = '23012000';
+InitialDate = '23012012';
 EndDate = '15042016';
 
 stocks = hist_stock_data(InitialDate,EndDate,tickerMM,tickerBM,tickerEM,...
 	'frequency',freq);
-
-
 
 
 Returns = cell([1 length(stocks)]);
@@ -21,5 +22,7 @@ minLength = min(cellfun('length',Returns)); % get the minimum length of each cel
 Returns = cellfun(@(x) x(1:minLength),Returns,'UniformOutput',false);
 Returns = cell2mat(Returns);
 meanReturn = mean(Returns)
-yearlyReturn = (1+meanReturn).^4 - 1;
+yearlyReturn = (1+meanReturn).^52 - 1
 cov(Returns)
+Skewness = skewness(Returns)
+Kurtosis = kurtosis(Returns)

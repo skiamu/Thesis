@@ -8,7 +8,7 @@ UB = 1.9;
 for i = 2 : N
 	X{i} = (LB:eta:UB)';
 end
-X{1} = 1; X{end} = ((1+theta)^2:eta:UB)';
+X{1} = 1; X{end} = ((1+theta)^1:eta:UB)';
 
 end
 
