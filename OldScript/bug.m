@@ -1,17 +1,17 @@
-find(X{52}== 0.9)
-u1 = Uk(2201,:)';
-u2 = [0; u1(1); u1(3)];
-XN = X{53};
-x = 1.1;
+find(X{104}== 1.11)
+u1 = [0.266894901388813;0;0.733099043156735];
+u2 = [0;0.2743;0.7257];
+XN = int_domain;
+x = 1.1180;
 figure
-plot(XN,pf(XN,x,u1,param,model),'b',XN,pf(XN,x,u2,param,model),'r')
+plot(XN,pf(XN,x,u,param,model),'b',XN,pf(XN,x,u2,param,model),'r')
 legend('cash','bond')
 
 
+u1 = u0
 
-
-mu1 = param{1}{1}; sigma1 = param{1}{2}; lambda1 = param{1}{3};
-mu2 = param{2}{1}; sigma2 = param{2}{2}; lambda2 = param{2}{3};
+mu1 = param(1).mu; sigma1 = param(1).S; lambda1 = param(1).lambda;
+mu2 = param(2).mu; sigma2 = param(2).S; lambda2 = param(2).lambda;
 lambda = [lambda1 lambda2];
 mu = [x * (1 + u1' * mu1),  x * (1 + u1' * mu2)];
 sigma = sqrt([x^2 * u1' * sigma1 * u1, x^2 * u1' * sigma2 * u1]);

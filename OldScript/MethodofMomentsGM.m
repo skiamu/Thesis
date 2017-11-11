@@ -25,10 +25,10 @@ lb = [-ones([k*M 1]); zeros([k*M 1]); -ones([3 1])];
 ub = [ones([k*M 1]);ones([k*M 1]);ones([3 1])];
 % x0 = [0.000611; 0.001373;0.002340;0.000683;-0.016109;-0.017507;0.000069;...
 % 	0.00566;0.019121;0.000062;0.006168;0.052513;0.0633;0.0207;-0.0236];
-x0 = rand([15 1]);
+x0 = rand([15 length(lambda)]);
 for i = 1 : length(lambda)
 	i
-	[x(i,:), error(i)] = lsqnonlin(@(x) obj(x,Sample,k,M,lambda(i)),x0,lb,ub);
+	[x(i,:), error(i)] = lsqnonlin(@(x) obj(x,Sample,k,M,lambda(i)),x0(:,i),lb,ub);
 % 	x0 = x(i,:);
 end
 

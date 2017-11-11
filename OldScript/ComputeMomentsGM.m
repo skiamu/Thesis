@@ -12,13 +12,13 @@ function [ muX,sigmaX,gammaX,kappaX ] = ComputeMomentsGM(mu,sigma,lambda)
 %      kappaX = kurtosis
 
 n = length(mu);
-%% Mean[ muX,sigmaX,gammaX,kappaX ] = ComputeMomentsGM(mu,sigma,lambda)
+%% Mean
 muX = 0;
 for i = 1 : n
 	muX = muX + lambda(i) * mu(i);
 end
 
-%% Standard Deviation
+%% Variance
 sigma2X = -muX^2;
 for i = 1 : n
 	sigma2X = sigma2X + lambda(i) * (mu(i)^2 + sigma(i)^2);
@@ -38,7 +38,5 @@ for i = 1 : n
 		sigma(i)^4);
 end
 kappaX = kappaX / sigma2X^2;
-
-
 end
 

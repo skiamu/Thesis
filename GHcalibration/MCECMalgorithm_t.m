@@ -1,4 +1,4 @@
-function [theta,LogL,exitFlag,numIter] = MCECMalgorithm_t(toll,maxiter,X,GHmodel)
+function [param, CalibrationData] = MCECMalgorithm_t(toll,maxiter,X,GHmodel)
 %MCECMalgorithm implements a modified version of the EM algorithm for
 %fitting a Generalized Hyperbolic Distribution
 %   INPUT:
@@ -7,10 +7,8 @@ function [theta,LogL,exitFlag,numIter] = MCECMalgorithm_t(toll,maxiter,X,GHmodel
 %      X = returns data
 %      GHmodel = 't', 'VG', 'NIG'
 %   OUTPUT:
-%      theta = cell array of parameters
-%      LogL = log-likelihood at optimum
-%      exitFlag = 'maxiter' or 'condition'
-%      numIter = number of algorithm iterations
+%      param = 
+%      CalibrationData = 
 % REMARKS: scrivere la funzione obiettivo Q2 anke per gli altri modelli
 
 exitFlag = 'maxiter';
@@ -67,9 +65,22 @@ for k = 2 : maxiter
 	LogL = LogLikelihood(X,lambda,mu,Sigma,gamma);
 	theta{k}{end+1} = nu;
 end
+% 8) build the param struct
+param.lambda = theta{numIter}{1};
+param.mu = theta{numIter}{2};
+param.sigma = theta{numIter}{3};
+param.gamma = theta{numIter}{4};
+param.nu = theta{numIter}{5};
+nParam =  1 + d + d*(d+1) / 2 + d; % t
+AIC = -2 * LogL + 2 * nParam;
 
+% 9) return calibration information
+CalibrationData.LogL = LogL;
+CalibrationData.ExitFlag = exitFlag;
+CalibrationData.numIter = numIter;
+CalibrationData.AIC = AIC;
 
-end % MCECMalgorithm
+end % MCECMalgorithm_t
 
 function [delta,eta,csi] = ComputeWeight(lambda,d,X,mu,Sigma,gamma)
 %ComputeWeight is a function for computing the weigths delta, eta and csi.

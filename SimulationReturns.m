@@ -1,4 +1,4 @@
-function [ w ] = SimulationReturns(param,Nsim,M,Nstep,model,simulationMethod,GM )
+function [ w ] = SimulationReturns(param,Nsim,M,Nstep,model)
 %SimulationReturns is a function for simulating asset class returns
 %according to the model specified in input
 %   INPUT:
@@ -15,9 +15,9 @@ switch model
 	case 'Gaussian'
 		[ w ] = SimulationG(param,Nsim,Nstep,M);
 	case 'Mixture'
-		[ w ] = SimulationGM(GM,param,Nsim,M,Nstep,simulationMethod);
+		[ w ] = SimulationGM(param,Nsim,Nstep,M);
 	case 'GH'
-		[ w ] = SimulationGH(param,Nsim,M,Nstep);
+		[ w ] = SimulationGH(param,Nsim,Nstep,M);
 	otherwise
 		error('invalid model %s',model);
 end
@@ -32,7 +32,7 @@ for k = 1 : Nstep
 end
 end % SimulationG
 
-function [ w ] = SimulationGM(GM,param,Nsim,M,Nstep,simulationMethod  )
+function [ w ] = SimulationGM(param,Nsim,Nstep,M)
 %SimulationGM is a function for simulating asset class returns over a
 %finite time grid
 %   INPUT:
@@ -45,36 +45,19 @@ function [ w ] = SimulationGM(GM,param,Nsim,M,Nstep,simulationMethod  )
 %      simulationMethod = 'built-in', 'Normal'
 %   OUTPUT:
 %      w =
-switch simulationMethod
-	case 'built-in'
-		w = zeros([Nsim M Nstep]); %initialization
-		for k = 1 : Nstep
-			w(:,:,k) = random(GM,Nsim);
-		end
-	case 'Normal'
-		% REMARK: this implementation work only if there are 2 mixture
-		% components.
-		
-		% extract distribution parameters
-		p1 = param{1}{3}; mu1 = param{1}{1}; Sigma1 = param{1}{2};
-		mu2 = param{2}{1}; Sigma2 = param{2}{2};
-		X1 = zeros([Nsim M Nstep]); X2 = zeros([Nsim M Nstep]);
-		for k = 1 : Nstep
-			X1(:,:,k) = mvnrnd(mu1,Sigma1,Nsim);
-			X2(:,:,k) = mvnrnd(mu2,Sigma2,Nsim);
-		end
-		U = rand([Nsim M Nstep]);
-		w = X2;
-		idxFromX1 = find(U <= p1); % LINEAR indexes elements from X1
-		w(idxFromX1) = X1(idxFromX1);
-	otherwise
-		error('invalid simulationMethod %s',simulationMethod);
+
+w = zeros([Nsim M Nstep]); %initialization
+for k = 1 : Nstep
+	X = [];
+	for i = 1 : length(param)
+		X = [X; mvnrnd(param(i).mu,param(i).S,Nsim*param(i).lambda)];
+	end
+	w(:,:,k) = X;
 end
+end
+ % SimulationGM
 
-end % SimulationGM
-
-
-function [ w ] = SimulationGH(param,Nsim,M,Nstep)
+function [ w ] = SimulationGH(param,Nsim,Nstep,M)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 

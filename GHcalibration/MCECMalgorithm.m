@@ -1,16 +1,14 @@
-function [theta,LogL,exitFlag,numIter] = MCECMalgorithm(toll,maxiter,X,GHmodel)
+function [param,CalibrationData] = MCECMalgorithm(toll,maxiter,X,GHmodel)
 %MCECMalgorithm implements a modified version of the EM algorithm for
 %fitting a Generalized Hyperbolic Distribution
 %   INPUT:
 %      toll = stopping tolerance
 %      maxiter = maximum number of iterations
 %      X = returns data
-%      GHmodel = 't', 'VG', 'NIG'
+%      GHmodel = 'GH', 'H', 'NIG'
 %   OUTPUT:
-%      theta = cell array of parameters
-%      LogL = log-likelihood at optimum
-%      exitFlag = 'maxiter' or 'condition'
-%      numIter = number of algorithm iterations
+%      param = 
+%      CalibrationData = 
 % REMARKS: scrivere la funzione obiettivo Q2 anke per gli altri modelli
 
 exitFlag = 'maxiter';
@@ -50,10 +48,10 @@ for k = 2 : maxiter
 	[x_star,f_star] = fmincon(@(x)objfun(x,delta,eta,csi,GHmodel), ...
 		x0,A,b,Aeq,beq,[],[],[],options);
 	Q2(k) = -f_star;
-	lambda = x_star(1); alpha_bar = x_star(2); 
+	lambda = x_star(1); alpha_bar = x_star(2);
 	% go the to the first parametrization
 	Psi = alpha_bar * besselk(lambda+1,alpha_bar) / besselk(lambda,alpha_bar);
-   Chi = alpha_bar^2 / Psi;
+	Chi = alpha_bar^2 / Psi;
 	
 	% 7) check conditions
 	theta{k} = {lambda,alpha_bar,mu,Sigma,gamma};
@@ -69,7 +67,26 @@ for k = 2 : maxiter
 	theta{k}{end+1} = Chi; theta{k}{end+1} = Psi;
 end
 
+% 8) build the param struct
+param.lambda = theta{numIter}{1};
+param.alpha = theta{numIter}{2};
+param.mu = theta{numIter}{3};
+param.sigma = theta{numIter}{4};
+param.gamma = theta{numIter}{5};
+param.Chi = theta{numIter}{6};
+param.Psi = theta{numIter}{7};
+if strcmp(GHmodel,{'NIG','H'})
+	nParam =  1 + d + d*(d+1) / 2 + d; %NIG
+else
+	nParam =  1 + 1 + d + d*(d+1) / 2 + d;
+end
+AIC = -2 * LogL + 2 * nParam;
 
+% 9) return calibration information
+CalibrationData.LogL = LogL;
+CalibrationData.ExitFlag = exitFlag;
+CalibrationData.numIter = numIter;
+CalibrationData.AIC = AIC;
 end % MCECMalgorithm
 
 function [delta,eta,csi] = ComputeWeight(lambda,alpha_bar,d,X,mu,Sigma,gamma)
@@ -116,7 +133,7 @@ diff = zeros([N 1]);
 for i = 1 : N
 	diff(i) = norm(theta{k}{i}-theta{k-1}{i});
 end
-if (all(diff) < toll && norm(Q2(k) - Q2(k-1)) < toll) 
+if (all(diff) < toll && norm(Q2(k) - Q2(k-1)) < toll)
 	condition = true;
 else
 	condition = false;
