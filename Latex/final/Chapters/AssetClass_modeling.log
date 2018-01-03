@@ -1,0 +1,3382 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.29)  26 DEC 2017 15:31
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**AssetClass_modeling.tex
+(./AssetClass_modeling.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Runaway argument?
+{\chapter {Asset Class Returns modeling} 
+! Paragraph ended before \text@command was complete.
+<to be read again> 
+                   \par 
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 20--20
+[] 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no I in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no O in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 20.
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no . in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no ( in font nullfont!
+! Undefined control sequence.
+<write> ...ference `eq:rec_algo' on page \thepage 
+                                                  \space undefined\on@line .
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:rec_algo' on page  undefined on input line 20.
+
+Missing character: There is no ) in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Undefined control sequence.
+<argument> ...or the density function $p_{f(x,\bm 
+                                                  {u}_k,\bm {w}_{k+1})}$. Fo...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...sity function $p_{f(x,\bm {u}_k,\bm 
+                                                  {w}_{k+1})}$. For this rea...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no . in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no : in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 20--20
+[]
+ []
+
+
+Overfull \hbox (22.20438pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 w[]$
+ []
+
+
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 20--20
+[]
+ []
+
+
+Overfull \hbox (53.54814pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 p[]$
+ []
+
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no . in font nullfont!
+! Undefined control sequence.
+<argument> ...with numerical results. \subsection 
+                                                  {Gussian model} The first ...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no G in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+
+! LaTeX Error: Environment definition undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Undefined control sequence.
+<argument> ...nation $\sum _{i=0}^{m}u_iw_i = \bm 
+                                                  {u}^T \bm {w}$ has a one-d...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...um _{i=0}^{m}u_iw_i = \bm {u}^T \bm 
+                                                  {w}$ has a one-dimensional...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no . in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{definition}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no x in font nullfont!
+! Undefined control sequence.
+<argument> ...ariance matrix $\Sigma $ $\big (\bm 
+                                                  {w}_{k+1} \sim \mathcal {N...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...\bm {w}_{k+1} \sim \mathcal {N}(\bm 
+                                                  {\mu },\Sigma )\big )$. By...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no . in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+
+Overfull \hbox (23.50351pt too wide) in paragraph at lines 20--20
+                    $\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 @\OML/cmm/m/it/10 R$
+ []
+
+
+Overfull \hbox (12.1424pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 ^^F[]$
+ []
+
+
+Overfull \hbox (8.78014pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 m$
+ []
+
+
+Overfull \hbox (17.98376pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 w \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (60.47786pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 w[]; [] ; w[]\OT1/cmr/m/n/10 ][]$
+ []
+
+
+Overfull \hbox (29.39008pt too wide) in paragraph at lines 20--20
+\OT1/cmr/bx/n/10 Gaus-
+ []
+
+
+Overfull \hbox (19.70958pt too wide) in paragraph at lines 20--20
+\OT1/cmr/bx/n/10 sian
+ []
+
+
+Overfull \hbox (55.77437pt too wide) in paragraph at lines 20--20
+[][] \OML/cmm/m/it/10 u[]w[] \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (19.45248pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 u[]w$
+ []
+
+
+Overfull \hbox (22.20438pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 w[]$
+ []
+
+
+Overfull \hbox (6.02548pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 ^^V$
+ []
+
+
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 ^^F$
+ []
+
+
+Overfull \hbox (37.34325pt too wide) in paragraph at lines 20--20
+[]\OML/cmm/m/it/10 w[] \OMS/cmsy/m/n/10 ^^X
+ []
+
+
+Overfull \hbox (39.73177pt too wide) in paragraph at lines 20--20
+\OMS/cmsy/m/n/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^V; \OT1/cmr/m/n/10 ^^F)[]
+$
+ []
+
+! Undefined control sequence.
+<argument> .... By definition we have \[x(1 + \bm 
+                                                  {u}_k^T \bm {w}_{k+1}) \si...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ion we have \[x(1 + \bm {u}_k^T \bm 
+                                                  {w}_{k+1}) \sim \mathcal {...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x(1 + \bm 
+                     {u}_k^T \bm {\mu })
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x(1 + \bm {u}_k^T \bm 
+                                 {\mu })
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x^2\bm 
+                  {u}_k^T \Sigma \bm {u}_k
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x^2\bm {u}_k^T \Sigma \bm 
+                                     {u}_k
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (192.09087pt too wide) detected at line 20
+\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (1 + \OML/cmm/m/it/10 u[]w[]\OT1/cmr/m/n/10 )
+ \OMS/cmsy/m/n/10 ^^X N[] []\OML/cmm/m/it/10 ; [] []
+ []
+
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+! Undefined control sequence.
+<argument> ...gma }^2}\Big )\] hence \[p_{f(x,\bm 
+                                                  {u}_k,\bm {w}_{k+1})}(z) =...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ig )\] hence \[p_{f(x,\bm {u}_k,\bm 
+                                                  {w}_{k+1})}(z) = \phi _{(\...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ma }^2}\big \}, \quad z \in \mathbb 
+                                                  {R}.\] \par \subsection {G...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (280.98973pt too wide) detected at line 20
+\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z\OT1/cmr/m/n/10 ) = \OML
+/cmm/m/it/10 ^^^[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z\OT1/cmr/m/n/10 ) := [] []
+ [] \OMS/cmsy/m/n/10 ^^@ [][][]\OML/cmm/m/it/10 ;  z \OMS/cmsy/m/n/10 2 \OML/cm
+m/m/it/10 R:
+ []
+
+! Undefined control sequence.
+<argument> ...\in \mathbb {R}.\] \par \subsection 
+                                                  {Gaussian Mixture model} \...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no G in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 20--20
+[]
+ []
+
+! Undefined control sequence.
+<argument> ...ian Mixture model} \par \subsection 
+                                                  {Generelized Hyperbolic mo...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no G in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+! Undefined control sequence.
+<argument> \chapter 
+                    {Asset Class Returns modeling} \par In chapter, we addre...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 20--20
+[]
+ []
+
+
+Overfull \hbox (15.0999pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 As-
+ []
+
+
+Overfull \hbox (12.01102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 set
+ []
+
+
+Overfull \hbox (22.99986pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Class
+ []
+
+
+Overfull \hbox (14.96098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Re-
+ []
+
+
+Overfull \hbox (22.61652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 turns
+ []
+
+
+Overfull \hbox (21.46652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 mod-
+ []
+
+
+Overfull \hbox (10.73325pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 el-
+ []
+
+
+Overfull \hbox (13.2888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ing 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...ference `eq:rec_algo' on page \thepage 
+                                                  \space undefined\on@line .
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:rec_algo' on page  undefined on input line 20.
+
+! Undefined control sequence.
+<argument> ...or the density function $p_{f(x,\bm 
+                                                  {u}_k,\bm {w}_{k+1})}$. Fo...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...sity function $p_{f(x,\bm {u}_k,\bm 
+                                                  {w}_{k+1})}$. For this rea...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (29.47772pt too wide) in paragraph at lines 20--20
+[]\OT1/cmr/m/it/10 In
+ []
+
+
+Overfull \hbox (23.51096pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 chap-
+ []
+
+
+Overfull \hbox (15.20543pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ter,
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (13.79991pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ad-
+ []
+
+
+Overfull \hbox (21.59428pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dress
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (12.7777pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 as-
+ []
+
+
+Overfull \hbox (12.01102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 set
+ []
+
+
+Overfull \hbox (20.44432pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 class
+ []
+
+
+Overfull \hbox (11.88321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 re-
+ []
+
+
+Overfull \hbox (22.61652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 turns
+ []
+
+
+Overfull \hbox (21.46652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 mod-
+ []
+
+
+Overfull \hbox (10.73325pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 el-
+ []
+
+
+Overfull \hbox (13.2888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ing
+ []
+
+
+Overfull \hbox (10.73326pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 is-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sue.
+ []
+
+
+Overfull \hbox (11.52216pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 As
+ []
+
+
+Overfull \hbox (6.38884pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 it
+ []
+
+
+Overfull \hbox (15.84436pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 was
+ []
+
+
+Overfull \hbox (23.25539pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 noted
+ []
+
+
+Overfull \hbox (26.57758pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 above,
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (29.82758pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ODAA
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 al-
+ []
+
+
+Overfull \hbox (13.28879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 go-
+ []
+
+
+Overfull \hbox (23.89429pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 rithm
+ []
+
+
+Overfull \hbox (18.39987pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 does
+ []
+
+
+Overfull \hbox (14.05547pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 not
+ []
+
+
+Overfull \hbox (13.28879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 de-
+ []
+
+
+Overfull \hbox (19.9332pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 pend
+ []
+
+
+Overfull \hbox (10.73328pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 on
+ []
+
+
+Overfull \hbox (5.11108pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a
+ []
+
+
+Overfull \hbox (17.50542pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 par-
+ []
+
+
+Overfull \hbox (14.56654pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tic-
+ []
+
+
+Overfull \hbox (8.94438pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 u-
+ []
+
+
+Overfull \hbox (11.88326pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 lar
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (12.39436pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 for
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (12.7777pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 as-
+ []
+
+
+Overfull \hbox (12.01102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 set
+ []
+
+
+Overfull \hbox (20.44432pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 class
+ []
+
+
+Overfull \hbox (11.88321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 re-
+ []
+
+
+Overfull \hbox (22.61652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 turns
+ []
+
+
+Overfull \hbox (16.8665pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 vec-
+ []
+
+
+Overfull \hbox (12.6499pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tor
+ []
+
+
+Overfull \hbox (25.27103pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 w[]$\OT1/cmr/m/it/10 .
+ []
+
+
+Overfull \hbox (22.76653pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 How-
+ []
+
+
+Overfull \hbox (21.08316pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ever,
+ []
+
+
+Overfull \hbox (9.45547pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 by
+ []
+
+
+Overfull \hbox (20.44429pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 look-
+ []
+
+
+Overfull \hbox (13.2888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ing
+ []
+
+
+Overfull \hbox (8.43327pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 at
+ []
+
+
+Overfull \hbox (22.74426pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 equa-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (19.03879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ([])
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (12.77766pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 see
+ []
+
+
+Overfull \hbox (16.86655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 that
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (18.91095pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 need
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (12.81657pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ex-
+ []
+
+
+Overfull \hbox (21.72208pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 plicit
+ []
+
+
+Overfull \hbox (14.31102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 an-
+ []
+
+
+Overfull \hbox (8.68883pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a-
+ []
+
+
+Overfull \hbox (14.31099pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 lyt-
+ []
+
+
+Overfull \hbox (6.6444pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 i-
+ []
+
+
+Overfull \hbox (11.75546pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 cal
+ []
+
+
+Overfull \hbox (20.5721pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 form
+ []
+
+
+Overfull \hbox (12.39436pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 for
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (18.91098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 den-
+ []
+
+
+Overfull \hbox (15.33322pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sity
+ []
+
+
+Overfull \hbox (22.23318pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 func-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (56.61479pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 p[]$\OT1/cmr/m/it/10 .
+ []
+
+
+Overfull \hbox (15.08878pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 For
+ []
+
+
+Overfull \hbox (15.58879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 this
+ []
+
+
+Overfull \hbox (16.48317pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 rea-
+ []
+
+
+Overfull \hbox (17.8888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 son,
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (15.33325pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 will
+ []
+
+
+Overfull \hbox (8.6888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 be
+ []
+
+
+Overfull \hbox (20.44429pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 deal-
+ []
+
+
+Overfull \hbox (13.2888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ing
+ []
+
+
+Overfull \hbox (12.81657pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ex-
+ []
+
+
+Overfull \hbox (16.09988pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 clu-
+ []
+
+
+Overfull \hbox (23.7665pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sively
+ []
+
+
+Overfull \hbox (18.14433pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 with
+ []
+
+
+Overfull \hbox (22.10538pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 prob-
+ []
+
+
+Overfull \hbox (8.68883pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a-
+ []
+
+
+Overfull \hbox (13.7999pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bil-
+ []
+
+
+Overfull \hbox (11.24435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ity
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (21.21098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tions
+ []
+
+
+Overfull \hbox (25.55537pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 closed
+ []
+
+
+Overfull \hbox (14.56657pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 un-
+ []
+
+
+Overfull \hbox (13.92767pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 der
+ []
+
+
+Overfull \hbox (14.82213pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 lin-
+ []
+
+
+Overfull \hbox (13.41655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ear
+ []
+
+
+Overfull \hbox (20.9554pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 com-
+ []
+
+
+Overfull \hbox (11.24435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bi-
+ []
+
+
+Overfull \hbox (14.31102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 na-
+ []
+
+
+Overfull \hbox (20.18877pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion.
+ []
+
+
+Overfull \hbox (9.47772pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 In
+ []
+
+
+Overfull \hbox (15.58879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 this
+ []
+
+
+Overfull \hbox (23.63873pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 work,
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (17.50542pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 pro-
+ []
+
+
+Overfull \hbox (18.39987pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 pose
+ []
+
+
+Overfull \hbox (20.82758pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 three
+ []
+
+
+Overfull \hbox (19.16655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 such
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (24.27763pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tions: 
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (40.19145pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Gaussian 
+ []
+
+
+Overfull \hbox (40.19145pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Gaussian
+ []
+
+
+Overfull \hbox (20.24988pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Mix-
+ []
+
+
+Overfull \hbox (16.9943pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ture 
+ []
+
+
+Overfull \hbox (49.77463pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Generelized
+ []
+
+
+Overfull \hbox (15.86655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Hy-
+ []
+
+
+Overfull \hbox (16.9943pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 per-
+ []
+
+
+Overfull \hbox (19.42207pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bolic 
+ []
+
+! Undefined control sequence.
+<argument> ...with numerical results. \subsection 
+                                                  {Gussian model} The first ...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Environment definition undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...nation $\sum _{i=0}^{m}u_iw_i = \bm 
+                                                  {u}^T \bm {w}$ has a one-d...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...um _{i=0}^{m}u_iw_i = \bm {u}^T \bm 
+                                                  {w}$ has a one-dimensional...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{definition}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bm 
+                    
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ariance matrix $\Sigma $ $\big (\bm 
+                                                  {w}_{k+1} \sim \mathcal {N...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...\bm {w}_{k+1} \sim \mathcal {N}(\bm 
+                                                  {\mu },\Sigma )\big )$. By...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (15.08878pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 For
+ []
+
+
+Overfull \hbox (18.91096pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 each
+ []
+
+
+Overfull \hbox (8.17773pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 of
+ []
+
+
+Overfull \hbox (24.27762pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 them,
+ []
+
+
+Overfull \hbox (17.24988pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 first
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (15.33325pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 will
+ []
+
+
+Overfull \hbox (16.86653pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 give
+ []
+
+
+Overfull \hbox (5.11108pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a
+ []
+
+
+Overfull \hbox (16.61098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the-
+ []
+
+
+Overfull \hbox (8.68883pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 o-
+ []
+
+
+Overfull \hbox (15.2054pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ret-
+ []
+
+
+Overfull \hbox (6.6444pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 i-
+ []
+
+
+Overfull \hbox (11.75546pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 cal
+ []
+
+
+Overfull \hbox (12.26659pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 in-
+ []
+
+
+Overfull \hbox (15.71652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tro-
+ []
+
+
+Overfull \hbox (18.65543pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 duc-
+ []
+
+
+Overfull \hbox (20.18877pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion,
+ []
+
+
+Overfull \hbox (16.35541pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sec-
+ []
+
+
+Overfull \hbox (23.76653pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ondly
+ []
+
+
+Overfull \hbox (13.28879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 de-
+ []
+
+
+Overfull \hbox (16.4832pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 rive
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (20.8276pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 port-
+ []
+
+
+Overfull \hbox (11.75548pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 fo-
+ []
+
+
+Overfull \hbox (10.73328pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 lio
+ []
+
+
+Overfull \hbox (22.23318pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 value
+ []
+
+
+Overfull \hbox (18.91098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 den-
+ []
+
+
+Overfull \hbox (15.33322pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sity
+ []
+
+
+Overfull \hbox (22.23318pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 func-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (15.84436pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 and
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (23.50351pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 @\OML/cmm/m/it/10 R$
+ []
+
+
+Overfull \hbox (18.39986pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 con-
+ []
+
+
+Overfull \hbox (28.23868pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 straint
+ []
+
+
+Overfull \hbox (28.62206pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 (which
+ []
+
+
+Overfull \hbox (13.28879pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 de-
+ []
+
+
+Overfull \hbox (24.02206pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 pends
+ []
+
+
+Overfull \hbox (10.73328pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 on
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (18.39987pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 cho-
+ []
+
+
+Overfull \hbox (14.31102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sen
+ []
+
+
+Overfull \hbox (21.4665pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 since
+ []
+
+
+Overfull \hbox (6.38884pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 it
+ []
+
+
+Overfull \hbox (12.26659pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 in-
+ []
+
+
+Overfull \hbox (25.55537pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 volves
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (12.77766pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 co-
+ []
+
+
+Overfull \hbox (20.57207pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 vari-
+ []
+
+
+Overfull \hbox (19.42207pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ance
+ []
+
+
+Overfull \hbox (16.86656pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ma-
+ []
+
+
+Overfull \hbox (15.24434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 trix
+ []
+
+
+Overfull \hbox (19.29791pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 ^^F[]$\OT1/cmr/m/it/10 ),
+ []
+
+
+Overfull \hbox (9.19994pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 fi-
+ []
+
+
+Overfull \hbox (21.21098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 nally
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (15.33325pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 will
+ []
+
+
+Overfull \hbox (18.39986pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 con-
+ []
+
+
+Overfull \hbox (22.23318pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 clude
+ []
+
+
+Overfull \hbox (18.14433pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 with
+ []
+
+
+Overfull \hbox (14.56657pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 nu-
+ []
+
+
+Overfull \hbox (20.57207pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 mer-
+ []
+
+
+Overfull \hbox (6.6444pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 i-
+ []
+
+
+Overfull \hbox (11.75546pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 cal
+ []
+
+
+Overfull \hbox (11.88321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 re-
+ []
+
+
+Overfull \hbox (22.48875pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sults.
+ []
+
+
+Overfull \hbox (20.76932pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Gus-
+ []
+
+
+Overfull \hbox (17.8888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sian
+ []
+
+
+Overfull \hbox (25.04428pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 model
+ []
+
+
+Overfull \hbox (16.86655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 The
+ []
+
+
+Overfull \hbox (17.24988pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 first
+ []
+
+
+Overfull \hbox (22.10538pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 prob-
+ []
+
+
+Overfull \hbox (8.68883pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a-
+ []
+
+
+Overfull \hbox (13.7999pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bil-
+ []
+
+
+Overfull \hbox (11.24435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ity
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (18.39986pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 con-
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sid-
+ []
+
+
+Overfull \hbox (17.50539pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ered
+ []
+
+
+Overfull \hbox (7.15552pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 is
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (25.8804pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Gaus-
+ []
+
+
+Overfull \hbox (17.8888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sian
+ []
+
+
+Overfull \hbox (28.94705pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 [Gaus-
+ []
+
+
+Overfull \hbox (17.8888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sian
+ []
+
+
+Overfull \hbox (18.01653pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ran-
+ []
+
+
+Overfull \hbox (18.3999pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dom
+ []
+
+
+Overfull \hbox (16.8665pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 vec-
+ []
+
+
+Overfull \hbox (15.71655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tor]
+ []
+
+
+Overfull \hbox (7.43329pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 A
+ []
+
+
+Overfull \hbox (12.35788pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 m$\OT1/cmr/m/it/10 -
+ []
+
+
+Overfull \hbox (52.13304pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dimensional
+ []
+
+
+Overfull \hbox (18.01653pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ran-
+ []
+
+
+Overfull \hbox (18.3999pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dom
+ []
+
+
+Overfull \hbox (16.8665pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 vec-
+ []
+
+
+Overfull \hbox (12.6499pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tor
+ []
+
+
+Overfull \hbox (17.98376pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 w \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (60.47786pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 w[]; [] ; w[]\OT1/cmr/m/n/10 ][]$
+ []
+
+
+Overfull \hbox (7.15552pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 is
+ []
+
+
+Overfull \hbox (30.08302pt too wide) in paragraph at lines 20--20
+\OT1/cmr/bx/it/10 Gaus-
+ []
+
+
+Overfull \hbox (20.8359pt too wide) in paragraph at lines 20--20
+\OT1/cmr/bx/it/10 sian
+ []
+
+
+Overfull \hbox (6.1333pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 if
+ []
+
+
+Overfull \hbox (12.77766pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ev-
+ []
+
+
+Overfull \hbox (13.6721pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ery
+ []
+
+
+Overfull \hbox (14.82213pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 lin-
+ []
+
+
+Overfull \hbox (13.41655pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ear
+ []
+
+
+Overfull \hbox (20.9554pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 com-
+ []
+
+
+Overfull \hbox (11.24435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bi-
+ []
+
+
+Overfull \hbox (14.31102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 na-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (55.77437pt too wide) in paragraph at lines 20--20
+[][] \OML/cmm/m/it/10 u[]w[] \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (19.45248pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 u[]w$
+ []
+
+
+Overfull \hbox (14.31104pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 has
+ []
+
+
+Overfull \hbox (5.11108pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a
+ []
+
+
+Overfull \hbox (18.91098pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 one-
+ []
+
+
+Overfull \hbox (52.13304pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dimensional
+ []
+
+
+Overfull \hbox (25.8804pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Gaus-
+ []
+
+
+Overfull \hbox (17.8888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sian
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (20.18877pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion.
+ []
+
+
+Overfull \hbox (13.6832pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Let
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (12.7777pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 as-
+ []
+
+
+Overfull \hbox (12.01102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 set
+ []
+
+
+Overfull \hbox (20.44432pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 class
+ []
+
+
+Overfull \hbox (11.88321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 re-
+ []
+
+
+Overfull \hbox (22.61652pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 turns
+ []
+
+
+Overfull \hbox (18.01653pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ran-
+ []
+
+
+Overfull \hbox (18.3999pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dom
+ []
+
+
+Overfull \hbox (16.8665pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 vec-
+ []
+
+
+Overfull \hbox (12.6499pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tor
+ []
+
+
+Overfull \hbox (22.20438pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 w[]$
+ []
+
+
+Overfull \hbox (14.31102pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 fol-
+ []
+
+
+Overfull \hbox (14.31104pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 low
+ []
+
+
+Overfull \hbox (5.11108pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 a
+ []
+
+
+Overfull \hbox (25.8804pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Gaus-
+ []
+
+
+Overfull \hbox (17.8888pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 sian
+ []
+
+
+Overfull \hbox (15.84435pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 dis-
+ []
+
+
+Overfull \hbox (14.18321pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tri-
+ []
+
+
+Overfull \hbox (13.54434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 bu-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (18.14433pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 with
+ []
+
+
+Overfull \hbox (22.99985pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 mean
+ []
+
+
+Overfull \hbox (6.02548pt too wide) in paragraph at lines 20--20
+\OML/cmm/m/it/10 ^^V$
+ []
+
+
+Overfull \hbox (15.84436pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 and
+ []
+
+
+Overfull \hbox (12.77766pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 co-
+ []
+
+
+Overfull \hbox (20.57207pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 vari-
+ []
+
+
+Overfull \hbox (19.42207pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ance
+ []
+
+
+Overfull \hbox (16.86656pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ma-
+ []
+
+
+Overfull \hbox (15.24434pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 trix
+ []
+
+
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 ^^F$
+ []
+
+
+Overfull \hbox (37.34325pt too wide) in paragraph at lines 20--20
+[]\OML/cmm/m/it/10 w[] \OMS/cmsy/m/n/10 ^^X
+ []
+
+
+Overfull \hbox (42.79842pt too wide) in paragraph at lines 20--20
+\OMS/cmsy/m/n/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^V; \OT1/cmr/m/n/10 ^^F)[]
+$\OT1/cmr/m/it/10 .
+ []
+
+
+Overfull \hbox (11.89436pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 By
+ []
+
+
+Overfull \hbox (16.35544pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 def-
+ []
+
+
+Overfull \hbox (6.6444pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 i-
+ []
+
+
+Overfull \hbox (12.26659pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ni-
+ []
+
+
+Overfull \hbox (17.12212pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 tion
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 we
+ []
+
+
+Overfull \hbox (19.42209pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 have 
+ []
+
+! Undefined control sequence.
+<argument> .... By definition we have \[x(1 + \bm 
+                                                  {u}_k^T \bm {w}_{k+1}) \si...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ion we have \[x(1 + \bm {u}_k^T \bm 
+                                                  {w}_{k+1}) \sim \mathcal {...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x(1 + \bm 
+                     {u}_k^T \bm {\mu })
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x(1 + \bm {u}_k^T \bm 
+                                 {\mu })
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x^2\bm 
+                  {u}_k^T \Sigma \bm {u}_k
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x^2\bm {u}_k^T \Sigma \bm 
+                                     {u}_k
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (192.09087pt too wide) detected at line 20
+\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (1 + \OML/cmm/m/it/10 u[]w[]\OT1/cmr/m/n/10 )
+ \OMS/cmsy/m/n/10 ^^X N[] []\OML/cmm/m/it/10 ; [] []
+ []
+
+
+Overfull \hbox (24.02203pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 hence 
+ []
+
+! Undefined control sequence.
+<argument> ...gma }^2}\Big )\] hence \[p_{f(x,\bm 
+                                                  {u}_k,\bm {w}_{k+1})}(z) =...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ig )\] hence \[p_{f(x,\bm {u}_k,\bm 
+                                                  {w}_{k+1})}(z) = \phi _{(\...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ma }^2}\big \}, \quad z \in \mathbb 
+                                                  {R}.\] \par \subsection {G...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (291.2119pt too wide) detected at line 20
+\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z\OT1/cmr/m/n/10 ) = \OML
+/cmm/m/it/10 ^^^[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z\OT1/cmr/m/n/10 ) := [] []
+ [] \OMS/cmsy/m/n/10 ^^@ [][][]\OML/cmm/m/it/10 ;  z \OMS/cmsy/m/n/10 2 \OML/cm
+m/m/it/10 R:
+ []
+
+! Undefined control sequence.
+<argument> ...\in \mathbb {R}.\] \par \subsection 
+                                                  {Gaussian Mixture model} \...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (60.19145pt too wide) in paragraph at lines 20--20
+[]\OT1/cmr/m/it/10 Gaussian
+ []
+
+
+Overfull \hbox (20.24988pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 Mix-
+ []
+
+
+Overfull \hbox (16.9943pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 ture
+ []
+
+
+Overfull \hbox (25.04428pt too wide) in paragraph at lines 20--20
+\OT1/cmr/m/it/10 model 
+ []
+
+! Undefined control sequence.
+<argument> ...ian Mixture model} \par \subsection 
+                                                  {Generelized Hyperbolic mo...
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Too many }'s.
+<recently read> \egroup 
+                        
+l.20 \subsection{Generelized Hyperbolic model}}
+                                               
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+)
+! Emergency stop.
+<*> AssetClass_modeling.tex
+                           
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 25 strings out of 493029
+ 390 string characters out of 6136234
+ 62038 words of memory out of 5000000
+ 3656 multiletter control sequences out of 15000+600000
+ 4653 words of font info for 17 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 20i,8n,15p,550b,96s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

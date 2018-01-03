@@ -1,0 +1,149 @@
+\chapter{Model Calibration}
+In this chapter we show how to calibrate the models introduced in Chapter \ref{chpt:assetclass_returns} to market data. The asset class menu we will consider consists in equity, bond and cash and a suitable index will be used to represent each of these markets (the dataset is discussed in Section \ref{}). In this work, we set the number of mixing Gaussian components to 2. In financial terms, the two mixing components could be interpreted as economic regimes, namely a \textit{tranquil} regime and a \text{distressed} one (see \cite{Brey2013}). We focus our attention only on GM and GH since calibrating the Gaussian model is trivial (it amounts to compute the sample mean and covariance matrix). As far as the GM model is concerned, different calibration methods are available, namely the \textbf{Method of Moments} (MM), \textbf{Maximum Likelihood} (ML) estimation  and the \textbf{Expectation-Maximization} (EM) algorithm. Each of them will be discussed in Section \ref{sec:GM_calibration} and also a comparison between the three will be provided. Finally, in Section \ref{sec:GH_calibration} the GH model will be fitted to data using the multi-cycle expectation conditional estimation (MCECM) algorithm. 
+\section{GM calibration} \label{sec:GM_calibration}
+The problem of estimating the parameters of a Gaussian Mixture distribution dates back to \cite{Pearson1894} and still nowadays it raises in a wide spectrum of different disciplines (Finance and Classification just to name a few). Thanks to the computational power available today, the EM algorithm is considered to be the state-of-the-art method for fitting the GM distribution. Nevertheless, MM and ML are worth studying as they shed light on different aspect of the problem at hand and they could provide the starting point for the EM algorithm. The main reference for the MM method is \cite{Everitt81}, for the ML \cite{casella2002} and for EM \cite{McNeil2005}.
+\subsection{Method of Moments}
+In this subsection we present the Method of Moments for calibrating a 3-dimensional Gaussian Mixture distribution with $n=2$ mixing component. The idea behind MM is to match observed and theoretical moments; this translates into a system of polynomial equations that most of the times, for real-size problems, has to be solved numerically. Since we need to fit a 3-dimensional distribution, we will work component-wise: moment-matching equations will be written  for each component together with unimodality on each marginal. In order to keep the number of parameters to a reasonable degree, we will suppose a common correlation matrix between the two Gaussian mixing components.
+
+Let $\{\bm{X}_1,\ldots,\bm{X}_n \}$ be a random sample from a GM distribution whose density function is 
+\begin{equation}\label{eq:calibration_density}
+f(\bm{z}) = \lambda \varphi_{(\bm{\mu}_1,\bm{\Sigma}_1)}(\bm{z}) + (1-\lambda)\varphi_{(\bm{\mu}_2,\bm{\Sigma}_2)}(\bm{z}),\quad \bm{z} \in \mathbb{R}^3
+\end{equation}
+Our goal is to estimate $\{\lambda,\bm{\mu}_1,\bm{\Sigma}_1,\bm{\mu}_2,\bm{\Sigma}_2 \}$ from the random sample. Due to the assumption of a shared correlation matrix, the number of actual parameters to estimate is 16: $\lambda$, 6 means, 6 standard deviations and 3 correlations.
+To set the notation we give the following definition
+\begin{definition}[theoretical and sample moments]
+	Let $X$ be a random variable and $\{x_1,\ldots,x_n\} $ a realization of a random sample. The first four theoretical and sample moments are:
+	\begin{align*}
+	\mu_X & = \mathbb{E}[X] \quad & \bar{x} &= \frac{1}{n}\sum_{j=1}^{n}x_j\\
+	\sigma^2_X & = \mathbb{E}\big[(X-\mu_X)^2\big] \quad & s^2 &= \frac{1}{n}\sum_{j=1}^{n}(x_j-\bar{x})^2\\
+	\gamma_X & = \frac{1}{\sigma_X^3}\mathbb{E}\big[(X-\mu_X)^3\big] \quad & \widehat{\gamma} & = \frac{\frac{1}{n}\sum_{j=1}^{n}(x_j-\bar{x})^3}{\Big(\sqrt{\frac{1}{n}\sum_{j=1}^{n}(x_j-\bar{x})^2} \Big)^3}\\
+	\kappa_X & = \frac{1}{\sigma_X^4}\mathbb{E}\big[ (X-\mu_X)^4\big] \quad & \widehat{\kappa}&= \frac{\frac{1}{n}\sum_{j=1}^{n}(x_j-\bar{x})^4}{s^4}
+	\end{align*}
+\end{definition}
+Let $\bm{X}$ be a random vector with density (\ref{eq:calibration_density}), its $i$-th marginal is \[f_{X_i}(z) = \varphi_{(\mu_{1i},\sigma^2_{1i})}(z)+(1-\lambda)\varphi_{(\mu_{2i},\sigma^2_{2i})}(z), \quad z \in \mathbb{R} \quad  i \in \{1,2,3\} \]
+where $\mu_{ji}$ and $\sigma^2_{ji}$ denote respectively the $j$-th element of the $i$-th mixing component mean vector  and the $j$-th diagonal entry of the $i$-th mixing component covariance matrix, $i \in \{1,2,3\}$, $j \in \{1,2\}$ (namely the first subscripts indicates the dimension, the second the mixing component). Computing explicitly the theoretical moments we obtain
+\begin{align*}
+\mu_{X_i} & = \lambda\mu_{1i}+(1-\lambda)\mu_{2i}\\[15pt] 
+\sigma^2_{X_i} & = \lambda(\sigma^2_{1i}+\mu^2_{1i})+(1-\lambda)(\sigma^2_{2i}+\mu^2_{2i})\\[15pt]
+\gamma_{X_i} & = \frac{1}{\sigma^3_{X_i}}\Big\{\big[\lambda(\mu^3_{1i}+3\mu_{1i}\sigma^2_{1i}) + (1-\lambda)(\mu^3_{2i}+3\mu_{2i}\sigma^2_{2i})\big] -3\mu_{X_i}\sigma^2_{X_i}-\mu^3_{X_i} \Big\}\\[15pt]
+\kappa_{X_i}&= \frac{1}{\sigma^4_{X_i}}\Big\{\big[\lambda(\mu^4_{1i}+6\mu^2_{1i}\sigma^2_{1i}+3\sigma^4_{1i})+(1-\lambda)(\mu^4_{2i}+6\mu^2_{2i}\sigma^2_{2i}+3\sigma^4_{2i}) \big] +\\
+& \quad -\mu^4_{X_i} -6\mu^2_{X_i}\sigma^2_{X_i}-4\gamma_{X_i}\sigma^3_{X_i}\mu_{X_i} \Big\}
+\end{align*}
+where $i \in \{1,2,3\}$. Equating them with their sample counterparts gives us the first twelve moment equations. The three correlation equations are derived equating the theoretical covariances (written as a function of correlation coefficients $\rho_{ij}$)
+\[ \sigma_{X_iX_j}= \lambda\rho_{ij}\sigma_{1i}\sigma_{1j}+(1-\lambda)\rho_{ij}\sigma_{2i}\sigma_{2j}+\lambda(1-\lambda)(\mu_{1i}-\mu_{2i})(\mu_{1j}-\mu_{2j})   \] and the sample ones \[ \widehat{\sigma}_{X_iX_j} = \frac{1}{n}\sum_{s=1,t=1}^{n,n}(x_s-\bar{x})(x_t-\bar{x})
+\]
+ $i \in \{1,2,3\} \quad j<i.$ So far, we have derived 15 equations in 16 unknown parameters. In order to have as many equations as unknown parameters, we solve the moment equation system by numerically minimizing the sum of square differences between theoretical and sample moments for different values of $\lambda$ in a discretized grid of the interval $[0,1]$. The optimal $\lambda$ will the one giving the smallest residual. Moreover, in the optimization process we also imposed the following uni-modality constraints on each marginal\footnote{see \cite{Eisenberg64} for the proof of this sufficient condition for uni-modality for a 2-mixing-component GM density}
+ \[ (\mu_{2i} - \mu_{1i})^2 \leq \frac{27}{4}(\sigma^2_{2i}\sigma^2_{1i})/(\sigma^2_{1i}+\sigma^2_{2i}) \quad i \in \{1,2,3\}\]
+ and positive-definiteness constraints on the standard deviation and correlation parameters. The uni-modality constraint is required  since bi-modal return distributions are not observed in the market.
+
+\subsection{Expectation-Maximization}
+In this section we introduce the EM algorithm for calibrating a GM model. Before diving into it, we need to define the maximum-likelihood estimator since the EM algorithm comes into play to solve difficulties in the ML method.
+\begin{definition}[Likelihood function]
+	Let $\bm{x}=\{x_1,\ldots,x_N\}$ be a realization of a random sample from a population with pdf $f(x\lvert\bm{\theta})$ parametrized by $\bm{\theta}=[\theta_1,\ldots,\theta_k]^T$. The \textbf{likelihood function} is defined by \[ L(\bm{\theta}\lvert\bm{x}) = L(\theta_1,\ldots,\theta_N\lvert x_1,\ldots,x_k) = \prod_{i=1}^{N}f(x_i\lvert\bm{\theta}). \]	
+\end{definition}
+The following definition of a maximum likelihood estimator is taken from \cite{casella2002}
+\begin{definition}[maximum-likelihood estimator]
+	For each sample point $\bm{x}$, let $\widehat{\bm{\theta}}(\bm{x})$ be the parameters value at which $L(\bm{\theta}\lvert\bm{x})$  attains its maximum as a function of $\bm{\theta}$, with $\bm{x}$ held fixed. A \textbf{maximum-likelihood estimator} (MLE) of the parameters vector $\bm{\theta}$ based on a random sample $\bm{X}$ is $\widehat{\bm{\theta}}(\bm{X})$
+\end{definition}
+Intuitively, the MLE is a reasonable estimator since is the parameter point for which the observed sample is most likely. However, its main drawback is that finding the maximum of the likelihood function (or its logarithmic transformation) might be difficult both analytically and numerically. Consequently, the idea is to adopt an iterative procedure that converges to a local maximum.
+In order to focus on the idea behind the EM algorithm and not on technical details, we will present it in the simpler case of a uni-variate GM distribution with 2 mixing components (as presented in \cite{hastie2009}). The interested reader can refer to \cite{hastie2009} for the general case or \cite{Plasse2013} for a more throughout discussion.
+
+Consider a mixture of two Gaussian random variables
+\[X = (1-\Delta)X_1 + \Delta X_2 \] where $X_1 \sim \mathcal{N}\big(\mu_1,\sigma^2_1\big)$, $X_2 \sim \mathcal{N}\big(\mu_2,\sigma^2_2\big)$ and $\Delta \sim B(\lambda)$ is the mixing random variable. The density function of $X$, parametrized by $\bm{\theta} = [\lambda,\mu_1,\sigma^2_1,\mu_2,\sigma^2_2]^T$, is
+\[f_X(x) = (1-\lambda)\varphi_{(\mu_1,\sigma^2_1)}(x)+\lambda \varphi_{(\mu_2,\sigma^2_2)}(x), \quad x \in \mathbb{R}. \] Our objective is to find an estimate $\widehat{\bm{\theta}}$ of $\bm{\theta}$. Let $\bm{x} = \{x_1,\ldots,x_N\}$ be a realization of a random sample (our data at hand), the log-likelihood function is
+\begin{equation}\label{eq:log-likelihood}
+l(\bm{\theta};\bm{x}) = \sum_{i=1}^{N}\log\big[(1-\lambda)\varphi_{(\mu_1,\sigma^2_1)}(x_i)+\lambda\varphi_{(\mu_2,\sigma^2_2)}(x_i) \big]
+\end{equation}
+In higher dimensions, the direct maximization of (\ref{eq:log-likelihood}) is difficult and prevent the ML method from being successful. Let us suppose to know the following latent random variables
+\[ \Delta_i = 
+\begin{cases*}
+1 \quad  \text{if $X_i$ comes from model 2}\\
+0 \quad \text{if $X_i$ comes from model 1}
+\end{cases*}
+\]
+for $i = 1,\ldots,N$. Model 1 or 2 is intended the population whose density is the first or second Gaussian component. In this hypothetical case, the log-likelihood function would be 
+\begin{align*}
+l_0(\bm{\theta};\bm{x},\bm{\Delta}) & = \sum_{i=1}^{N}\big[(1-\Delta_i)\log\big(\varphi_{(\mu_1,\sigma^2_1)}(x_i)\big)+\Delta_i\log\big(\varphi_{(\mu_2,\sigma^2_2)}(x_i)\big)\big]+\\
+& \quad + \sum_{i=1}^{N}\big[(1-\Delta_i)\log(1-\lambda)+\Delta_i \log(\lambda) \big].
+\end{align*}
+If the $\Delta_i$'s were known, the maximum-likelihood estimate for $\mu_1$ and $\sigma^2_1$ would be the sample mean and sample variance from the observations with $\Delta_i = 0$. The same holds true for $\mu_2,\sigma^2_2$ and $\Delta_i=1$. The estimate for $\lambda$ would be the proportion of $\Delta_i = 1$. However, as the 
+$\Delta_i$'s are not known, we use as their surrogates the conditional expectations \[ \gamma_i(\bm{\theta}) = \mathbb{E}[\Delta_i \lvert \bm{\theta},\bm{x}]= \mathbb{P}\big(\Delta_i= 1 \lvert\bm{\theta},\bm{x} \big) \quad i = 1,\ldots,N \] called \textit{responsability} of model 2 for observation $i$. The iterative procedure called EM algorithm consists in alternating an \textit{expectation} step in which we assign to each observation the probability to come from each model, and a \textit{maximization} step where these responsabilities are used to update ML estimates.
+\begin{algorithm}[H]
+	\caption{Expectation-Maximization (EM) for 2-component GM}
+	\begin{algorithmic}[1]
+		\State take initial guesses for parameters $\widehat{\mu_1},\widehat{\mu_2},\widehat{\sigma}^2_1,\widehat{\sigma}^2_2, \widehat{\lambda}$
+		\State\label{state:2} \textit{Expectation} step:  compute responsabilities
+		\[ \widehat{\gamma}_i = \dfrac{\widehat{\lambda}\varphi_{(\widehat{\mu}_2,\widehat{\sigma}^2_2)}(x_i)}{(1-\widehat{\lambda})\varphi_{(\widehat{\mu}_1,\widehat{\sigma}^2_1)}(x_i) + \widehat{\lambda}\varphi_{(\widehat{\mu}_2,\widehat{\sigma}^2_2)}(x_i)},\quad i=1,\ldots,N  \]
+		\State\label{state:3} \textit{Maximization} step: compute weighted means and standard deviations
+		\begin{align*}
+		\widehat{\mu}_1 & = \frac{\sum_{i=1}^{N}(1-\widehat{\gamma}_i)x_i}{\sum_{i=1}^{N}(1-\widehat{\gamma}_i)}, \qquad & \widehat{\sigma}^2_1 & = \frac{\sum_{i=1}^{N}(1-\widehat{\gamma}_i)(x_i-\widehat{\mu}_1)^2}{\sum_{i=1}^{N}(1-\widehat{\gamma}_i)}\\
+		\widehat{\mu}_2 & = \frac{\sum_{i=1}^{N}\widehat{\gamma}_ix_i}{\sum_{i=1}^{N}\widehat{\gamma}_i}, \qquad & \widehat{\sigma}^2_2 & = \frac{\sum_{i=1}^{N}\widehat{\gamma}_i(x_i-\widehat{\mu}_2)^2}{\sum_{i=1}^{N}\widehat{\gamma}_i}
+		\end{align*}
+		\State Iterate \ref{state:2} and \ref{state:3} until convergence.
+	\end{algorithmic}
+\end{algorithm}
+A reasonable starting value for $\widehat{\mu}_1$ and $\widehat{\mu}_2$ is a random sample point $x_i$, both $\widehat{\sigma}_1, \widehat{\sigma}_2$ can be set equal to the sample variance and $\widehat{\lambda} = 0.5$. A full implementation of the EM algorithm is available in MATLAB.
+
+
+\section{GH calibration} \label{sec:GH_calibration}
+In this section we present a modified EM scheme (the MCECM algorithm) for fitting a GH model to data. In Definition (\ref{def:GH}) we introduced the GH distribution using the so-called $(\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma})$-parametrization. Although this is the most convenient one from a modeling perspective, it comes with an identification issue: the distributions $GH(\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma})$ and $GH(\lambda,\chi /k,k\psi,\bm{\mu},k\bm{\Sigma},k\bm{\gamma})$ are the same (it is easily seen by writing the density (\ref{eq:GHdensity}) in the two cases). To solve this problem, we require the mixing random variable $W$ (see Definition (\ref{def:GH})) to have expectation equal to 1. From Equation (\ref{eq:GIG_moment}) we have 
+\[ \mathbb{E}[W]=\sqrt{\dfrac{\chi}{\psi}}\frac{K_{\lambda+1}\big(\sqrt{\chi\psi}\big)}{K_{\lambda}\big(\sqrt{\chi\psi}\big)} = 1  \] 
+and if we set $\bar{\alpha} = \sqrt{\chi\psi}$ it follows that 
+\begin{equation}\label{eq:PsiChi_function_alpha}
+\psi=\bar{\alpha}\frac{K_{\lambda+1}\big(\bar{\alpha}\big)}{K_{\lambda}\big(\bar{\alpha}\big)}, \qquad \chi = \frac{\bar{\alpha}^2}{\psi} = \bar{\alpha}\frac{K_{\lambda}\big(\bar{\alpha}\big)}{K_{\lambda+1}\big(\bar{\alpha}\big)}
+\end{equation}
+The relations above define the $(\lambda,\bar{\alpha},\bm{\mu},\bm{\Sigma},\bm{\gamma})$-parametrization, which will be used in the MCECM algorithm.
+
+Let $\bm{X} \sim GH_m(\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma})$ and $\{\bm{x}_1,\ldots,\bm{x}_n\}$ be a realization of an iid random sample. Our objective is to find an estimate of the parameters represented by $\bm{\theta}=[\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma}]^T$. The log-likelihood function to be maximized is
+\begin{equation}\label{eq:ML_function}
+\log L(\bm{\theta};\bm{x}) = \log L(\bm{\theta};\bm{x}_1,\ldots,\bm{x}_n) = \sum_{i=1}^{n}\log f_{\bm{X}}(\bm{x}_i;\theta)
+\end{equation}
+where $f_{\bm{X}}$ is the function in (\ref{eq:GHdensity}). It well-known that finding a maximizer of (\ref{eq:ML_function}) might be difficult, therefore we resort to a different approach. The situation would look much better if we could observe the latent mixing variables $W_1,\ldots,W_n$. Let us suppose to be in this fortunate situation and define the augmented log-likelihood function
+\begin{align}\label{eq:augmentedMLfunction}
+\log \widetilde{L}(\bm{\theta};\bm{x}_1,\ldots,\bm{x}_n,W_1,\ldots,W_n)& = \sum_{i=1}^{n}\log f_{\bm{X}\lvert W}(\bm{x}_i\lvert W_i;\bm{\mu},\bm{\Sigma},\bm{\gamma}) + \\\nonumber
+& \quad + \sum_{i=1}^{n}\log h_{W}(W_i;\lambda,\chi,\psi)
+\end{align}
+where we used the fact that $f_{(\bm{X}_i,W_i)}(\bm{x},w;\bm{\theta})= f_{\bm{X}_i\lvert W_i}(\bm{x}\lvert w;\bm{\mu},\bm{\Sigma},\bm{\gamma})h_{W_i} (w;\lambda,\chi,\psi) $ and $h_{W_i}$ is the density in (\ref{eq:GIGdensity}). The advantage of this augmented formulation is that the two terms in (\ref{eq:augmentedMLfunction}) can be maximized separately. Although counter-intuitive, the first term involving the difficult parameters (e.g. a matrix), is the easiest to maximize and it is done analytically; the second term has to be treated numerically instead. To overcome the latency of the mixing variables $W_i$'s, the MCECM algorithm is used. The algorithm consists in alternating an \textit{expectation} step (in which the $W_i$'s are replaced by an estimate deducted from the data and the current parameters estimate) and a \textit{maximization} step (where parameters estimates are updated). Suppose we are at iteration $k$ and $\bm{\theta}^{(k)}$ is the current parameters estimate, the two steps are as follows
+\begin{itemize}
+	\item \textbf{E-step}: compute the conditional expectation of the augmented log-likelihood function given the data and the current parameters estimate 
+	\begin{equation}\label{eq:Q}
+	Q(\bm{\theta};\bm{\theta}^{(k)}) = \mathbb{E}[\log \widetilde{L}(\bm{\theta};\bm{x},\bm{W})\lvert \bm{x},\bm{\theta}^{(k)}]
+	\end{equation}
+	\item \textbf{M-step}: maximize $Q(\bm{\theta};\bm{\theta}^{(k)})$ to get $\bm{\theta}^{(k+1)}$.
+\end{itemize}
+
+In practice, the E-step amounts to numerically maximize the second term in (\ref{eq:Q}), which is
+\begin{align}\label{eq:ML_function_second_term}
+&\mathbb{E}\bigg[\sum_{i=1}^{n}\log h_{W_i}(W_i;\lambda,\chi,\psi)\Big| \bm{x},\bm{\theta}\bigg]  = \sum_{i=1}^{n} -\lambda\log \chi + \lambda\log \sqrt{\chi\psi}+ \\\nonumber
+&  -\log 2K_{\lambda}(\sqrt{\chi\psi}) + (\lambda-1)\underbrace{\mathbb{E}\big[\log W_i \lvert \bm{x},\bm{\theta}^{(k)}\big]}_{\xi_i}-\tfrac{1}{2}\chi\underbrace{\mathbb{E}\big[W_i^{-1} \lvert \bm{x},\bm{\theta}^{(k)}\big]}_{\delta_i} + \\\nonumber
+& -\tfrac{1}{2}\psi\underbrace{\mathbb{E}\big[W_i \lvert \bm{x},\bm{\theta}^{(k)}\big]}_{\eta_i} = n\big(-\lambda\log \chi + \lambda\log \sqrt{\chi\psi}-\log 2K_{\lambda}(\sqrt{\chi\psi})\big) + \\\nonumber
+&+(\lambda-1)\sum_{i=1}^{n}\xi_i-\tfrac{1}{2}\chi\sum_{i=1}^{n}\delta_i-\tfrac{1}{2}\sum_{i=1}^{n}\eta_i.
+\end{align}
+In order to proceed further, we need to compute the conditional expectations $\xi_i,\delta_i$ and $\eta_i$. Thankfully, the following results holds (see Appendix E.1 in \cite{Brey2013})
+\[  W_i\lvert \bm{x}_i \sim \mathcal{N}^-\big(\underbrace{\lambda-\tfrac{1}{2}d}_{\widetilde{\lambda}},\underbrace{\chi + (\bm{x}_i-\bm{\mu})^T \bm{\Sigma}^{-1}(\bm{x}_i-\bm{\mu})}_{\widetilde{\chi}},\underbrace{\psi+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma}}_{\widetilde{\psi}}\big). \]
+By using Equations (\ref{eq:GIG_moment}) and (\ref{eq:GIG_log}) we end up with
+\begin{align}\label{eq:delta}
+\delta_i & = \mathbb{E}[W_i^{-1}\lvert \bm{x},\bm{\theta}^{(k)}] = \Big(\frac{\widetilde{\chi}}{\widetilde{\psi}}\Big)^{-\frac{1}{2}}\frac{K_{\lambda-1}(\sqrt{\widetilde{\chi}\widetilde{\psi}})}{K_{\lambda}(\sqrt{\widetilde{\chi}\widetilde{\psi}})} \\[20pt]
+\label{eq:eta}
+\eta_i & = \mathbb{E}[W_i\lvert \bm{x},\bm{\theta}^{(k)}] = \Big(\frac{\widetilde{\chi}}{\widetilde{\psi}}\Big)^{\frac{1}{2}}\frac{K_{\lambda+1}(\sqrt{\widetilde{\chi}\widetilde{\psi}})}{K_{\lambda}(\sqrt{\widetilde{\chi}\widetilde{\psi}})}\\[20pt]
+\label{eq:csi}
+\xi_i & = \mathbb{E}[\log W_i\lvert \bm{x},\bm{\theta}^{(k)}]= \frac{\mathrm{d}}{\mathrm{d}\alpha}\Bigg\{\Big(\frac{\widetilde{\chi}}{\widetilde{\psi}}\Big)^{\frac{\alpha}{2}}\frac{K_{\lambda+\alpha}(\sqrt{\widetilde{\chi}\widetilde{\psi}})}{K_{\lambda}(\sqrt{\widetilde{\chi}\widetilde{\psi}})}\Bigg\}_{\alpha=0}
+\end{align}
+We have now all the ingredients to present the MCECM algorithm as exposed in \cite{Brey2013}
+\begin{algorithm}[H]
+	\caption{MCECM}
+	\begin{algorithmic}[1]
+		\State Select reasonable starting points. For instance $\lambda^{(1)}=1,\bar{\alpha}^{(1)}=1$, $\bm{\mu}^{(1)}=$ sample mean, $\bm{\Sigma}^{(1)}=$ sample covariance and $\bm{\gamma}^{(1)} = \bm{0}$
+		\State Compute $\chi^{(k)}$ and $\psi^{(k)}$ using (\ref{eq:PsiChi_function_alpha})
+		\State Compute the weights $\eta_i$ and $\delta_i$ using (\ref{eq:delta}) and (\ref{eq:eta}). Average the weights to get \[ \bar{\eta}^{(k)}=\frac{1}{n}\sum_{i=1}^{n}\eta_i \quad  \quad \bar{\delta}^{(k)}=\frac{1}{n}\sum_{i=1}^{n}\delta_i \]
+		\State If a symmetric model is to be fitted set $\bm{\gamma} = \bm{0}$, else \[ \bm{\gamma}^{(k+1)} = \frac{1}{n}\frac{\sum_{i=1}^{n}(\delta_i^{(k)}(\bar{\bm{x}}-\bm{x}_i)}{\bar{\eta}^{(k)}\bar{\delta}^{(k)}-1} \]
+		\State Update $\bm{\mu}^{(k)}$ and $\bm{\Sigma}^{(k)}$ \[ \bm{\mu}^{(k+1)} = \frac{1}{n}\frac{\sum_{i=1}^{n}\delta_i^{(k)}(\bm{x}_i-\bm{\gamma}^{(k+1)})}{\bar{\delta}^{(k)}} \]
+		\[ \bm{\Sigma}^{(k+1)}=\frac{1}{n}\sum_{i=1}^{n}\delta_i^{(k)}(\bm{x}_i-\bm{\mu}^{(k+1)})(\bm{x}_i-\bm{\mu}^{(k+1)})^T-\bar{\eta}^{(k)}\bm{\gamma}^{(k+1)} \bm{\gamma}^{(k+1)T}   \]
+		\State Set $\bm{\theta}^{(k,2)}=[\lambda^{(k)},\bar{\alpha}^{(k)}\bm{\mu}^{(k+1)},\bm{\Sigma}^{(k+1)},\bm{\gamma}^{(k+1)}]$ and compute $\eta_i^{(k,2)},\delta_i^{(k,2)}$ and $\xi_i^{(k,2)}$ using (\ref{eq:eta}),(\ref{eq:delta}) and (\ref{eq:csi})
+		\State Maximize (\ref{eq:ML_function_second_term}) with respect to $\lambda$ and $\bar{\alpha}$ (using relation (\ref{eq:PsiChi_function_alpha})) to complete the calculation of $\bm{\theta}^{(k,2)}$. Go to step 2
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+

@@ -1,0 +1,49 @@
+\chapter{Probability Distributions} \label{app:B}
+In this appendix we give further details about the probability distributions used in part I. Main references are \cite{Brey2013}, \cite{paolella2007intermediate} and \cite{McNeil2005}.
+\section{Generalized Inverse Gaussian}
+\begin{definition}[Bessel function]
+	The modified Bessel function of the third kind (simply called \textbf{Bessel function}) is defined as \[ K_{\nu}(x) = \frac{1}{2}\int_{0}^{\infty}t^{\nu-1}\exp\big\{-\frac{1}{2}x(t + t^{-1})\big\}\mathrm{d}t, \quad x > 0.  \]
+\end{definition}
+\begin{definition}[Generalized Inverse Gaussian]
+	the density of a \textbf{Generalized Inverse Gaussian} (GIG) random variable $W$ $(W \sim \mathcal{N}^-\big(\lambda,\chi,\psi \big))$ is 
+	\begin{equation}\label{eq:GIGdensity}
+	f_{GIG}(w) = \Big(\frac{\psi}{\chi}\Big)^{\frac{\lambda}{2}}\frac{w^{\lambda-1}}{2K_{\lambda}(\sqrt{\chi\psi})}\exp\Big\{-\frac{1}{2}\big(\frac{\chi}{w}+\psi w\big)\big)\Big\} 
+	\end{equation}
+	with parameters satisfying 
+	\[
+	\begin{cases}
+	\chi >0,\psi \geq 0, \quad \text{if} \quad \lambda <0\\
+	\chi >0,\psi > 0, \quad \text{if} \quad \lambda =0\\
+	\chi \geq0,\psi > 0, \quad \text{if} \quad \lambda >0\\
+	\end{cases}
+	\]
+\end{definition}
+\paragraph{Useful formulas}
+The following formulas are used in the text:
+\begin{equation}\label{eq:GIG_moment}
+\mathbb{E}[W^n] = \Big(\frac{\chi}{\psi}\Big)^{\frac{n}{2}}\frac{K_{\lambda+n}(\sqrt{\chi\psi})}{K_{\lambda}(\sqrt{\chi\psi})}
+\end{equation}
+\begin{equation}\label{eq:GIG_log}
+\mathbb{E}[\log W] = \Big\{\frac{\mathrm{d}\mathbb{E}[X^{\alpha}]}{\mathrm{d}\alpha}\Big\}_{\alpha=0}
+\end{equation}
+\section{Density Functions}
+We give here the probability density function for the general multivariate GH distribution and same special cases
+\subsection{GH}
+\begin{equation}
+f(\bm{x}) = c\frac{K_{\lambda-\frac{m}{2}}\Big(\sqrt{\big(\chi+Q(\bm{x})\big)\big(\psi+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma} \big)}\Big)\exp\big\{(\bm{x}-\bm{\mu})^T\Sigma^{-1}\bm{\gamma}\big\}}{\Big(\sqrt{\big(\chi+Q(\bm{x})\big)\big(\psi+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma} \big)}\Big)^{\frac{m}{2}-\lambda}}
+\end{equation}
+where $Q(\bm{x})=(\bm{x}-\bm{\mu})^T\bm{\Sigma}^{-1}(\bm{x}-\bm{\mu})$ and \[ c=\frac{\big(\sqrt{\chi\psi}\big)^{-\lambda}\psi^{\lambda}\big(\psi+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma} \big)^{\frac{m}{2}-\lambda}}{(2\pi)^{\frac{m}{2}}\lvert\bm{\Sigma}\lvert^{\frac{1}{2}}K_{\lambda}(\sqrt{\chi\psi})}  \]
+\subsection{Student-t}
+Setting the degree of freedom $\nu=-2\lambda$ the density reads
+\begin{equation}
+f(\bm{x}) = c\frac{K_{\frac{\nu+m}{2}}\Big(\sqrt{\big(\nu-2+Q(\bm{x})\big)\big(\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma}\big)}\Big)\exp\big\{(\bm{x}-\bm{\mu})^T\Sigma^{-1}\bm{\gamma}\big\}}{\Big(\sqrt{\big(\nu-2+Q(\bm{x})\big)\big(\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma}\big)}\Big)^{\frac{\nu+m}{2}}}
+\end{equation}
+where \[ c = \frac{\big(\nu-2\big)^{\frac{\nu}{2}}\big(\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma}\big)^{\frac{\nu+m}{2}}}{(2\pi)^{\frac{m}{2}}\lvert\bm{\Sigma}\lvert^{\frac{1}{2}}\Gamma(\frac{\nu}{2})2^{\frac{\nu}{2}-1}} \]
+\subsection{VG}
+\begin{equation}
+f(\bm{x}) = c\frac{K_{\lambda-\frac{m}{2}}\Big(\sqrt{Q(\bm{x})\big(2\lambda+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma} \big)}\Big)\exp\big\{(\bm{x}-\bm{\mu})^T\Sigma^{-1}\bm{\gamma}\big\}}{\Big(\sqrt{Q(\bm{x})\big(2\lambda+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma} \big)}\Big)^{\frac{m}{2}-\lambda}}
+\end{equation}
+where \[ c=\frac{2\lambda^{\lambda}\big(2\lambda+\bm{\gamma}^T\bm{\Sigma}^{-1}\bm{\gamma}\big)^{\frac{m}{2}-\lambda}}{(2\pi)^{\frac{m}{2}}\lvert\bm{\Sigma}\lvert^{\frac{1}{2}}\Gamma(\lambda)} \]
+
+
+

@@ -1,0 +1,101 @@
+\documentclass[12pt, a4paper, twoside]{book}
+
+%% import packages
+\usepackage[english ]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{empheq}
+\usepackage{mathtools}
+\usepackage{algorithm,algpseudocode}
+
+\usepackage{hyperref}
+%\usepackage{appendix}
+
+%\DeclareMathOperator*{\sup}{sup}
+\DeclareMathOperator*{\argmax}{arg\,max} % argmax operator
+
+% remark theoremstyle
+\newtheoremstyle{break}
+{\topsep}{\topsep}%
+{\itshape}{}%
+{\bfseries}{}%
+{\newline}{}%
+\theoremstyle{break}
+\newtheorem{remark}{Remark}[section]
+% problem theoremstyle
+\newtheoremstyle{problemstyle}  % <name>
+{10pt}  % <space above>
+{10pt}  % <space below>
+{\normalfont} % <body font>
+{}  % <indent amount}
+{\bfseries\itshape} % <theorem head font>
+{\normalfont\bfseries:} % <punctuation after theorem head>
+{.5em} % <space after theorem head>
+{} % <theorem head spec (can be left empty, meaning `normal')>
+\theoremstyle{problemstyle}
+\newtheorem{problem}{Problem}[section] % Comment out [section] toremove section number dependence
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{remark}{Remark}[section]
+
+\newcommand{\Var}[1]{\operatorname{Var}\left[#1\right]}
+%\includeonly{Chapters/AssetClass_modeling} 
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+% COVER PAGE
+%----------------------------------------------------------------------------------------
+\pagestyle{empty}
+%\input{Cover/cover}
+
+%----------------------------------------------------------------------------------------
+% ABSTRACT
+%---------------------------------------------------------------------------------------
+
+%% Set page numbers of the introduction to roman  
+\frontmatter
+%\pagestyle{fancy}
+%\include{Abstract/abstract}
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\mainmatter
+
+\include{Chapters/Introduction}
+
+\include{Chapters/Model_Description}
+
+\include{Chapters/AssetClass_modeling}
+
+\include{Chapters/Calibration}
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\appendix
+\input{Appendix/AppendixA}
+\input{Appendix/AppendixB}
+
+
+
+\backmatter
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\backmatter
+\nocite{*}
+\bibliographystyle{acm}
+\bibliography{Bibliography/biblio}
+
+\end{document}          

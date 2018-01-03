@@ -1,0 +1,194 @@
+\documentclass[]{article}
+
+\usepackage{psfrag}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{rotating}
+\usepackage{pifont}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{subfigure}
+\usepackage[margin=2cm]{geometry}
+
+\newcommand{\Checkmark}
+    {\ding{51}\xspace}
+\newcommand{\XSolid}
+    {\ding{53}\xspace}
+
+
+\begin{document}
+
+The function families used for the Lyness-Kaganove\footnote{J.~N.~Lyness and J.~J.~Kaganove, {\em A technique for comparing automatic quadrature
+routines}. Comp.~J.~20, 2, 170--177, 1977.} test are
+%
+\begin{eqnarray}
+    \int_0^1 |x-\lambda|^\alpha\,\mbox{d}x,\quad & & \lambda \in [0,1],\ \alpha \in [-0.5,0] \label{eqn:val_sing} \\
+    \int_0^1 (x>\lambda) e^{\alpha x}\,\mbox{d}x,\quad & & \lambda \in [0,1],\ \alpha \in [0,1] \label{eqn:val_disc} \\
+    \int_0^1 \exp (-\alpha|x-\lambda|)\,\mbox{d}x,\quad & & \lambda \in [0,1],\ \alpha \in [0,4] \label{eqn:val_c0} \\
+    \int_1^2 10^\alpha / ((x-\lambda)^2 + 10^\alpha)\,\mbox{d}x,\quad & & \lambda \in [1,2], \alpha \in [-6,-3] \label{eqn:val_peak} \\
+    \int_1^2 \sum_{i=1}^4 10^\alpha / ((x-\lambda_i)^2 + 10^\alpha)\,\mbox{d}x,\quad & & \lambda_i \in [1,2], \alpha \in [-5,-3] \label{eqn:val_4peak} \\
+    \int_0^1 2\beta(x-\lambda)\cos(\beta(x-\lambda)^2)\,\mbox{d}x, \quad & & \lambda \in [0,1],\ \alpha \in [1.8,2], \label{eqn:val_oscill} \\
+    & & \beta = 10^\alpha/\max\{\lambda^2,(1-\lambda)^2\} \nonumber
+\end{eqnarray}
+%
+where the boolean expressions are evaluated to 0 or 1.
+The integrals are computed to relative precisions of $\tau=10^{-3}$,
+$10^{-6}$, $10^{-9}$ and $10^{-12}$ for $1\,000$ realizations
+of the random parameters $\lambda$ and $\alpha$.
+The results of these tests are shown in Table~\ref{tab:LKtest}.
+For each function, the number of correct and incorrect integrations
+is given with, in brackets, the number of cases each where a warning
+(either explicit or whenever an error estimate larger than the requested
+tolerance is returned) was issued.
+
+The functions used for the ``battery'' test are
+%
+\begin{equation*}\begin{array}{rclrcl}
+    f_1 & = & \textstyle \int_0^1 e^{x} \,\mbox{d}x &
+    
+        f_{14} & = & \textstyle \int_0^{10} \sqrt{50}e^{-50\pi x^2} \,\mbox{d}x \\
+        
+    f_2 & = & \textstyle \int_0^1 (x>0.3) \,\mbox{d}x &
+    
+        f_{15} & = & \textstyle \int_0^{10} 25 e^{-25x} \,\mbox{d}x \\
+        
+    f_3 & = & \textstyle \int_0^1 x^{1/2} \,\mbox{d}x &
+    
+        f_{16} & = & \textstyle \int_0^{10} 50(\pi(2500x^2+1))^{-1} \,\mbox{d}x \\
+        
+    f_4 & = & \textstyle \int_{-1}^1 (\frac{23}{25}\cosh(x) - \cos(x)) \,\mbox{d}x \quad &
+    
+        f_{17} & = & \textstyle \int_{0}^1 50(\sin(50\pi x)/(50\pi x))^2 \,\mbox{d}x \\
+        
+    f_5 & = & \textstyle \int_{-1}^1 (x^4 + x^2 + 0.9)^{-1} \,\mbox{d}x &
+    
+        f_{18} & = & \textstyle \int_{0}^\pi \cos(\cos(x) + 3 \sin(x) + 2 \cos(2 x) + 3 \cos(3 x)) \,\mbox{d}x \\
+        
+    f_6 & = & \textstyle \int_0^1 x^{3/2} \,\mbox{d}x &
+    
+        f_{19} & = & \textstyle \int_0^1 \log(x) \,\mbox{d}x \\
+        
+    f_7 & = & \textstyle \int_0^1 x^{-1/2} \,\mbox{d}x &
+    
+        f_{20} & = & \textstyle \int_{-1}^1 (1.005 + x^2)^{-1} \,\mbox{d}x \\
+        
+    f_8 & = & \textstyle \int_0^1 (1+x^4)^{-1} \,\mbox{d}x &
+    
+        f_{21} & = & \textstyle \int_0^1 \sum_{i=1}^3 \left[ \cosh(20^i(x-2i/10))\right]^{-1} \,\mbox{d}x \\
+        
+    f_9 & = & \textstyle \int_0^1 2(2 + \sin(10\pi x))^{-1} \,\mbox{d}x &
+    
+        f_{22} & = & \textstyle \int_0^1 4\pi^2x \sin(20\pi x) \cos(2\pi x) \,\mbox{d}x \\
+        
+    f_{10} & = & \textstyle \int_0^1 (1+x)^{-1} \,\mbox{d}x &
+    
+        f_{23} & = & \textstyle \int_0^1 (1+(230x-30)^2)^{-1} \,\mbox{d}x \\
+        
+    f_{11} & = & \textstyle \int_0^1 (1+e^x)^{-1} \,\mbox{d}x & 
+    
+        f_{24} & = & \textstyle \int_0^3 \lfloor e^x \rfloor \,\mbox{d}x \\
+        
+    f_{12} & = & \textstyle \int_0^1 x(e^x-1)^{-1} \,\mbox{d}x &
+    
+        f_{25} & = & \textstyle \int_0^5 (x+1)(x<1) + (3-x)(1 \leq x \leq3) \\
+        
+    f_{13} & = & \textstyle \int_{0}^1 \sin(100\pi x) / (\pi x) \,\mbox{d}x &
+        & &  \quad + 2(x>3) \,\mbox{d}x \\
+        
+\end{array}\end{equation*}
+%
+where the boolean expressions
+in $f_2$ and $f_{25}$ evaluate to 0 or 1.
+The functions are taken from Gander \& Gautschi (2008)\footnote{W.~Gander and W.~Gautschi, {\em Adaptive quadrature --- revisited}, Tech.~Rep.~306, Department of Computer
+Science, ETH Zurich, Switzerland, 1998.} with the following
+modifications:
+%
+\begin{itemize}
+    \item No special treatment is given to the case $x=0$ in
+        $f_{12}$, allowing the integrand to return $\mathsf{NaN}$.
+    \item $f_{13}$ and $f_{17}$ are integrated from 0 to 1 as
+        opposed to 0.1 to 1 and 0.01 to 1 respectively, allowing
+        the integrand to return $\mathsf{NaN}$ for $x=0$.
+    \item No special treatment of $x<10^{-15}$ in $f_{19}$ allowing
+        the integrand to return $-\mathsf{Inf}$.
+    \item $f_{24}$ was suggested by J.\ Waldvogel as a simple yet tricky test
+        function with multiple discontinuities.
+    \item $f_{25}$ was introduced in Gander \& Gautschi, yet
+        not used in the battery test therein.
+\end{itemize}
+
+
+\begin{sidewaystable}
+    \begin{center}\begin{scriptsize}
+    \begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+        $\tau=10^{-3}$ & \multicolumn{3}{c|}{\tt quad} & \multicolumn{3}{c|}{\tt quadl} & \multicolumn{3}{c|}{\tt quadgk} & \multicolumn{3}{c|}{\tt integral} & \multicolumn{3}{c}{\tt quadcc} \\
+        $f(x)$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ \\ \hline
+            \input{testsuite_1e-03.tex}
+    \end{tabular}\end{scriptsize}\end{center}
+
+    \begin{center}\begin{scriptsize}\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+        $\tau=10^{-6}$ & \multicolumn{3}{c|}{\tt quad} & \multicolumn{3}{c|}{\tt quadl} & \multicolumn{3}{c|}{\tt quadgk} & \multicolumn{3}{c|}{\tt integral} & \multicolumn{3}{c}{\tt quadcc} \\
+        $f(x)$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ \\ \hline
+            \input{testsuite_1e-06.tex}
+    \end{tabular}\end{scriptsize}\end{center}
+
+    \begin{center}\begin{scriptsize}\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+        $\tau=10^{-9}$ & \multicolumn{3}{c|}{\tt quad} & \multicolumn{3}{c|}{\tt quadl} & \multicolumn{3}{c|}{\tt quadgk} & \multicolumn{3}{c|}{\tt integral} & \multicolumn{3}{c}{\tt quadcc} \\
+        $f(x)$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ \\ \hline
+            \input{testsuite_1e-09.tex}
+    \end{tabular}\end{scriptsize}\end{center}
+
+    \begin{center}\begin{scriptsize}\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+        $\tau=10^{-12}$ & \multicolumn{3}{c|}{\tt quad} & \multicolumn{3}{c|}{\tt quadl} & \multicolumn{3}{c|}{\tt quadgk} & \multicolumn{3}{c|}{\tt integral} & \multicolumn{3}{c}{\tt quadcc} \\
+        $f(x)$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ & \Checkmark & \XSolid & $n_\mathsf{eval}$ \\ \hline
+            \input{testsuite_1e-12.tex}
+    \end{tabular}\end{scriptsize}\end{center}
+    \caption{Results of the Lyness-Kaganove tests for $\tau=10^{-3}, 10^{-6}, 10^{-9}$
+        and $10^{-12}$. The columns marked with \Checkmark and \XSolid indicate the number
+        of correct and incorrect results respectively, out of 1\,000 runs. The numbers
+        in brackets indicate the number of runs in which a warning was issued. The column
+        $n_\mathsf{eval}$ contains the average number of function evaluations required
+        for each run.}
+    \label{tab:LKtest}
+\end{sidewaystable}
+
+\begin{sidewaystable}
+    \begin{center}\begin{scriptsize}
+    \begin{tabular}{l|c|c|c|c|c||c|c|c|c|c||c|c|c|c|c||c|c|c|c|c}
+        & \multicolumn{5}{c||}{$\tau = 10^{-3}$}& \multicolumn{5}{c||}{$\tau = 10^{-6}$}& \multicolumn{5}{c||}{$\tau = 10^{-9}$}& \multicolumn{5}{c}{$\tau = 10^{-12}$} \\
+        $f(x)$ & {\tt quad} & {\tt quadl} & {\tt quadgk} & {\tt integral} & {\tt quadcc}
+        & {\tt quad} & {\tt quadl} & {\tt quadgk} & {\tt integral} & {\tt quadcc}
+        & {\tt quad} & {\tt quadl} & {\tt quadgk} & {\tt integral} & {\tt quadcc}
+        & {\tt quad} & {\tt quadl} & {\tt quadgk} & {\tt integral} & {\tt quadcc} \\ \hline
+        \input{battery.tex}
+    \hline
+    \end{tabular}
+    \end{scriptsize}\end{center}
+    \caption{Results of battery test for $\tau=10^{-3}, 10^{-6}, 10^{-9}$ and $10^{-12}$.
+        The columns contain the number of function evaulations required by each integrator
+        for each tolerance.
+        For each test and tolerance, the best result (least function evaluations) is in bold
+        and unsuccessful runs are stricken through.}
+    \label{tab:battery}
+\end{sidewaystable}
+
+\begin{figure}
+    \begin{center}
+        \epsfig{file=scatter_1e-03.pdf,width=0.48\textwidth}
+        \epsfig{file=scatter_1e-06.pdf,width=0.48\textwidth}
+        \epsfig{file=scatter_1e-09.pdf,width=0.48\textwidth}
+        \epsfig{file=scatter_1e-12.pdf,width=0.48\textwidth}
+    \end{center}
+    \caption{Scatter-plots of the results of the Lyness-Kaganove
+        testsuite for each tolerance. Each point represents one of
+        the test functions (Equations~\ref{eqn:val_sing} to \ref{eqn:val_oscill}).
+        Its location is determined by the relative number of function evaluations
+        (on the $x$-axis) and the relative number of correct evaluations
+        (on the $y$-axis). Algorithms in the top left corner are (relatively)
+        efficient and reliable whereas algorithms in the lower right corner are
+        (relatively) inefficient and unreliable.}
+    \label{fig:results}
+\end{figure}
+
+\end{document}

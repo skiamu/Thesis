@@ -1,0 +1,172 @@
+% Useful packages 
+\usepackage[utf8]{inputenc}
+\usepackage[]{xcolor}
+\usepackage[italian,english]{babel}
+\usepackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}  
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym} 
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{changebar}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[chapter]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{todonotes}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{emptypage}
+\usepackage[style=alttree,savewrites=true,acronym,nomain,nonumberlist,toc]{glossaries}
+\usepackage[toc]{appendix}
+\usepackage[nottoc,numbib,notlof]{tocbibind}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% Fancyhdr settings
+\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\leftmark}}
+\fancyhead[RE]{\itshape\nouppercase{\rightmark}}
+\setlength{\headheight}{15.0pt}
+\renewcommand{\headrulewidth}{0.2pt}
+\pagestyle{fancy}
+
+% Redefine the plain page style used by chapter pages
+\fancypagestyle{plain}{%
+	\fancyhead{}
+	\fancyfoot{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% User-defined environments 
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemmma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{note}{Note}[section]
+
+% Modify interline for enumerate environment 
+\setlist{nosep}
+
+% User-defined commands
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\triu}{triu}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argsup}{arg\,sup}
+\DeclareMathOperator*{\arginf}{arg\,inf}
+\DeclareMathOperator*{\Sh}{Sh}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\ind}[1]{\mathbbm{1}_{#1}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\calA}{\mathcal{A}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\E}[2][]{\mathbb{E}_{#1}\left[ #2 \right]}
+\renewcommand{\P}[2][]{\mathbb{P}_{#1}\left( #2 \right)}
+\newcommand{\Var}[2][]{\operatorname{Var}_{#1}\left( #2 \right)}
+\newcommand{\Cov}[2][]{\operatorname{Cov}_{#1}\left( #2 \right)}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\pardev}[2]{\frac{\partial #1}{\partial #2}}
+
+% Tikz settings
+\tikzstyle{block} = [rectangle, draw, 
+    text width=8em, text centered, rounded corners, minimum height=4em]
+	    
+\tikzstyle{line} = [draw, -latex]
+\usetikzlibrary{calc,intersections,through,backgrounds}
+
+% Algorithmic - rename require/ensure to input/output
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+% Hyperref settings 
+\definecolor{Blue}{RGB}{0,63,106}
+\definecolor{SteelBlue}{RGB}{70,130,180}
+\definecolor{LightSkyBlue}{RGB}{135,206,250}
+\definecolor{LightSteelBlue}{RGB}{176,196,222}
+\definecolor{WhiteSmoke}{RGB}{245,245,245}
+\definecolor{Gainsboro}{RGB}{220,220,220}
+\definecolor{DimGray}{RGB}{105,105,105}
+\definecolor{DarkGray}{RGB}{64,64,64}
+\definecolor{GloriousGreen}{RGB}{0,145,106}
+\definecolor{RealRed}{RGB}{215,48,39}
+
+\hypersetup{
+	linkcolor  = SteelBlue,
+    citecolor  = SteelBlue,
+    urlcolor   = SteelBlue,
+    colorlinks = true,
+    linkbordercolor = {white}
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% Abstract Environment 
+\newcommand\abstractname{Abstract}  %%% here
+\makeatletter
+\if@titlepage
+  \newenvironment{abstract}{%
+      \titlepage
+      \null\vfil
+      \@beginparpenalty\@lowpenalty
+      \begin{center}%
+        \bfseries \abstractname
+        \@endparpenalty\@M
+      \end{center}}%
+     {\par\vfil\null\endtitlepage}
+\else
+  \newenvironment{abstract}{%
+      \if@twocolumn
+        \section*{\abstractname}%
+      \else
+        \small
+        \begin{center}%
+          {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+        \end{center}%
+        \quotation
+      \fi}
+      {\if@twocolumn\else\endquotation\fi}
+\fi
+\makeatother
+
+
+% Glossary 
+\input{Glossary/Glossary}
+\makeglossaries
+
