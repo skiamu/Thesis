@@ -25,21 +25,21 @@ p = (exp(2 * mu_tilde * J_jump / sigma^2) - 1 ) / ...
 	(2 * sinh(2 * mu_tilde * J_jump / sigma^2)); % probability positive jump
 
 if ~isempty(z(idx1))
-	f(idx1) = p * eta((z(idx1) - csi) / x,x,mu_tilde,sigma,r,J_jump);
+	f(idx1) = p * eta((z(idx1) - csi) / x,mu_tilde,sigma,r,J_jump);
 end
 
 if ~isempty(z(idx2))
-	f(idx2) = f(idx2) + (1-p) * eta((z(idx2) + csi) / x,x,mu_tilde,sigma,r,J_jump);
+	f(idx2) = f(idx2) + (1-p) * eta((z(idx2) + csi) / x,mu_tilde,sigma,r,J_jump);
 end
 
-f = 2 * cosh(mu_tilde * J_jump / sigma^2) * f;
+f = 2 * cosh(mu_tilde * J_jump / sigma^2) / (r * x) * f;
 
 end % pfDES
 
 
-function [f] = eta(y,x,mu_tilde,sigma,r,J_jump)
+function [f] = eta(y,mu_tilde,sigma,r,J_jump)
 %   INPUT:
-%      y = (z+-csi) / x
+%      y = (z+-csi) / x (column vector)
 %      x = ptf value
 %      mu_tilde = mu - 0.5 * sigma^2;
 %      sigma = volatility
@@ -60,7 +60,7 @@ N = (1:100); % truncate the series at the 100-th terms
 % y is a column vector, N must be a row vector. In this case the operation
 % y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
 % sum we need to sum by rows (e.g. sum(,2))
-f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .* (1 / (r * x)) .*  ...
+f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
 	y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
 	.* sin(pi * N / 2),2));
 

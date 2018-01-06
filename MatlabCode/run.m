@@ -4,12 +4,13 @@ addpath(genpath(pwd))
 % rng default;
 M = 3; % asset allocation dimension
 %% 1) get data from Yahoo
-freq = 'm'; % return frequency, select from {'d','wk','m','q','s','y'}
+freq = 'wk'; % return frequency, select from {'d','wk','m','q','s','y'}
 [Returns,SampleStats] = getReturns( freq, M ); % download and compute asset returns
 
 %% 2) model Calibration
 model = 'Mixture'; % select from {'Gaussian','Mixture','GH'}
-[param,CalibrationData] = modelCalibration( Returns,model,M );
+CalibrationType = 'EM'; % select from {'MM','ML','EM'} (only for GM model)
+[param,CalibrationData] = modelCalibration( Returns,model,M,CalibrationType);
 
 %% 3) Dynamic Programming Algorithm
 % 3.1) set parameters

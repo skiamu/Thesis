@@ -9,9 +9,7 @@ function [ f ] = pfDES(z,x,u,J_jump,param)
 %      param = struct of model parameters
 %   OUTPUT:
 %      f = density computed in z
-f1 = zeros(size(z));
-
-f2 = f1;
+f = zeros(size(z));
 
 csi = x * J_jump * u;
 
@@ -19,14 +17,13 @@ idx1 = z >= x + csi;
 
 idx2 = z >= x - csi;
 
-
 p = param.p; lambda = param.lambda; r = param.r;
 
-f1(idx1) = p * ((z(idx1) - csi) / x).^(-(lambda + r) / r);
+f(idx1) = p * ((z(idx1) - csi) / x).^(-(lambda + r) / r);
 
-f2(idx2) =  (1-p) * ((z(idx2) + csi) / x).^(-(lambda + r) / r);
+f(idx2) =  f(idx2) + (1-p) * ((z(idx2) + csi) / x).^(-(lambda + r) / r);
 
-f = lambda / (r * x) * (f1 + f2);
+f = lambda / (r * x) * f;
 
 end % pfDES
 

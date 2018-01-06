@@ -1,8 +1,10 @@
-function [param,CalibrationData ] = modelCalibration( Returns,model,M )
+function [param,CalibrationData ] = modelCalibration( Returns,model,M,CalibrationType )
 %modelCalibration
 %   INPUT:
 %      Returns = asset class returns [matrix]
 %      model = return model [string]
+%      M = asset allocation dimension
+%      CalibrationType = {'MM','ML','EM'}
 %   OUTPUT:
 %      param = 
 %      CalibrationData =
@@ -12,7 +14,7 @@ switch model
 		[param,CalibrationData] = Gcalibration(Returns);
 	case 'Mixture' % gaussian mixture model
 		k = 2; % number of gaussian components
-		CalibrationType = 'EM';
+		% CalibrationType = 'EM';
 		if strcmp(CalibrationType,'MM') % method of moments
 			[param,CalibrationData] = GMcalibrationMM(Returns,k,M);
 		elseif strcmp(CalibrationType,'EM') % Expectation-Maximization

@@ -3,7 +3,7 @@ clc; close all; clear variables;
 addpath(genpath(pwd))
 load('LIBOR.mat')
 %% discrete dynamics
-model = 'ext2'; % select from {'basic','ext1','ext2'}
+model = 'ext1'; % select from {'basic','ext1','ext2'}
 freq = 'd';
 M = 3;
 [Returns,~,stocks] = getReturns( freq, M );
@@ -34,24 +34,26 @@ tic
 toc
 
 for k = 2 : 10
-	idx = find(X{k} <= 1.15 & X{k} >= 0.8);
+	idx = find(X{k} <= 1.8 & X{k} >= 0.5);
 	subplot(5,2,k)
 	plot(X{k}(idx),U{k}(idx),'b.--')
 	title(strcat('k = ',num2str(k-1)))
 	grid on
 end
-
+% saveas(gcf,'/home/andrea/Thesis/Latex/fourthWIP/maps.pdf');
 p_star = J{1};
+% save variables J, U, X and p_star
+% save('/home/andrea/Thesis/MatlabCode/DiscreteEvent/ext1.mat','J', 'U', 'X', 'p_star')
 Nsim = 1e+6; 
-[p_starMC,Times] = ValidationDES(X,U,Nsim,N,lambda,p,r,J_jump);
+[p_starMC,Times] = ValidationDES(X,U,Nsim,N,param,J_jump);
 %% plot
-u = 0.5; 
-x = 1.2;
-csi = x * J_jump * u;
-z = (0.5:0.0001:1.9)';
-plot(z,pfDESext1(z,x,u,J_jump,param),'r.-')
-tic
-trapz(z,pfDESext1(z,x,u,J_jump,param))
-toc
+% u = 0.5; 
+% x = 1.2;
+% csi = x * J_jump * u;
+% z = (0.5:0.0001:1.9)';
+% plot(z,pfDESext1(z,x,u,J_jump,param),'r.-')
+% tic
+% trapz(z,pfDESext1(z,x,u,J_jump,param))
+% toc
 % simpsons(@(z)pfDESext2(z,x,u,J_jump,param),0.79,1.2,7e+3)
 % quadgk(@(z)pfDESext2(z,x,u,J_jump,param),0.75,1.5)

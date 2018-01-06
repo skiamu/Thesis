@@ -41,13 +41,13 @@ for k = N : -1 : 1
 	end
 	U{k} = Uk; J{k} = -Jk;
 	% print allocation maps
-% 	if k ~= 1
-% 		idx = find(X{k} <= 1.4 & X{k} >= 0.6);
-% 		figure
-% 		area(X{k}(idx),U{k}(idx,:))
-% 		title(strcat('k = ',num2str(k-1)))
-% 		% 	saveas(gcf,[pwd strcat('/Latex/secondWIP/k',num2str(k-1),model,'.png')]);
-% 	end
+	if k ~= 1
+		idx = find(X{k} <= 1.8 & X{k} >= 0.6);
+		figure
+		area(X{k}(idx),U{k}(idx,:))
+		title(strcat('k = ',num2str(k-1)))
+		% 	saveas(gcf,[pwd strcat('/Latex/secondWIP/k',num2str(k-1),model,'.png')]);
+	end
 end
 
 end
@@ -95,7 +95,7 @@ switch model
 	case 'Mixture'
 		n = length(param);
 		method = '';
-		if strcmp(method,'analitic'); % analitic method
+		if strcmp(method,'analitic') % analitic method
 			Phi = 0;
 			for i = 1 : n
 				mu = -u' * param(i).mu;

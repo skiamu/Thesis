@@ -1,4 +1,4 @@
-function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,lambda,p,r,J_jump)
+function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump)
 %ValidationDES is a function for the validation of the model in a
 %event-driven approach
 %   INPUT:
@@ -13,14 +13,18 @@ function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,lambda,p,r,J_jump)
 %   OUTPUT:
 %      p_star = probability of reaching the target sets
 
+% parameters extraction
+p = param.p; lambda = param.lambda;r = param.r;
 %% 1) simulation random variables
+% 1.1) simulation exponential r.v.
 tau = exprnd(1 / lambda, [Nsim Nstep]);
+% 1.2) simulation bernoulli r.v.
 deltaN = -ones([Nsim Nstep]);
 deltaN(rand([Nsim Nstep]) < p) = 1;
 
 %% 2) validation
-xk = X{1};
-u0 = U{1};
+xk = X{1}; % initial wealth
+u0 = U{1}; % initial asset allocation
 xk = xk * (exp(r * tau(:,1)) + u0 * J_jump * deltaN(:,1));
 for k = 2 : Nstep
 	Uinterp = zeros([Nsim 1]);

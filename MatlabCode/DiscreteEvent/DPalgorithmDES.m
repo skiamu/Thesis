@@ -17,12 +17,12 @@ U = cell([N 1]); % asset allocation cell array
 J = cell([N+1 1]); % optimal value function cell  array
 J{end} = ones([length(X{end}) 1]); % indicator function target set X_N
 options = optimoptions(@fmincon,'Algorithm','interior-point');
-lb = -1; ub = 1; % short positions on tje risky asset are allowed
-eta = 1e-4; % integretion interval discretization step
+lb = -1; ub = 1; % short positions on the risky asset are allowed
+eta = 1e-4/5; % integretion interval discretization step (1e-4/2 for ext1)
 %% optimization
 for k = N : -1 : 1
 	k % print current iteration
-	u0 = 0; % initial condition
+	u0 = -1; % initial condition
 	dimXk = length(X{k}); % number of single optimizations
 	Uk = zeros([dimXk 1]);
 	Jk = zeros([dimXk 1]);
@@ -39,7 +39,7 @@ for k = N : -1 : 1
 	U{k} = Uk; J{k} = -Jk;
 	% print allocation maps
 	if k ~= 1
-		idx = find(X{k} <= 1.4 & X{k} >= 0.6);
+		idx = find(X{k} <= 1.9 & X{k} >= 0.6);
 		figure
 		plot(X{k}(idx),U{k}(idx),'b.--')
 		title(strcat('k = ',num2str(k-1)))

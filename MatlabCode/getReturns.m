@@ -15,13 +15,11 @@ function [Returns,SampleStats, stocks] = getReturns( freq, M )
 %% 1) set stocks parameters
 % for more information on the timeseries check https://finance.yahoo.com
 % tickerMM = 'BSV';
-% tickerBM = 'BND';
 tickerMM = 'SHV'; % money market
-% tickerMM = 'BIL';
-tickerBM = 'BGBRX'; % bond market
-% tickerBM = 'FBIDX';
+% tickerBM = 'BGBRX'; % bond market
+tickerBM = 'BTIAX'; % bond market (alternative 1)
 tickerEM = '^GSPC'; % equity market
-InitialDate = '23012008';
+InitialDate = '23012010';
 EndDate = '15042016';
 Returns = cell([1 M]); % initialization
 % check input correctness
@@ -66,23 +64,9 @@ Returns = cell2mat(Returns); % convert cell to matrix
 disp(['maximum return length = ', num2str(maxLength)]);
 disp(['return length =  ',num2str(minLength)]);
 
-%% basic Returns Stats
-SampleMoments = zeros([4 M]); % each column will contain mean, std, skwe and kurtosis
-SampleMoments(1,:) = mean(Returns);
-SampleMoments(2,:) = std(Returns);
-SampleMoments(3,:) = skewness(Returns);
-SampleMoments(4,:) = kurtosis(Returns);
-SampleCorr = corr(Returns);
-SampleStats.Moments = SampleMoments;
-SampleStats.Corr = SampleCorr;
+%% 4) sample statistics
+SampleStats = PortfolioStatistics(Returns,freq);
 
-HZmvntest(Returns); % multivariate normality test
-
-% return distribution histogram
-nbins = 15;
-hist(Returns,nbins); % check return's distribution
-legend('Money','Bond','Equity')
-title('asset class histogram');
 
 % save('/home/andrea/Thesis/testScript/Yahoo.mat','Returns')
 end % getReturns

@@ -21,7 +21,7 @@ Sample(1,:) = mean(Returns);
 Sample(2,:) = std(Returns);
 Sample(3,:) = skewness(Returns);
 Sample(4,:) = kurtosis(Returns);
-Corr = corr(Returns);
+Corr = corr(Returns); % sample correlation matrix
 SampleCorr = [Corr(1,2); Corr(1,3); Corr(2,3)];
 clear Corr;
 
@@ -43,15 +43,20 @@ error = zeros([N 1]); % initialization
 x = zeros([15 N]); % initialization
 lb = [-ones([k*M 1]); zeros([k*M 1]); -ones([3 1])]; % lower bound
 ub = ones([15 1]); % upper bound
-d = rand(6);
-x0 = [rand([6 1]); sqrt(diag(d'*d));-1 + (2).*rand([3 1])]; % smart initial point
+R = corr(Returns);
+x0 = [repmat(mean(Returns)',[2 1]) + (1e-3 * randn([6 1]));
+	repmat(sqrt(diag(cov(Returns))),[2 1]) + (1e-3 * randn([6 1]));
+	R(1,2);R(1,3);R(2,3)];
+clear R;
+% d = rand(6);
+% x0 = [rand([6 1]); sqrt(diag(d'*d));-1 + (2).*rand([3 1])]; % smart initial point
 % x0 = rand([15 1]);
 options = optimoptions(@lsqnonlin);
 for i = 1 : N
 	i
 	[x(:,i), error(i)] = lsqnonlin(@(x) obj(x,Sample,SampleCorr,k,M,lambda(i)),...
 		x0,lb,ub,options);
-% 	x0 = x(:,i); % rolling initial point
+	x0 = x(:,i); % rolling initial point
 end
 %% 3) choose best lambda
 % we select tha lambda which minimizes the residual error
@@ -73,9 +78,9 @@ function F = obj(x,Sample,SampleCorr,k,M,lambda)
 %obj if the objective function for the least squares problem, it's a system
 %of moment equations.
 %   INPUT:
-%      x = vector of parameters
+%      x = vector of parameters(1:6 means 7:12 stdev 13:15 correlations)
 %      Sample = matrix of sample moments (each colums contains mean,std,skw and kurtosis)
-%      SampleCorr = vector of sample cross correlation
+%      SampleCorr = vector of sample cross correlation (rho12,rho13,rho23)
 %      k = number of gaussian components
 %      M = asset allocation dimension
 %      lambda = proportion
@@ -115,7 +120,7 @@ for i = 1 : 3
 		k = k + 1;
 	end
 end
-%% 4) check for positive-defitness
+%% 4) check for positive-defitness and unimodality
 F = SetConstraints(F,Std,Rho,x,lambda);
 
 end % obj

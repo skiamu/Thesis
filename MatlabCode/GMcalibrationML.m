@@ -1,4 +1,4 @@
-function [param,CalibrationData] = GMcalibrationML( Returns,k,M )
+function [param,CalibrationData] = GMcalibrationML(Returns,k,M)
 %GMcalibrationML calibrate a gaussian mixture model using the maximum
 %likelihood method
 %   INPUT:
@@ -13,11 +13,16 @@ function [param,CalibrationData] = GMcalibrationML( Returns,k,M )
 %      1) problems for i = N (hence i = 1 : N -1)
 
 eta = 0.01; % discretization step grid for lambda
-lambda = 0:eta:1;
+lambda = eta:eta:1;
 N = length(lambda);
+R = corr(Returns);
+x0 = [repmat(mean(Returns)',[2 1]) + (1e-2 * randn([6 1]));
+	repmat(sqrt(diag(cov(Returns))),[2 1]) + (1e-2 * randn([6 1]));
+	R(1,2);R(1,3);R(2,3)];
+clear R;
 % the initial condition must be fealible (matrixes positive definite)
-d = rand(6);
-x0 = [rand([6 1]); sqrt(diag(d'*d));-1 + (2).*rand([3 1])]; % smart initial point
+% d = rand(6);
+% x0 = [rand([6 1]); sqrt(diag(d'*d));-1 + (2).*rand([3 1])]; % smart initial point
 % x0 = rand([15 1]); % naive initial point
 x = zeros([15 N]);
 f = zeros([N 1]);

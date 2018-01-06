@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -31,7 +31,7 @@ L'approccio event-driven nasce dalla considerazione che nell'algoritmo ODAA la v
  \subsection{time-driven dynamics}
 Si suppone un portfolio composto da un \textbf{risky asset} (equity) e un \textbf{risk-free asset} (cash). La dinamica discreta per il risky asset è la seguente 
 \begin{equation}
-S_{k+1} = S_{k} (1 + \Delta N_{k+1})
+S_{k+1} = S_{k} (1 + J\Delta N_{k+1})
 \end{equation}
 in cui $\Delta N_{k+1} \sim f_{\Delta N_{k+1}} $ con
 \[
@@ -52,7 +52,7 @@ Definendo $ \tau $ la variabile aleatoria che indica il tempo tra un evento e l'
 \end{remark}
 
 \begin{figure}[H]
-	\caption{Discrete Dynamics risky asset ($J = 8\% $)}
+	\caption{Discrete Dynamics risky asset ($J = 7\% $)}
 	\centering
 	\includegraphics[width=0.6\textwidth]{DiscreteDynamics.png}
 \end{figure}
@@ -60,7 +60,7 @@ Definendo $ \tau $ la variabile aleatoria che indica il tempo tra un evento e l'
 \subsection{event-driven dynamic}
 Si considera la seguente event-driven dynamics per il risky asset (k indica il numero di trade)
 \begin{equation}
-  S_{k+1} = S_{k} (1 + \Delta \widetilde{N}_{k+1})
+  S_{k+1} = S_{k} (1 + J\Delta \widetilde{N}_{k+1})
 \end{equation}
 con 
 $\Delta \widetilde{N}_{k+1} \sim f_{\Delta \widetilde{N}_{k+1}}$ e
@@ -211,6 +211,11 @@ V@R^{\mathbb{E}[\tau]}_{1-\alpha} = \sqrt{\mathbb{E}[\tau]}V@R^m_{1-\alpha} = \f
 \implies \qquad \boxed{\sigma_{max} = \frac{V@R^m_{1-\alpha}}{\lambda z_{1-\alpha}}}
 \]
 
+\section{Risultati numerici}
+$N=10$, $\theta=7\%$, $X_N= [(1+\theta)^2,\infty)$, $r= 5.5\%$, $\lambda = 3.4$, $p = 0.7143$, $J=7\%$, $p^{\star}=$, $p_{MC} = $
+
+\centering
+\includegraphics[width=\textwidth,height=0.7\textheight]{maps.jpg}
 
 
 \end{document}

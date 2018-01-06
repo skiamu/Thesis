@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -57,12 +57,14 @@ Si supponga $t_k$ sia l'istante in cui il k-esimo evento accade. Si ricorda che 
 
 Si è interessati a conoscere la distribuzione della v.a. $\tau_{k+1}$. In calcolo stocastico questo è un problema noto che va sotto il nome di  \textit{double exit problem} per un moto Browniano con drift. (\cite{PassTime}) fornisce il seguente fondamentale risultato :
 
-\[
-F_{\tau_{k+1}}(t) = \mathbb{P}\Big(\tau_{k+1}\leq t \Big) = 1 - \big[ \exp(-\tilde{\mu}J / \sigma^2) K_t^\infty(J) - \exp(\tilde{\mu}J / \sigma^2) K_t^\infty(-J)\big]
-\]
+\begin{align*}
+F_{\tau_{k+1}}(t) & = \mathbb{P}\Big(\tau_{k+1}\leq t \Big) = 1 - \big[ \exp(-\tilde{\mu}J / \sigma^2) K_t^\infty(J) - \exp(\tilde{\mu}J / \sigma^2) K_t^\infty(-J)\big] \\
+& = 1-\big[2\cosh(\tilde{\mu}J / \sigma^2)K_t^\infty(J)\big]
+\end{align*}
+
 con
 \[
-K_t^N(k) = \frac{\sigma^2\pi}{J^2}\sum_{n=1}^{N}\frac{n(-1)^{n+1}}{\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)}\exp\Big(-\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)t\Big) \sin\big(\frac{n\pi k}{2J}\big)
+K_t^N(k) = \frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{N}\frac{n(-1)^{n+1}}{\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)}\exp\Big(-\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)t\Big) \sin\big(\frac{n\pi k}{2J}\big)
 \]
 
 \subsection{densità $X_{\tau_{k+1}}$}
@@ -73,16 +75,19 @@ La dinamica di portfolio in ottica event-driven si scrive quindi
 dove la v.a. $X_{\tau_{k+1}}$ non è altro che il processo rendimento arrestato all'istante aleatorio $\tau_{k+1}$, $r$ è il rendimento costante del cash e $u_k$ il del peso del risky asset.
 $X_{\tau_{k+1}}$ può assumere solo due valori (-$J$ o $J$) quindi $X_{\tau_{k+1}} \sim \text{B}(p)$. Si dimostra\footnote{esercizio in \cite{Baldi}} che
 \begin{equation}
-\mathbb{P}\Big(X_{\tau_{k+1}} = J\Big) := p = \frac{e^{2\tilde{\mu}J}}{e^{2\tilde{\mu}J} + e^{-2\tilde{\mu}J}} = \frac{e^{2\tilde{\mu}J}}{2\cosh(2\tilde{\mu}J)}
+\mathbb{P}\Big(X_{\tau_{k+1}} = J\Big) := p = \frac{1-e^{2\tilde{\mu}J/\sigma^2}}{e^{-2\tilde{\mu}J/\sigma^2} - e^{2\tilde{\mu}J/\sigma^2}} = \frac{e^{2\tilde{\mu}J/\sigma^2}-1}{2\sinh(2\tilde{\mu}J/\sigma^2)}
 \end{equation}
 
 \subsection{sintesi}
 Infine si vuole calcolare la densità della v.a. in (\ref{ptfDyn}) che poi sarà la funzione da inserire nell'algoritmo ODAA. Svolgendo tutti i calcoli e sfruttando la disparità di $K_t^\infty(k)$ in $k$ si ottiene\footnote{a meno di errori e omissioni}
 \begin{equation}
-f_{x_{k+1}}(z) = 2\cosh\big(\frac{\tilde{\mu}J}{\sigma^2}\big)\Big[p \Gamma^\infty_{\frac{z-\xi}{x}}(J) \mathbbm{1}_{[x+\xi,\infty)} + (1-p)\Gamma^\infty_{\frac{z+\xi}{x}}(J) \mathbbm{1}_{[x-\xi,\infty)}  \Big]
+f_{x_{k+1}}(z) = \frac{2\cosh\big(\frac{\tilde{\mu}J}{\sigma^2}\big)}{rx}\Big[p \Gamma^\infty_{\frac{z-\xi}{x}}(J) \mathbbm{1}_{[x+\xi,\infty)} + (1-p)\Gamma^\infty_{\frac{z+\xi}{x}}(J) \mathbbm{1}_{[x-\xi,\infty)}  \Big]
 \end{equation}
 dove $\xi = x u_k J$ e $\Gamma^\infty_{z}(J) = -\frac{d}{dz}\Big(K^\infty_{\frac{1}{r}\log(z)}(J)\Big)$
-
+\begin{align*}
+\Gamma^\infty_{z}(J) &= -\frac{d}{dz}\Big(K^\infty_{\frac{1}{r}\log(z)}(J)\Big)\\
+&=\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}n(-1)^{n+1}z^{\Big(-\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)-1\Big)}\sin(\frac{\pi}{2}n)
+\end{align*}
 \section{Dinamica tasso}
 L'obiettivo di questa sezione è introdurre una dinamica di tasso per il cash. Si suppone che il cash evolva con la seguente dinamica 
 \[
@@ -102,7 +107,7 @@ r_{t_0} = r_0
 
 Risolvendo questa SDE si ha
 \begin{equation}\label{Vas2}
-r_t = r_0e^{-a(t-t_0)} + b \big(1-e^{-a(t-t_0)}\big)+\sigma e^{-a t}\int_{t_0}^{t}e^{as}dW_s
+r_t = r_0e^{-a(t-t_0)} + b \big(1-e^{-a(t-t_0)}\big)+\sigma e^{-a (t-t_0)}\int_{t_0}^{t}e^{a(s-t_0)}dW_s
 \end{equation}
 Si vuole trovare una forma esplicita del processo Integrated Ornstein–Uhlenbeck $v_t$. Integrando la (\ref{Vas1}) su $[t_0,t]$ e uguagliando alla (\ref{Vas2}) si ottiene 
 \begin{equation}
@@ -153,7 +158,11 @@ avendo indicato con $\phi$ la pdf di una normale standard e $\xi= xJu$
 	Ulteriori questioni non riportate qui sono la calibrazioine dei modelli. Per calibrare il GMB si ricavano stimatori espliciti per drift e volatilità. Per quanto riguarda il modello di Vasicek si può usare la regressione lineare o metodo di massima verosimiglianza.
 \end{remark}
 
-
+\section{Risultati numerici}
+\subsection{Dinamica GBM}
+$N=10$, $\theta=7\%$, $X_N= [(1+\theta)^2,\infty)$, $r= 5.5\%$,$\mu= 0.1160$, $\sigma = 0.1601$, $p = 0.6373$, $J=7\%$, $p^{\star}=$, $p_{MC} = $
+\centering
+\includegraphics[scale = 0.5]{maps.png}
 
 \begin{thebibliography}{9}
 	
