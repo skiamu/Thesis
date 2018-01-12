@@ -13,23 +13,21 @@ f = zeros(size(z));
 
 csi = x * J_jump * u;
 
-idx1 = z >= x + csi;
+idx1 = z > x + csi;
 
-idx2 = z >= x - csi;
+idx2 = z > x - csi;
 
 mu = param.mu; sigma = param.sigma; r = param.r; % extract parameters
+p = param.p;
 
 mu_tilde = mu - 0.5 * sigma^2;
 
-p = (exp(2 * mu_tilde * J_jump / sigma^2) - 1 ) / ...
-	(2 * sinh(2 * mu_tilde * J_jump / sigma^2)); % probability positive jump
-
 if ~isempty(z(idx1))
-	f(idx1) = p * eta((z(idx1) - csi) / x,mu_tilde,sigma,r,J_jump);
+	f(idx1) = p * Gamma((z(idx1) - csi) / x,mu_tilde,sigma,r,J_jump);
 end
 
 if ~isempty(z(idx2))
-	f(idx2) = f(idx2) + (1-p) * eta((z(idx2) + csi) / x,mu_tilde,sigma,r,J_jump);
+	f(idx2) = f(idx2) + (1-p) * Gamma((z(idx2) + csi) / x,mu_tilde,sigma,r,J_jump);
 end
 
 f = 2 * cosh(mu_tilde * J_jump / sigma^2) / (r * x) * f;
@@ -37,7 +35,7 @@ f = 2 * cosh(mu_tilde * J_jump / sigma^2) / (r * x) * f;
 end % pfDES
 
 
-function [f] = eta(y,mu_tilde,sigma,r,J_jump)
+function [f] = Gamma(y,mu_tilde,sigma,r,J_jump)
 %   INPUT:
 %      y = (z+-csi) / x (column vector)
 %      x = ptf value
@@ -48,26 +46,27 @@ function [f] = eta(y,mu_tilde,sigma,r,J_jump)
 
 epsilon = 1e-8; % series truncation tolerance
 
-% t = log(y) / r;
-% Ntrunc = sqrt(max(1, -2 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
-% 	(log((pi^3 * sigma^2 * t * epsilon) / (4 * J_jump^2))...
-% 	- J_jump * mu_tilde / sigma^2))); % number of series terms
+t = log(y(2)) / r;
+Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
+	(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
+	- J_jump * mu_tilde / sigma^2))); % number of series terms
 
-% MaxN = min(100,max(Ntrunc));
+MaxN = min(100,Ntrunc);
 % N = (1:MaxN);
-N = (1:100); % truncate the series at the 100-th terms
-
+% N = (1:90); % truncate the series at the 100-th terms
+N = 1:MaxN;
+f = zeros(size(y));
 % y is a column vector, N must be a row vector. In this case the operation
 % y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
 % sum we need to sum by rows (e.g. sum(,2))
-f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
-	y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
+f(2:end) = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
+	y(2:end).^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
 	.* sin(pi * N / 2),2));
 
 % the numerical truncation of the series may produce negative values,
 % espicially for values of z close do x+csi or x-csi.
-f(f<0) = 0;
-end % eta
+% f(f<0) = 0;
+end % Gamma
 
 
 

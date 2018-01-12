@@ -20,23 +20,26 @@ hence
  
 
 Let us now introduce the two important concepts of loss function and value-at-risk that we will use to derive the portfolio risk constraint
-\begin{definition}[loss function, $V@R$]\label{def:loss_function}
+\begin{definition}[loss function]\label{def:loss_function}
 	Denoting the value of our portfolio at time $k \in \mathbb{N}$ by $x_{k+1}$, the \textbf{loss function} of the portfolio over the period $[k,k+1]$ is given by \[ L_{k+1}:= -\frac{(x_{k+1}-x_k)}{x_k}= -r_{k+1} = -\bm{u}_k^T \bm{w}_{k+1}.  \]
+\end{definition}
+\begin{definition}[Value-at-risk]
 	Given some confidence level $1-\alpha \in (0,1) $ the \textbf{value-at-risk} ($V@R_{1-\alpha}$) of our portfolio is \[ V@R_{1-\alpha} = \inf\{l\in \mathbb{R} : \mathbb{P}\big(L_{k+1} \leq l \big) \geq 1-\alpha \}. \]
 \end{definition}
+	
 
 The V@R is a risk measure commonly use by financial institutions to asses the risk they run to carry a portfolio for a specified period of time (the portfolio must be kept constant during this time period). For instance, if our portfolio has a $V@R_{0.99} = 7\%$, this means that with a confidence level of $99\%$ our portfolio does not suffer a loss greater or equal than $7\%$ over per period $[k,k+1]$ (e.g. a month). In our case, we receive the V@R specification ($V@R_{0.99} = 7\%$) in input by the investor (it is an indicator of its risk-aversion) and we will construct an asset allocation $\bm{u}_k$ that satisfies this risk constraint at each $k \in \mathbb{N}$.
 
 Using definition (\ref{def:gauss_rv}) we have \[ L_{k+1} \sim \mathcal{N}\big(\underbrace{-\bm{u}_k^T \bm{\mu}}_{\mu_p},\underbrace{\bm{u}_k^T \bm{\Sigma} \bm{u}_k}_{\sigma^2_p} \big)\] therefore
 \begin{align*}
 \mathbb{P}\big(L_{k+1} \leq V@R_{1-\alpha}\big) 
-& = \mathbb{P}\Big(\bm{Z} \leq \frac{V@R_{1-\alpha} - \mu_p}{\sigma_p}  \Big) \\
+& = \mathbb{P}\Big(Z \leq \frac{V@R_{1-\alpha} - \mu_p}{\sigma_p}  \Big) \\
 & = 1 - \alpha
 \end{align*}
 \begin{equation}\label{eq:var_const_gaussian}
 \implies \boxed{V@R_{1-\alpha} \geq -\bm{u}_k^T\bm{\mu} + z_{1-\alpha} \sqrt{\bm{u}_k^T \bm{\Sigma} \bm{u}_k}}
 \end{equation}
-where $\bm{Z}$ is a standard normal random variable and $z_{1-\alpha}$ is the $1-\alpha$ quantile of the standard normal distribution. The \textit{risk} constraint in equation (\ref{eq:var_const_gaussian}), together with the \textit{budget} and \textit{long-only} constraint, define the control space $U_k$ which is the feasible set of the constrained optimization problem given in theorem (\ref{thm:rec_algo}).
+where $Z$ is a standard normal random variable and $z_{1-\alpha}$ is the $1-\alpha$ quantile of the standard normal distribution. The \textit{risk} constraint in equation (\ref{eq:var_const_gaussian}), together with the \textit{budget} and \textit{long-only} constraint, define the control space $U_k$ which is the feasible set of the constrained optimization problem given in theorem (\ref{thm:rec_algo}).
 \section{Gaussian Mixture model}
 In this section we present the second asset class returns model, the \textbf{Gaussian Mixture model} (GM). After introducing the GM distribution we will derive the density and the \textit{risk} constraint, as we did for the Gaussian model. We closely follow \cite{BUCKLEY2008}.
 

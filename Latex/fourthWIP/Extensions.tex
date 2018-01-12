@@ -70,7 +70,7 @@ K_t^N(k) = \frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{N}\frac{n(-1)^{n+1}}{\big(\frac{\
 \subsection{densità $X_{\tau_{k+1}}$}
 La dinamica di portfolio in ottica event-driven si scrive quindi
 \begin{equation}\label{ptfDyn}
-\boxed{x_{k+1} = x_k \big(\exp(r \tau_{k+1}) + u_k X_{\tau_{k+1}}\big)}
+\boxed{x_{k+1} = x_k \big(\exp\{r \tau_{k+1}\} + u_k X_{\tau_{k+1}}\big)}
 \end{equation}
 dove la v.a. $X_{\tau_{k+1}}$ non è altro che il processo rendimento arrestato all'istante aleatorio $\tau_{k+1}$, $r$ è il rendimento costante del cash e $u_k$ il del peso del risky asset.
 $X_{\tau_{k+1}}$ può assumere solo due valori (-$J$ o $J$) quindi $X_{\tau_{k+1}} \sim \text{B}(p)$. Si dimostra\footnote{esercizio in \cite{Baldi}} che
@@ -83,7 +83,7 @@ Infine si vuole calcolare la densità della v.a. in (\ref{ptfDyn}) che poi sarà
 \begin{equation}
 f_{x_{k+1}}(z) = \frac{2\cosh\big(\frac{\tilde{\mu}J}{\sigma^2}\big)}{rx}\Big[p \Gamma^\infty_{\frac{z-\xi}{x}}(J) \mathbbm{1}_{[x+\xi,\infty)} + (1-p)\Gamma^\infty_{\frac{z+\xi}{x}}(J) \mathbbm{1}_{[x-\xi,\infty)}  \Big]
 \end{equation}
-dove $\xi = x u_k J$ e $\Gamma^\infty_{z}(J) = -\frac{d}{dz}\Big(K^\infty_{\frac{1}{r}\log(z)}(J)\Big)$
+dove $\xi = x u_k J$ e 
 \begin{align*}
 \Gamma^\infty_{z}(J) &= -\frac{d}{dz}\Big(K^\infty_{\frac{1}{r}\log(z)}(J)\Big)\\
 &=\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}n(-1)^{n+1}z^{\Big(-\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)-1\Big)}\sin(\frac{\pi}{2}n)
@@ -160,7 +160,7 @@ avendo indicato con $\phi$ la pdf di una normale standard e $\xi= xJu$
 
 \section{Risultati numerici}
 \subsection{Dinamica GBM}
-$N=10$, $\theta=7\%$, $X_N= [(1+\theta)^2,\infty)$, $r= 5.5\%$,$\mu= 0.1160$, $\sigma = 0.1601$, $p = 0.6373$, $J=7\%$, $p^{\star}=$, $p_{MC} = $
+$N=10$, $\theta=7\%$, $X_N= [(1+\theta)^2,\infty)$, $r= 5.5\%$,$\mu= 0.1160$, $\sigma = 0.1601$, $p = 0.6373$, $J=7\%$, $p^{\star}=$, 
 \centering
 \includegraphics[scale = 0.5]{maps.png}
 

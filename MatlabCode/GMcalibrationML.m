@@ -28,13 +28,12 @@ x = zeros([15 N]);
 f = zeros([N 1]);
 lb = [-ones([k*M 1]); zeros([k*M 1]); -ones([3 1])]; % lower bound
 ub = ones([15 1]); % upper bound
-options = optimoptions(@fmincon,'Algorithm','interior-point',...
-	'FiniteDifferenceType','central');
+options = optimoptions(@fmincon,'Algorithm','interior-point');
 for i = 1 : N-1
 	i
 	[x(:,i),f(i)] = fmincon(@(x)-obj(x,Returns,k,lambda(i)),x0,[],[],[],[],lb,ub,...
 		@(x)nonlinconst(x,k,lambda(i)),options);
-	x0 = x(:,i);
+% 	x0 = x(:,i);
 end
 f = -f;
 [~,idxMax] = max(f);

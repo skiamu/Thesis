@@ -21,7 +21,7 @@ options = optimoptions(@fmincon,'Algorithm','sqp','SpecifyConstraintGradient',tr
 	'FiniteDifferenceType','central','Display','off');
 Aeq = ones([1 M]); beq = 1; % equality constraint
 lb = zeros([M 1]); ub = ones([M 1]); % upper and lower bound
-eta = 1e-4 / 2; % integretion interval discretization step
+eta = 1e-4 / 5; % integretion interval discretization step
 % compute covariance matrix
 %% optimization
 for k = N : -1 : 1
@@ -46,6 +46,7 @@ for k = N : -1 : 1
 		figure
 		area(X{k}(idx),U{k}(idx,:))
 		title(strcat('k = ',num2str(k-1)))
+		ylim([0 1])
 		% 	saveas(gcf,[pwd strcat('/Latex/secondWIP/k',num2str(k-1),model,'.png')]);
 	end
 end

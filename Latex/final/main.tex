@@ -13,6 +13,11 @@
 \usepackage{empheq}
 \usepackage{mathtools}
 \usepackage{algorithm,algpseudocode}
+\usepackage{booktabs,longtable}
+\usepackage{array}
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
 
 \usepackage{hyperref}
 %\usepackage{appendix}
@@ -28,6 +33,7 @@
 {\newline}{}%
 \theoremstyle{break}
 \newtheorem{remark}{Remark}[section]
+
 % problem theoremstyle
 \newtheoremstyle{problemstyle}  % <name>
 {10pt}  % <space above>
@@ -45,7 +51,12 @@
 \newtheorem{proposition}{Proposition}[section]
 %\newtheorem{remark}{Remark}[section]
 
+% create command for variance in math mode
 \newcommand{\Var}[1]{\operatorname{Var}\left[#1\right]}
+% first look for .png (low-resolution) than for .pdf (high resolution)
+\DeclareGraphicsExtensions{.jpeg,.png,.pdf}
+
+
 %\includeonly{Chapters/AssetClass_modeling} 
 \begin{document}
 
@@ -64,7 +75,7 @@
 \frontmatter
 %\pagestyle{fancy}
 %\include{Abstract/abstract}
-
+\tableofcontents
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
 %----------------------------------------------------------------------------------------
@@ -73,17 +84,21 @@
 
 \include{Chapters/Introduction}
 
+\part{Time-driven approach}
+
 \include{Chapters/Model_Description}
 
 \include{Chapters/AssetClass_modeling}
 
 \include{Chapters/Calibration}
+
+\include{Chapters/NumResTD}
+\part{Event-Driven approach}
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 
 \appendix
-\input{Appendix/AppendixA}
 \input{Appendix/AppendixB}
 
 

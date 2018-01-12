@@ -22,7 +22,7 @@ eta = 1e-4/5; % integretion interval discretization step (1e-4/2 for ext1)
 %% optimization
 for k = N : -1 : 1
 	k % print current iteration
-	u0 = -1; % initial condition
+	u0 = -0.2; % initial condition
 	dimXk = length(X{k}); % number of single optimizations
 	Uk = zeros([dimXk 1]);
 	Jk = zeros([dimXk 1]);
@@ -41,7 +41,7 @@ for k = N : -1 : 1
 	if k ~= 1
 		idx = find(X{k} <= 1.9 & X{k} >= 0.6);
 		figure
-		plot(X{k}(idx),U{k}(idx),'b.--')
+		area(X{k}(idx),U{k}(idx))
 		title(strcat('k = ',num2str(k-1)))
 		% 	saveas(gcf,[pwd strcat('/Latex/secondWIP/k',num2str(k-1),model,'.png')]);
 	end

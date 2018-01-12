@@ -25,7 +25,10 @@ figure
 hist(Returns,nbins); % check return's distribution
 if n > 1
 	legend('Money','Bond','Equity')
-	title('asset class histogram')
+	title('asset class returns histogram')
+	xlabel('weekly returns')
+% 	saveas(gcf,'/home/andrea/Thesis/Latex/final/Images/ReturnsHist.jpeg');
+   print('/home/andrea/Thesis/Latex/final/Images/ReturnsHist', '-dpng', '-r900');
 end
 % returns plot
 figure
@@ -69,7 +72,8 @@ switch freq
 end
 ExpReturnsAnn = mean(Returns) * t;
 VolatilityAnn = std(Returns) * sqrt(t);
-
+Median = median(Returns) * t;
+Sharpe = (ExpReturnsAnn - ExpReturnsAnn(1)) ./ VolatilityAnn;
 % 2.2) ex-post V@R, historical simulation
 VaR = quantile(-Returns,0.95) * t_VaR; % 95 percent quantile loss distribution
 
@@ -90,6 +94,7 @@ HZmvntest(Returns); % multivariate normality test
 disp('%%%%%%%%%%%%%  Sample Statistics  %%%%%%%%%%%%%')
 disp(['Means (ann) : ',num2str(ExpReturnsAnn)])
 disp(['StDevs (ann) : ',num2str(VolatilityAnn)])
+disp(['Median (ann) : ',num2str(Median)])
 disp(['Skeweness : ',num2str(Skew)])
 disp(['Kurtosis : ',num2str(Kurt)])
 if n>1
@@ -99,6 +104,7 @@ end
 disp(['Monthly VaR_0.95: ', num2str(VaR)])
 disp(['Max Drawdown: ', num2str(MaxAD)])
 disp(['Mean Drawdown: ', num2str(MeanAD)])
+disp(['Sharpe Ratio: ', num2str(Sharpe)])
 
 %% 5) return results
 Statistics.ExpReturnsAnn = ExpReturnsAnn;

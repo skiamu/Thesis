@@ -44,8 +44,8 @@ x = zeros([15 N]); % initialization
 lb = [-ones([k*M 1]); zeros([k*M 1]); -ones([3 1])]; % lower bound
 ub = ones([15 1]); % upper bound
 R = corr(Returns);
-x0 = [repmat(mean(Returns)',[2 1]) + (1e-3 * randn([6 1]));
-	repmat(sqrt(diag(cov(Returns))),[2 1]) + (1e-3 * randn([6 1]));
+x0 = [repmat(mean(Returns)',[2 1]) + (1e-2 * randn([6 1]));
+	repmat(sqrt(diag(cov(Returns))),[2 1]) + (1e-2 * randn([6 1]));
 	R(1,2);R(1,3);R(2,3)];
 clear R;
 % d = rand(6);
@@ -56,7 +56,7 @@ for i = 1 : N
 	i
 	[x(:,i), error(i)] = lsqnonlin(@(x) obj(x,Sample,SampleCorr,k,M,lambda(i)),...
 		x0,lb,ub,options);
-	x0 = x(:,i); % rolling initial point
+% 	x0 = x(:,i); % rolling initial point
 end
 %% 3) choose best lambda
 % we select tha lambda which minimizes the residual error
