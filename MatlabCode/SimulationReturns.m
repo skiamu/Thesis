@@ -16,7 +16,7 @@ switch model
 		[ w ] = SimulationG(param,Nsim,Nstep,M);
 	case 'Mixture'
 		[ w ] = SimulationGM(param,Nsim,Nstep,M);
-	case 'GH'
+	case {'GH','NIG','t'}
 		[ w ] = SimulationGH(param,Nsim,Nstep,M);
 	otherwise
 		error('invalid model %s',model);

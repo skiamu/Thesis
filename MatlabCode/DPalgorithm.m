@@ -17,8 +17,8 @@ function [U,J] = DPalgorithm(N,M,X,param,model,VaR,alpha)
 U = cell([N 1]); % asset allocation cell array
 J = cell([N+1 1]); % optimal value function cell  array
 J{end} = ones([length(X{end}) 1]); % indicator function target set X_N
-options = optimoptions(@fmincon,'Algorithm','sqp','SpecifyConstraintGradient',true,...
-	'FiniteDifferenceType','central','Display','off');
+options = optimoptions(@fmincon,'Algorithm','sqp',...
+	'SpecifyConstraintGradient',false,'Display','off');
 Aeq = ones([1 M]); beq = 1; % equality constraint
 lb = zeros([M 1]); ub = ones([M 1]); % upper and lower bound
 eta = 1e-4 / 5; % integretion interval discretization step
@@ -32,23 +32,22 @@ for k = N : -1 : 1
 	Jk = zeros([dimXk 1]);
 	int_domain = (X{k+1}(1):eta:X{k+1}(end))'; % integretion domain with more points
 	Jinterp = interp1(X{k+1},J{k+1},int_domain);
-	Risk = zeros([dimXk 1]);
+% 	Risk = zeros([dimXk 1]);
 	for j = dimXk : -1 : 1
 		[Uk(j,:),Jk(j)] = fmincon(@(u) -objfun(u,X{k}(j),int_domain,Jinterp,param,model,k),...
 			u0,[],[],Aeq,beq,lb,ub,@(u)confuneq(u,param,model,VaR,alpha),options);
-		[Risk(j),~] = confuneq(Uk(j,:)',param,model,VaR,alpha);
+% 		[Risk(j),~] = confuneq(Uk(j,:)',param,model,VaR,alpha);
 		u0 = Uk(j,:)';
 	end
 	U{k} = Uk; J{k} = -Jk;
 	% print allocation maps
-	if k ~= 1
-		idx = find(X{k} <= 1.8 & X{k} >= 0.6);
-		figure
-		area(X{k}(idx),U{k}(idx,:))
-		title(strcat('k = ',num2str(k-1)))
-		ylim([0 1])
-		% 	saveas(gcf,[pwd strcat('/Latex/secondWIP/k',num2str(k-1),model,'.png')]);
-	end
+% 	if k ~= 1
+% 		idx = find(X{k} <= 1.8 & X{k} >= 0.6);
+% 		figure
+% 		area(X{k}(idx),U{k}(idx,:))
+% 		title(strcat('k = ',num2str(k-1)))
+% 		ylim([0 1])
+% 	end
 end
 
 end
@@ -64,14 +63,7 @@ function f = objfun(u,x,int_domain,J,param,model,k)
 %      param = density parameters
 %   OUTPUT:
 %      f = objective function
-% if k == 52
-% 	mu1 = x * (1 + u' * param(1).mu);
-% 	mu2 = x * (1 + u' * param(2).mu);
-% 	sigma1 = sqrt(x^2 * u' * param(1).S * u);
-% 	sigma2 = sqrt(x^2 * u' * param(2).S * u);
-% 	f = param(1).lambda * (1 - normcdf((int_domain(1)-mu1) / sigma1)) + ...
-% 		param(2).lambda * (1 - normcdf((int_domain(1)-mu2) / sigma2));	
-% else
+
 	f = trapz(int_domain, J .* pf(int_domain,x,u,param,model));
 end % objfun
 

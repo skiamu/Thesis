@@ -7,7 +7,7 @@ data(smi.stocks)
 filename <- paste("stocks", ".mat", sep="")
 writeMat(filename, smi.stocks=smi.stocks)
 # import data red in Matlab
-pathname <- file.path("/home/andrea/Thesis/testScript", "Yahoo.mat")
+pathname <- file.path("/home/andrea/Thesis/MatlabCode/testScript", "Yahoo.mat")
 Returns <- readMat(pathname); Returns <- Returns$Returns
 # check gaussianty --> reject H0
 mcshapiro.test(Returns)

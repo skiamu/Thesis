@@ -59,7 +59,7 @@ This result is extremely important since it allows us to rewrite the ODAA proble
 \end{problem}
 So far, we have reached an intermediate point where the ODAA problem has been restated in terms of a value function $V$. The tool of dynamic programming gives us the final step, which is synthesized in the following theorem
 \begin{theorem}[ODAA algorithm]\label{thm:rec_algo}
-	the optimal value of the ODAA problem (\ref{prb:ODAA2}) is \[p^{\star} = J_0(x_0),\] where for any $x \in \mathcal{X},$ $J_0(x)$ is the final step of the following algorithm
+	the optimal value of the ODAA Problem \ref{prb:ODAA2} is \[p^{\star} = J_0(x_0),\] where for any $x \in \mathcal{X},$ $J_0(x)$ is the final step of the following algorithm
 	\begin{empheq}[box=\fbox]{align} \label{eq:rec_algo}
 	J_N(x) & = \mathbbm{1}_{X_N}(x) \nonumber \\
 	J_k(x) & = \sup_{\bm{u}_k \in U_k}\int_{X_{k+1}}J_{k+1}(z)p_{f(x,\bm{u}_k,\bm{w}_{k+1})}(z)\mathrm{dz} \\

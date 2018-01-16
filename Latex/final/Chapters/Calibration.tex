@@ -36,7 +36,7 @@ where $i \in \{1,2,3\}$. Equating them with their sample counterparts gives us t
  \[ (\mu_{2i} - \mu_{1i})^2 \leq \frac{27}{4}(\sigma^2_{2i}\sigma^2_{1i})/(\sigma^2_{1i}+\sigma^2_{2i}) \quad i \in \{1,2,3\}\]
  and positive-definiteness constraints on the standard deviation and correlation parameters. The uni-modality constraint is required  since bi-modal return distributions are not observed in the market.
 
-\subsection{Expectation-Maximization}
+\subsection{Expectation-Maximization}\label{subsec:EM}
 In this section we introduce the EM algorithm for calibrating a GM model. Before diving into it, we need to define the maximum-likelihood estimator since the EM algorithm comes into play to solve difficulties in the ML method.
 \begin{definition}[Likelihood function]
 	Let $\bm{x}=\{x_1,\ldots,x_N\}$ be a realization of a random sample from a population with pdf $f(x\lvert\bm{\theta})$ parametrized by $\bm{\theta}=[\theta_1,\ldots,\theta_k]^T$. The \textbf{likelihood function} is defined by \[ L(\bm{\theta}\lvert\bm{x}) = L(\theta_1,\ldots,\theta_N\lvert x_1,\ldots,x_k) = \prod_{i=1}^{N}f(x_i\lvert\bm{\theta}). \]	

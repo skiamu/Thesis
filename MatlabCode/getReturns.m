@@ -65,9 +65,8 @@ disp(['maximum return length = ', num2str(maxLength)]);
 disp(['return length =  ',num2str(minLength)]);
 
 %% 4) sample statistics
-SampleStats = PortfolioStatistics(Returns,freq);
-
-
-% save('/home/andrea/Thesis/testScript/Yahoo.mat','Returns')
+Flag = 1; % plot results
+SampleStats = PortfolioStatistics(Returns,freq,Flag);
+save('/home/andrea/Thesis/MatlabCode/testScript/Yahoo.mat','Returns')
 end % getReturns
 
