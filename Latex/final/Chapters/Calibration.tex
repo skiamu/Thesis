@@ -114,54 +114,66 @@ and $\lambda = 0.98$. In order to have a fair comparison, the two Gaussian regim
         &                & \num{1}
 \end{bmatrix}\]
 
-The result is summarized in the following tables
-
+The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2} and \ref{tab:calibration3}.
 % first table
-\begin{longtable}{@{}lcccccc@{}} \toprule
-	
-	Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
-	$\widehat{\mu}_{1}$  & $\num{6.167e-4}$ & $0.94$ &  & & $\num{6.11e-4}$ & 0.0264 \\ 
-	\addlinespace[0.5em]
-	$\widehat{\mu}_{2}$  & $\num{1.578e-3}$ & $14.98$ &  & & $\num{1.368e-3}$ & 0.366\\
-	\addlinespace[0.5em]
-	$\widehat{\mu}_{3}$  & $\num{2.396e-3}$ & $2.40$ &  & & $\num{2.174e-3}$ & 7.066\\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{11}$ &  $\num{2.757e-8}$ & $479.2$ &  & & $\num{4.704e-9}$ & 1.189   \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{22}$ & $\num{3.215e-5}$ & $0.14$ &  & & $\num{3.155e-5}$ & 1.699   \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{33}$ & $\num{3.092e-4}$  & $15.4$ &   & & $\num{3.661e-4}$ & 0.146  \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{12}$ & $\num{-3.554e-8}$ & $243.6$  &  & & $\num{2.249e-8}$ & 9.123 \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{13}$ & $\num{-3.1e-8}$  & $213.5$  &  & & $\num{3.487e-8}$ & 27.68  \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{23}$ & $\num{-4.805e-7}$ & $81.20$  &  & & $\num{-2.756e-4}$ & 7.788  \\\bottomrule
-	\addlinespace[0.5em]
-	\caption{estimates for the first mixing component and respective estimation errors}
-\end{longtable}
+\begin{table}
+	\centering
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{@{}lcccccc@{}} \toprule
+			Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
+			$\widehat{\mu}_{1}$  & $\num{6.167e-4}$ & $0.94$ &  & & $\num{6.11e-4}$ & 0.0264 \\ 
+			\addlinespace[0.5em]
+			$\widehat{\mu}_{2}$  & $\num{1.578e-3}$ & $14.98$ &  & & $\num{1.368e-3}$ & 0.366\\
+			\addlinespace[0.5em]
+			$\widehat{\mu}_{3}$  & $\num{2.396e-3}$ & $2.40$ &  & & $\num{2.174e-3}$ & 7.066\\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{11}$ &  $\num{2.757e-8}$ & $479.2$ &  & & $\num{4.704e-9}$ & 1.189   \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{22}$ & $\num{3.215e-5}$ & $0.14$ &  & & $\num{3.155e-5}$ & 1.699   \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{33}$ & $\num{3.092e-4}$  & $15.4$ &   & & $\num{3.661e-4}$ & 0.146  \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{12}$ & $\num{-3.554e-8}$ & $243.6$  &  & & $\num{2.249e-8}$ & 9.123 \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{13}$ & $\num{-3.1e-8}$  & $213.5$  &  & & $\num{3.487e-8}$ & 27.68  \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{23}$ & $\num{-4.805e-7}$ & $81.20$  &  & & $\num{-2.756e-4}$ & 7.788  \\\bottomrule
+			\addlinespace[0.5em]
+		\end{tabular}
+		}
+		\caption{estimates for the first mixing component and respective estimation errors}
+		\label{tab:calibration1}
+\end{table}
+
 % second table
-\begin{longtable}{@{}lcccccr@{}} \toprule
-	Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
-	$\widehat{\mu}_{1}$  & $\num{5.461e-4}$  & 20.03 & & & $\num{6.843e-4}$ & 0.193 \\ \addlinespace[0.5em]
-	$\widehat{\mu}_{2}$  & $\num{-7.26e-3}$     & 54.91 & & & $\num{-1.554e-2}$ & 3.481\\
-	\addlinespace[0.5em]
-	$\widehat{\mu}_{3}$  & $\num{-8.11e-3}$   & 53.65 & & & $\num{-1.953e-2}$ & 11.605 \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{11}$ & $\num{1.157e-8}$ & 201.07 & & & $\num{3.223e-9}$ & 16.131  \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{22}$ & $\num{8.133e-5}$ & 113.79  & & & $\num{4.156e-5}$ & 9.254    \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{33}$ & $\num{2.108e-3}$ & 23.52   & & & $\num{2.941e-3}$ & 6.674   \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{12}$ & $\num{-3.662e-8}$ & 251.31 & & & $\num{1.545e-8}$  & 36.164 \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{13}$ & $\num{-5.244e-8}$ & 177.81 & & & $\num{2.693e-7}$ & 299.6  \\
-	\addlinespace[0.5em]
-	$\widehat{\Sigma}_{23}$ & $\num{-1.996e-6}$ & 73.88  & & & $\num{3.435e-5}$ & 549.4  \\\bottomrule
-	\addlinespace[0.5em]
+\begin{table}
+	\centering
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{@{}lcccccc@{}} \toprule
+			Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
+			$\widehat{\mu}_{1}$  & $\num{5.461e-4}$  & 20.03 & & & $\num{6.843e-4}$ & 0.193 \\ \addlinespace[0.5em]
+			$\widehat{\mu}_{2}$  & $\num{-7.26e-3}$     & 54.91 & & & $\num{-1.554e-2}$ & 3.481\\
+			\addlinespace[0.5em]
+			$\widehat{\mu}_{3}$  & $\num{-8.11e-3}$   & 53.65 & & & $\num{-1.953e-2}$ & 11.605 \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{11}$ & $\num{1.157e-8}$ & 201.07 & & & $\num{3.223e-9}$ & 16.131  \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{22}$ & $\num{8.133e-5}$ & 113.79  & & & $\num{4.156e-5}$ & 9.254    \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{33}$ & $\num{2.108e-3}$ & 23.52   & & & $\num{2.941e-3}$ & 6.674   \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{12}$ & $\num{-3.662e-8}$ & 251.31 & & & $\num{1.545e-8}$  & 36.164 \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{13}$ & $\num{-5.244e-8}$ & 177.81 & & & $\num{2.693e-7}$ & 299.6  \\
+			\addlinespace[0.5em]
+			$\widehat{\Sigma}_{23}$ & $\num{-1.996e-6}$ & 73.88  & & & $\num{3.435e-5}$ & 549.4  \\\bottomrule
+			\addlinespace[0.5em]
+		\end{tabular}
+	}
 	\caption{estimates for the second mixing component and respective estimation errors}
-\end{longtable}
+	\label{tab:calibration2}
+\end{table}
+
 \begin{table}
 	\centering
 	\begin{tabular}{@{}lcccccr@{}} \toprule
@@ -172,6 +184,7 @@ The result is summarized in the following tables
 		\addlinespace[0.5em]
 	\end{tabular}
 	\caption{mixing proportion estimate and log-likelihood}
+	\label{tab:calibration3}
 \end{table}
 From the tables above we see that the EM method is definitely the most accurate one. Therefore, we decide to adopt it for calibrating the GM model to market data. As far as the MM method is concerned, the formulation given in Section \ref{subsec:MM} relies on the assumption of a common correlation matrix between the two Gaussian regimes. Although this assumption reduces the number of parameter to be estimated, there is empirical evidence (see \cite{Campbell2002}) that this is not the case in global financial markets where correlation between asset classes is actually increased during bear markets. Nonetheless, even if MM is not as accurate as EM, it is still a valuable method since it does require full time series but only their sample statistics. This turns out to be particularly useful when distribution parameters are set via market hypothesis and economic views (e.g. bull market in the next investment period) instead of using historical data.
 \section{GH calibration} \label{sec:GH_calibration}

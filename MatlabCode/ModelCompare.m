@@ -1,7 +1,7 @@
 % GH vs GM
 clc; close all; clear variables;
 addpath(genpath(pwd))
-% rng default
+rng default
 %% 1) download data
 M = 3;
 freq = 'wk'; % return frequency, select from {'d','wk','m','q','s','y'}
@@ -19,8 +19,10 @@ CalibrationType = 'EM';
 [ paramGM, CalibrationDataGM] = modelCalibration(Returns,model,M,CalibrationType);
 
 %% 3) Compute portfolio return
-u =[0.0 ; 0.27; 0.73]; % set portfolio weigths
-x = 1.097;
+u =[0.27 ; 0.; 0.73]; % set portfolio weigths
+u =[1 ; 1; 1]/3; % set portfolio weigths
+
+x = 1;
 % Gaussian model
 muG = x * (1 + u' * paramG.mu);
 sigmaG = sqrt(x^2 * u' * paramG.S * u);
@@ -51,14 +53,18 @@ EstimatedVar = var(PortfolioReturns);
 % moments NIG
 [meanNIG, varNIG, skwNIG, kurtNIG] = nigstats(alpha, beta, mu_bar, delta);
 % moments GM
-[ meanMG,volGM,skwGM,kurtGM] = ComputeMomentsGM(muGM,sigmaGM,p);
+[ meanGM,volGM,skwGM,kurtGM] = ComputeMomentsGM(muGM,sigmaGM,p);
 
 disp('%%%%%%%%%%%%%%% NIG %%%%%%%%%%%%%%%%%%%%%%')
+disp(['meanNIG = ',num2str(meanNIG)]);
+disp(['volNIG = ',num2str(sqrt(varNIG))]);
 disp(['skwenessNIG = ',num2str(skwNIG)]);
 disp(['kurtosisNIG = ',num2str(kurtNIG)]);
 disp(['logL = ',num2str(CalibrationDataGH.LogL)]);
 disp(['AIC = ',num2str(CalibrationDataGH.AIC)]);
 disp('%%%%%%%%%%%% Gaussian MIxture %%%%%%%%%%%%')
+disp(['meanGM = ',num2str(meanGM)]);
+disp(['volGM = ',num2str(volGM)]);
 disp(['skwenessGM = ',num2str(skwGM)]);
 disp(['kurtosisGM = ',num2str(kurtGM)]);
 disp(['logL = ',num2str(CalibrationDataGM.LogL)]);
@@ -68,5 +74,5 @@ disp(['logL = ',num2str(CalibrationDataG.LogL)]);
 disp('%%%%%%%%%%%% Estimated Moments %%%%%%%%%%%%%')
 disp(['Estimated Skweness = ',num2str(EstimatedSkw)]);
 disp(['Estimated Kurtosis = ',num2str(EstimatedKurt)]);
-disp(['Estimated Variance = ',num2str(EstimatedVar)]);
+disp(['Estimated Vol = ',num2str(sqrt(EstimatedVar))]);
 disp(['Estimated Mean = ',num2str(EstimatedMean)]);

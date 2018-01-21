@@ -50,7 +50,7 @@ w = zeros([Nsim M Nstep]); %initialization
 for k = 1 : Nstep
 	X = [];
 	for i = 1 : length(param)
-		X = [X; mvnrnd(param(i).mu,param(i).S, Nsim * round(param(i).lambda,5))];
+		X = [X; mvnrnd(param(i).mu,param(i).S, round(Nsim * param(i).lambda))];
 	end
 	X = X(randperm(end),:);
 	w(:,:,k) = X;

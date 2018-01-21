@@ -5,7 +5,7 @@ This chapter is dedicated to presenting the results obtained by applying the Sto
 
 \section{The Dataset}\label{sec:The_Dataset}
 Our asset class menu consists of cash, bond and equity. To represent these markets we adopt the indexes presented in Table \ref{tab:indexes}.
-\begin{table}[h] \label{tab:indexes}
+\begin{table}[]
 	\centering
 	\begin{tabular}{@{}lll@{}} \toprule
 		Label & Asset Class & Index\\ \midrule
@@ -17,6 +17,7 @@ Our asset class menu consists of cash, bond and equity. To represent these marke
 		\addlinespace[0.5em]
 	\end{tabular}
 	\caption{Asset class and relative index}
+	\label{tab:indexes}
 \end{table}
 The dataset is composed of weekly time series from 23 January 2010 to 15 April 2016. Data is downloaded from Yahoo Finance which is also where the reader is referred for more details of index composition. Asset class statistical indicators are summarized in Figure \ref{fig:assetclassReturns} and Table \ref{tab:sampleStatistics}. By comparing the annualized Mean return, it is clear that asset class Equity leads to higher performance than Bond and Bond, in turn, ensures higher performance than Cash. The annualized volatility tells us that the same hierarchy holds true also in terms of riskiness, being Equity the riskiest investment and Cash the least. Higher sample moments (Skewness and Kurtosis) suggest that the multivariate return distribution diverges significantly from a Gaussian one. Indeed, a quantitaive proof of this fact is given us from the Henze-Zirkler multivariate normality test which exhibits a zero p-value. 
 \begin{figure}[h]\label{fig:assetclassReturns}
@@ -24,7 +25,7 @@ The dataset is composed of weekly time series from 23 January 2010 to 15 April 2
 	\includegraphics[scale=0.6]{Images/ReturnsHist.png}
 	\caption{Weekly asset class returns histogram.}
 \end{figure}
-\begin{table}[H]\label{tab:sampleStatistics}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{@{}llll@{}} \toprule
 		Statistic & C & B & E \\ \midrule
@@ -48,6 +49,7 @@ The dataset is composed of weekly time series from 23 January 2010 to 15 April 2
 		\addlinespace[0.5em]
 	\end{tabular}
 	\caption{Asset class returns sample statistics}
+	\label{tab:sampleStatistics}
 \end{table}
 
 Finally, the sample correlation matrix is  
@@ -80,35 +82,38 @@ The final choice to be made before running the algorithm is picking a model for 
 \begin{align*}
 \bm{\mu}_1 & = 
 \begin{bmatrix}
-\num{1.385e-5} &  \num{1.023e-3} &  \num{2.327e-3}
+\num{1.054e-5} &  \num{3.713e-4} &  \num{2.298e-3}
 \end{bmatrix}
 \quad & \bm{\Sigma}_1 &= 
 \begin{bmatrix}
-\num{2.567e-8} & \num{8.011e-8} & \num{-2.090e-7} \\
-& \num{2.330e-5}  & \num{-6.263e-5} \\
-&                & \num{4.453e-4}
+\num{2.437e-8} & \num{1.266e-7} & \num{-2.365e-7} \\
+& \num{3.596e-5}  & \num{-5.944e-5} \\
+&                & \num{4.232e-4}
 \end{bmatrix} \\
 \bm{\mu}_2 & = \begin{bmatrix}
-\num{1.638e-6} &  \num{-2.088e-3} &  \num{1.255e-3}
+\num{2.115e-4} &  \num{3.105e-2} &  \num{-8.266e-3}
 \end{bmatrix}
 \quad & \bm{\Sigma}_2 &= 
 \begin{bmatrix}
-\num{1.760e-8} & \num{8.430e-7} & \num{-4.984e-7} \\
-& \num{1.937e-4}  & \num{-6.250e-5} \\
-&                & \num{2.395e-4}
+\num{2.372e-8} & \num{-7.961e-7} & \num{1.277e-6} \\
+& \num{2.9e-5}  & \num{-4.411e-5} \\
+&                & \num{6.949e-5}
 \end{bmatrix}
 \end{align*}
-and $\lambda = 0.881$.
+and $\lambda = 0.9908$.
 By applying the backward algorithm enunciated in Theorem \ref{thm:rec_algo}, we obtained the maps reported in Figure \ref{fig:mapsMixture}
-\begin{figure}[h]\label{fig:mapsMixture}
-	\includegraphics[scale = 0.9]{Images/mapsMixturewk.png}
+\begin{figure}[]
+	\includegraphics[scale = 1]{Images/mapsMixturewk.png}
 	\caption{Optimal allocation maps, weekly rebalancing, GM model}
+	\label{fig:mapsMixture}
 \end{figure}
 
 
-Let us now take the time to analyze the kind of investment strategy these maps imply. At the beginning of the investment ($k=0$), the optimal strategy prescribes that 25.34\% of investor's wealth be invested in Bond and 74.66\% in Equity. After 25 weeks, depending on the realization of portfolio value (x-axis in Figure \ref{fig:mapsMixture}), the optimal strategy tells us to allocate wealth as follows: if the portfolio is underperforming (its value is in the \textit{danger} zone, approximately below \$1.028), the optimal allocation is a mix of Equity and Bond, that is the riskiest mix allowed (a 100\% allocation in Equity is not allowed due to the \text{risk} constraint). As soon as performance gets better (the \textit{neutral} zone is from \$1.028 to \$1.16) the Equity weight decreases in favor of more Bond and from a certain point on also Cash. When the portfolio is outperforming (the \textit{safe} zone is above \$ 1.16), the whole wealth is invested in Cash, the least risky of the three asset classes. This kind of investing strategy is known in the literature with the name of \textit{contrarian} strategy. The name stems from the fact that contrarian investors bet against the prevailing market trend, namely they try to sell "high" and buy "low". Contrarian strategies perform well is volatile markets and poorly in trending market due to their convex nature. The optimal strategy obtained by the ODAA algorithm exhibits the same pattern also at successive rebalancing times, the only difference is that it becomes more extreme while approaching the end of the investment; for instance, at time $k=103$ there is no transition from the riskiest allocation to the least risky one (if the target has not been reached before the last week, the strategy will do whatever it takes to get there by assuming the riskiest exposure).
+Let us now take the time to analyze the kind of investment strategy these maps imply. At the beginning of the investment ($k=0$), the optimal strategy prescribes that 25\% of investor's wealth be invested in Bond and 75\% in Equity. After 25 weeks, depending on the realization of portfolio value (x-axis in Figure \ref{fig:mapsMixture}), the optimal strategy tells us to allocate wealth as follows: if the portfolio is underperforming (its value is in the \textit{danger} zone, approximately below \$1.029), the optimal allocation is a mix of Equity and Bond, that is the riskiest mix allowed (a 100\% allocation in Equity is not allowed due to the \text{risk} constraint). As soon as performance gets better (the \textit{neutral} zone is from \$1.029 to \$1.16) the Equity weight decreases in favor of more Bond and from a certain point on also Cash. When the portfolio is outperforming (the \textit{safe} zone is above \$ 1.16), the whole wealth is invested in Cash, the least risky of the three asset classes. This kind of investing strategy is known in the literature with the name of \textit{contrarian} strategy. The name stems from the fact that contrarian investors bet against the prevailing market trend, namely they try to sell "high" and buy "low". Contrarian strategies perform well is volatile markets and poorly in trending market due to their convex nature. The optimal strategy obtained by the ODAA algorithm exhibits the same pattern also at successive rebalancing times, the only difference is that it becomes more extreme while approaching the end of the investment; for instance, at time $k=103$ there is no transition from the riskiest allocation to the least risky one (if the target has not been reached before the last week, the strategy will do whatever it takes to get there by assuming the riskiest exposure).
 
-\begin{table}[h]
+ The joint probability of reaching investor's goal is $J(x_0) = p^{\star} = 78.72\%$. This result is verified by running a Monte-Carlo simulation with $10^5$ draws at each rebalancing period, the joint probability obtained is $p_{MC} = 78.73\%$. Another interesting feature of the ODAA strategy is that $p^{\star}$ increases as the rebalancing frequency decreases. By looking at Table \ref{tab:ODAA_results} it can be seen that as we move from a quarterly rebalancing frequancy\footnote{the problem of switching from a rebalancing frequency to another has been tackled as follows: the model is calibrated to weekly data, then linear returns are approximated by log-returns enabling us to write additive relations such as $w_{monthly} = w_{wk1}+\ldots+w_{wk4}$. Finally, using the hypothesis if iid returns we analytically derive the distribution of monthly and quarterly returns for the G, GM and NIG model. All this models are closed under convolution. } to a monthly one the optimal probability goes from 69.52\% to 73.35\%, and the same happens from monthly to weekly. This fact is rather intuitive since the more rebalancings the more chances to steer the portfolio within the target sets. It should be noted however, that in practice transaction costs have not a negligible impact when portfolio rebalancing is frequent.
+
+\begin{table}[]
 	%\renewcommand{\arraystretch}{0.5}
 	\centering
 	\resizebox{\textwidth}{!}{\begin{tabular}{@{}*{10}{c}@{}}
@@ -118,31 +123,55 @@ Let us now take the time to analyze the kind of investment strategy these maps i
 		\cmidrule(l){2-4} \cmidrule(l){5-7} \cmidrule(l){8-10} 
 		& wk & m & q 	& wk & m & q 	& wk & m & q\\
 		\addlinespace[0.5em]
-	$p^{\star}$ & 79.67\% & 75.56\% & 73.26\% & 78.72\%  & 73.35\% & 69.52\% & 78.53\% & 73.24\% &69.47\%  \\
+	$p^{\star}$ & 79.67\% & 75.56\% & 73.26\% & 78.59\%  & 73.20\% & 69.44\% & 78.53\% & 73.24\% &69.47\%  \\
 	\addlinespace[0.5em]
-	$p_{MC}$ & 79.77\% & 75.56\% & 73.28\% & 78.73\%  & 73.40\% & 69.49\% & 78.76\% & 73.30\% &69.32\%  \\
+	$p_{MC}$ & 79.77\% & 75.56\% & 73.28\% & 78.82\%  & 73.21\% & 69.58\% & 78.76\% & 73.30\% &69.32\%  \\
 	\addlinespace[0.5em]	
-	time[h] & 0.698 & 0.157 & 0.050 & 0.904  & 0.357 & 0.234 & 6.131 & 1.467 &0.371  \\	\bottomrule
+	time[h] & 0.712 & 0.157 & 0.050 & 0.857  & 0.316 & 0.283 & 6.131 & 1.467 &0.371  \\	\bottomrule
 	\end{tabular}}
-	\caption{Probability of reaching the target set obtained via  ODAA algorithm ($p^{\star}$) and Monte-Carlo simulation ($p_{MC}$) for the Gaussian (GM), Gaussian Mixture (GM) and Normal Inverse Gaussian (NIG) model. Time is the computation time of the ODAA algorithm in hours.}
+	\caption{Probability of reaching the target set obtained via  ODAA algorithm ($p^{\star}$) and Monte-Carlo simulation ($p_{MC}$) for the Gaussian (GM), Gaussian Mixture (GM) and Normal Inverse Gaussian (NIG) model. Time is the computational time of the ODAA algorithm in hours.}
+	\label{tab:ODAA_results}
 \end{table}
 
-\begin{table}[]
-	
+%\begin{wraptable}{l}{6cm}
+%	\centering
+%	\begin{tabular}{@{}*{5}{c}@{}}
+%		\toprule
+%	Moment	& G & GM & NIG & Empirical\\
+%		\addlinespace[0.5em]
+%		\midrule	
+%	$\mu_{x_{k+1}}$	& & & \\
+%	\addlinespace[0.5em]	
+%	$\sigma_{x_{k+1}}$	& & & \\
+%	\addlinespace[0.5em]
+%	$\gamma_{x_{k+1}}$	& & & \\
+%	\addlinespace[0.5em]
+%	$\kappa_{x_{k+1}}$	& & & \\
+%	\addlinespace[0.5em]
+%	\bottomrule
+%	\end{tabular}
+%\end{wraptable}
+
+\begin{wraptable}{l}{7cm}
 	\centering
 	\begin{tabular}{@{}*{4}{c}@{}}
 		\toprule
-	Moment	& G & GM & NIG \\
-		\addlinespace[0.5em]
+			& G & GM & NIG \\
+		%\addlinespace[0.5em]
 		\midrule	
-	$\mu_{x_{k+1}}$	& & & \\
-	\addlinespace[0.5em]	
-	$\sigma_{x_{k+1}}$	& & & \\
-	\addlinespace[0.5em]
-	$\gamma_{x_{k+1}}$	& & & \\
-	\addlinespace[0.5em]
-	$\kappa_{x_{k+1}}$	& & & \\
-	\addlinespace[0.5em]
-	\bottomrule
+		$\log L^{\star}$ & 4396.2& 4455.0  & 4481.4\\
+		\addlinespace[0.5em]	
+		\bottomrule
 	\end{tabular}
-\end{table}
+\end{wraptable}
+
+
+%\begin{figure}[h]\label{fig:mapsGaussian}
+%	\includegraphics[scale = 0.7]{Images/mapsGaussianwk.png}
+%	\caption{Optimal allocation maps, weekly rebalancing, G model}
+%\end{figure}
+%\begin{figure}[h]\label{fig:mapsNIG}
+%	\includegraphics[scale = 0.7]{Images/mapsNIGwk.png}
+%	\caption{Optimal allocation maps, weekly rebalancing, NIG model}
+%\end{figure}
+

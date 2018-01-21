@@ -22,7 +22,12 @@ As the time-lagged correlation is usually negligible for short time period, $\bm
  \end{itemize}
 
 \section{Stochastic Reachability Approach}
-In the previous section the financial setting has been laid, now it will be embedded in a more general framework by employing the theory of dynamical systems. We will see that this formalism will allow us to formulate the asset allocation problem as a \textbf{stochastic reachability} problem which will be solved by using \textbf{dynamic programming} (DP) techniques. Let us introduce the following stochastic discrete-time dynamic control system $$x_{k+1} = f(x_k,\bm{u}_k,\bm{w}_{k+1}) = x_k (1 + \bm{u}_k^T \bm{w}_{k+1})$$ where, for any $k \in \mathbb{N}$:
+In the previous section the financial setting has been laid, now it will be embedded in a more general framework by employing the theory of dynamical systems. We will see that this formalism will allow us to formulate the asset allocation problem as a \textbf{stochastic reachability} problem which will be solved by using \textbf{dynamic programming} (DP) techniques. Let us introduce the following stochastic discrete-time dynamic control system
+\begin{equation}
+\label{eq:state_equation}
+x_{k+1} = f(x_k,\bm{u}_k,\bm{w}_{k+1}) = x_k (1 + \bm{u}_k^T \bm{w}_{k+1}) 
+\end{equation}
+where, for any $k \in \mathbb{N}$
 \begin{itemize}
 	\item $x_k \in \mathcal{X} = \mathbb{R}$ is the system state (portfolio value), $\mathcal{X}$ the system space
 	\item $\bm{u}_k \in U \subset \mathbb{R}^m$ is the control input (asset allocation vector), $U$ the control input space

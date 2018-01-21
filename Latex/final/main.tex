@@ -1,39 +1,20 @@
 \documentclass[12pt, a4paper, twoside]{book}
 
-%% import packages
-\usepackage[english ]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{amsmath,amsthm}
-\usepackage{amsfonts}
-\usepackage{graphicx}
-\usepackage[export]{adjustbox}
-\usepackage{float}
-\usepackage{lipsum}
-\usepackage{bbm}
-\usepackage{bm}
-\usepackage{empheq}
-\usepackage{mathtools}
-\usepackage{algorithm,algpseudocode}
-\usepackage{booktabs,longtable}
-\usepackage{array}
-\usepackage{siunitx}
-\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
 
-
-\usepackage{hyperref}
+\include{packages}
 %\usepackage{appendix}
 
 %\DeclareMathOperator*{\sup}{sup}
 \DeclareMathOperator*{\argmax}{arg\,max} % argmax operator
 
-% remark theoremstyle
-\newtheoremstyle{break}
-{\topsep}{\topsep}%
-{\itshape}{}%
-{\bfseries}{}%
-{\newline}{}%
-\theoremstyle{break}
-\newtheorem{remark}{Remark}[section]
+%% remark theoremstyle
+%\newtheoremstyle{break}
+%{\topsep}{\topsep}%
+%{\itshape}{}%
+%{\bfseries}{}%
+%{\newline}{}%
+%\theoremstyle{break}
+%\newtheorem{remark}{Remark}[section]
 
 % problem theoremstyle
 \newtheoremstyle{problemstyle}  % <name>
@@ -50,12 +31,14 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}{Proposition}[section]
-%\newtheorem{remark}{Remark}[section]
-
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
 % create command for variance in math mode
 \newcommand{\Var}[1]{\operatorname{Var}\left[#1\right]}
-% first look for .png (low-resolution) than for .pdf (high resolution)
-\DeclareGraphicsExtensions{.jpeg,.png,.pdf}
+
+
+\makeglossaries
+\include{Glossary/Glossary}
 
 
 %\includeonly{Chapters/AssetClass_modeling} 
@@ -74,9 +57,14 @@
 
 %% Set page numbers of the introduction to roman  
 \frontmatter
-%\pagestyle{fancy}
+\pagestyle{plain}
 %\include{Abstract/abstract}
 \tableofcontents
+%\listoftables
+%\listoffigures
+
+\printglossary[type=\acronymtype,nonumberlist]
+
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
 %----------------------------------------------------------------------------------------
@@ -94,7 +82,10 @@
 \include{Chapters/Calibration}
 
 \include{Chapters/NumResTD}
+
 \part{Event-Driven approach}
+
+\include{Chapters/DES_and_AA}
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
@@ -113,5 +104,7 @@
 \nocite{*}
 \bibliographystyle{acm}
 \bibliography{Bibliography/biblio}
+
+
 
 \end{document}          

@@ -2,19 +2,19 @@
 clc; close all; clear variables;
 addpath(genpath(pwd))
 DefaultPlotting
-% rng default;
+rng default;
 M = 3; % asset allocation dimension
 %% 1) get data from Yahoo
 freq = 'wk'; % return frequency, select from {'d','wk','m','q','s','y'}
 [Returns,SampleStats] = getReturns( freq, M ); % download and compute asset returns
 
 %% 2) model Calibration
-model = 'NIG'; % select from {'Gaussian','Mixture','GH'}
+model = 'Mixture'; % select from {'Gaussian','Mixture','GH'}
 CalibrationType = 'EM'; % select from {'MM','ML','EM'} (only for GM model)
 [param,CalibrationData] = modelCalibration( Returns,model,M,CalibrationType);
 
 % horizon correction
-freq = 'wk';
+freq = 'm';
 [param] = HorizonCorrection(freq,param,model);
 %% 3) Dynamic Programming Algorithm
 % 3.1) set parameters
