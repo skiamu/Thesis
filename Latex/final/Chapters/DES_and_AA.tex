@@ -67,33 +67,12 @@ In this section we present the first event-driven model having in mind the objec
 \end{enumerate}
 The main goal of this section is first to derive a proper event-driven dynamics of the portfolio value and then find its density function which will be plugged in the ODAA algorithm.
 Let us now start off by investigating both the time-driven dynamics (which will allow us to estimate how long the investment is going to last) and the event-driven dynamics.
-\subsection{time-driven dynamics}
+\subsection{Time-driven dynamics}
 A portfolio rebalancing is performed every time the absolute value of the risky asset cumulative return, starting from an initial baseline, hits a threshold. Let $J$ be this threshold. We suppose the following time-driven discrete dynamics for the risky asset
 \begin{equation}\label{eq:time_driven_dynamics}
 S_{k+1} = S_k(1 + J N^{\Delta t}_{k+1}) \qquad k \in \mathbb{N}.
 \end{equation}
-The random variable $N^{\Delta t}_{k+1}$ takes values in the discrete set $\{1,0,-1\}$ and indicates whether the discrete price process has a positive, negative or null jump at the end of a time interval of length $\Delta t$. If it takes the value 1, the discrete price process $\{S_k\}$ experiences a positive jump at the end of time period $[t_k,t_{k+1}]$, if the value is -1 then the jump is negative and if the value is 0, the process has no jumps in this time interval. This is the same as saying that when the random variable takes the value 1 then the risky asset cumulative return is greater than J, when the value is -1 then the cumulative return is smaller than -J and when the value is 0, than it belongs to the interval $[-J,J]$. The superscript $\Delta t$ indicates the length of the interval $[t_k,t_{k+1}]$. The next step is to find a proper distribution for $N^{\Delta t}_{k+1}$.
-%To better understand the mechanics of the discrete price process, Algorithm \ref{algo:discrete_price_process} builds up a discrete price time series from a price time series
-%\begin{algorithm}[h]
-%	\SetAlgoLined
-%	\KwIn{price time series $\{S_{t_k}\}_{k=0,\ldots,n}$, jump size $J$}
-%	\KwOut{discrete price time series $\{D_{t_k}\}_{k=0,\ldots,n}$}
-%	initialization: $Baseline = S_{t_0}$, $D_{t_0}=S_{t_0}$\;
-%	
-%	\For{$i = 1,\ldots,n$}{
-%		$R = S_{t_i}/Baseline - 1$\;
-%		
-%		\eIf{$abs(R) > J$}
-%		{$Baseline = Baseline(1+sign(r)J)$\;
-%			
-%		 $D_{t_i} = Baseline$ \;	
-%		}{ 
-%		$D_{t_i} = D_{t_{i-1}}$ \;
-%		}	
-%}
-%\caption{Discrete price time series}
-%\label{algo:discrete_price_process}
-%\end{algorithm}
+The random variable $N^{\Delta t}_{k+1}$ (which is the k+1-th element of a sequence of iid random variables) takes values in the discrete set $\{1,0,-1\}$ and indicates whether the discrete price process has a positive, negative or null jump at the end of a time interval of length $\Delta t$. If it takes the value 1, the discrete price process $\{S_k\}$ experiences a positive jump at the end of time period $[t_k,t_{k+1}]$, if the value is -1 then the jump is negative and if the value is 0, the process has no jumps in this time interval. This is the same as saying that when the random variable takes the value 1 then the risky asset cumulative return is greater than J, when the value is -1 then the cumulative return is smaller than -J and when the value is 0, than it belongs to the interval $[-J,J]$. The superscript $\Delta t$ indicates the length of the interval $[t_k,t_{k+1}]$. The next step is to find a proper distribution for $N^{\Delta t}_{k+1}$.
 Let the probability mass function (pmf) of this random variable  have the following form
 \begin{equation}\label{eq:pmf_time_driven}
 f_{N^{\Delta t}_{k+1}}(y) = 
@@ -128,7 +107,7 @@ where $\lambda \in \mathbb{R}^{+}$ and $p \in [0,1]$. This functional form is pa
 \begin{remark}
 	Given that $\mathbb{E}[\tau_{k+1}]=\frac{1}{\lambda}$, the parameter $\lambda$ acquires the meaning of speed of the discrete dynamics. The larger it is, the more frequent portfolio rebalancings are.
 \end{remark}
-\subsection{event-driven dynamics}
+\subsection{Event-driven dynamics}
 Dynamics (\ref{eq:time_driven_dynamics}) is still time-driven since the independent variable $k \in \mathbb{N}$ represents discrete time. Instead, in the event-driven framework, we let $k$ indicate the number of events (portfolio rebalancings/trades). For example, $S_{k+1}$ is the risky asset price after the k+1-th portfolio rebalancing is performed. The event-driven dynamics of the risky asset reads as follows
 \begin{equation}\label{eq:event_driven_dynamics}
 S_{k+1} = S_{k}(1+J \widetilde{N}_{k+1}) \qquad k \in \mathbb{N}
@@ -176,7 +155,7 @@ where $r$ is the deterministic interest rate of the risk-free asset continuously
 \end{equation}	
 where we dropped the superscript $S$ from $u_{k}^S$ and set $u_k^C=1$. This reflexes what is usually done in the derivative trading practice, namely keeping a 100\% cash position plus a long or short exposure to the derivative. Consequently, the weight $u_{k}$ is allowed to take values in the compact set $[-1,1]$. 
 
-\subsection{the density of $x_{k+1}$}
+\subsection{The density of $x_{k+1}$}
 In order to apply the ODAA algorithm (see Theorem \ref{thm:rec_algo}) the explicit form of the density of the random variable $x_{k+1}$ is required. The result is given in the following lemma
 \begin{lemma}
 	The probability density function of random variable (\ref{eq:ptf_dynamic_ED}) is
@@ -203,22 +182,74 @@ In order to apply the ODAA algorithm (see Theorem \ref{thm:rec_algo}) the explic
 	& = \Big\{1-\Big(\frac{z-\xi}{x}\Big)^{-\lambda/r} \Big\}\mathbbm{1}_{[x+\xi,\infty)}+
 	\Big\{1-\Big(\frac{z+\xi}{x}\Big)^{-\lambda/r} \Big\}\mathbbm{1}_{[x-\xi,\infty)}
 	\end{align*}
-	We have the result differentiating the cdf:
+	Differentiating the cdf we have the result:
 	\begin{align*}
 	f_{x_{k+1}}(z) & = \frac{\mathrm{d}}{\mathrm{d}z}F_{x_{k+1}}(z)\\
 	& = \frac{\lambda}{r x}\Big\{p\Big(\frac{z-\xi}{x}\Big)^{-\big(\frac{\lambda+r}{r}\big)}\mathbbm{1}_{[x+\xi,\infty)} + 
 	(1-p)\Big(\frac{z+\xi}{x}\Big)^{-\big(\frac{\lambda+r}{r}\big)}\mathbbm{1}_{[x-\xi,\infty)}\Big\}
 	\end{align*}
-	
-	
 \end{proof}
 
 
-
-
-
-\section{Model Calibration}
-
+\section{The calibration of $p$ and $\lambda$}
+In this section we calibrate the parameters $p$ and $\lambda$ of the pmf (\ref{eq:pmf_time_driven}) to market data. We recall that parameter $p$ is responsible of the trend of process $\{S_k\}$ whereas $\lambda$ controls the jump frequency. The time series we are considering is the daily Future S\&P 500 from 22 January 2010 to 25 April 2016. In order to find estimates $\widehat{p}$ and $\widehat{\lambda}$ we need to extract a sample of realizations of random variable $N_{k+1}^{\Delta t}$ from the above time series. This could be accomplished by applying Algorithm \ref{algo:discrete_price_process} to the data. Indeed,  the algorithm outputs the discrete time series (reported in red in Figure \ref{fig:DiscreteDynamics}) and the logical sample $\bm{y}=\{y_1,\ldots,y_n\}$ (denoted by $\{d_{t_k}\}_{k=1,\ldots,n}$ in the algorithm).
+\begin{algorithm}[H]
+	\SetAlgoLined
+	\KwIn{price time series $\{S_{t_k}\}_{k=0,\ldots,n}$, jump size $J$}
+	\KwOut{discrete price time series $\{D_{t_k}\}_{k=0,\ldots,n}$, logical time series $\{d_{t_k}\}_{k=1,\ldots,n}$}
+	initialization: $Baseline = S_{t_0}$, $D_{t_0}=S_{t_0}$\;
+	
+	\For{$i = 1,\ldots,n$}{
+		$R = S_{t_i}/Baseline - 1$\;
+		
+		\eIf{$abs(R) > J$}
+		{$Baseline = Baseline(1+sign(r)J)$\;
+			
+		 $D_{t_i} = Baseline$ \;
+		 
+		 $d_{t_i}= sign(r)$	
+		}{ 
+		$D_{t_i} = D_{t_{i-1}}$ \;
+		
+		$d_{t_i}= 0$	
+		}	
+}
+\caption{Discrete price and logical time series}
+\label{algo:discrete_price_process}
+\end{algorithm}
+\begin{figure}
+	\centering
+	\includegraphics[scale = 0.7]{Images/DiscreteDynamics}
+	\caption{Future S\&P 500 and its discrete time series. The discrete time series was obtained with a jump size $J=7\%$}
+	\label{fig:DiscreteDynamics}
+\end{figure}
+The likelihood function can be written as follows
+\begin{equation*}
+\begin{split}
+L(\lambda,p;\mathbf{y}) & = \prod_{i=1}^{n}f_{N^{\Delta t}_{k+1}}(y_i;\lambda,p)\\
+& =\Big(\prod_{y_i = 0}\exp(-\lambda\Delta t) \Big)
+\Big(\prod_{y_i=1}\big(1-\exp(-\lambda\Delta t) \big)p \Big)
+\Big(\prod_{y_i=-1}\big(1-\exp(-\lambda\Delta t)\big)(1-p) \Big)\\
+& = \Big(\exp(-\lambda\Delta t) \Big)^\alpha
+\Big(\big(1-\exp(-\lambda\Delta t) \big)p \Big)^\beta
+\Big(\big(1-\exp(-\lambda\Delta t)\big)(1-p) \Big)^\gamma
+\end{split}
+\end{equation*}
+where 
+con 
+\[ \alpha =  \text{card}\{y_i = 0 \colon i = 1,\ldots,n\}\]
+\[ \beta =  \text{card}\{y_i = 1 \colon i = 1,\ldots,n\}\]
+\[ \gamma =  \text{card}\{y_i = -1 \colon i = 1,\ldots,n\}\]
+and $\Delta t$ has been set to 1/252. Imposing the first order optimality condition $\nabla \log(L(\lambda,p;\mathbf{y}))=\bm{0}$
+and solving with respect to $p$ and $\lambda$ we obtain the following estimates
+\begin{align}
+\widehat{\lambda} &= -\frac{1}{\Delta t}\log\Big(\frac{\alpha}{\alpha+\beta+\gamma}\Big)\\[2ex]
+\widehat{p}& = \frac{\beta}{\beta+\gamma}
+\end{align}
+The point $(\widehat{p},\widehat{\lambda})$ is actually a maximizer since the Hessian matrix computed in this point is definite negative.
+\begin{remark}
+	As $\alpha+\beta+\gamma$ equals $n$ (the sample size), the estimator of $\lambda$ depends only on the number of interval in which there are no jumps ($\alpha$). Conversely, the estimator of $p$ depends only on the number of positive and negative jumps, as it was reasonable to expect.  
+\end{remark}
 \section{Numerical Results}
 
 

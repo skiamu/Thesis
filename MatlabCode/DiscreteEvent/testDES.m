@@ -1,6 +1,7 @@
 % test script
 clc; close all; clear variables;
 addpath(genpath(pwd))
+DefaultPlotting
 load('LIBOR.mat')
 load('SP500Fut.mat')
 idx1 = find(DateSP500Fut == '22-Jan-2010');
@@ -34,13 +35,11 @@ switch model
 end
 
 %% DP algorithm
-N = 10; % number of events
-theta = 0.07; % yearly target return
-eta = 1e-2/5; % target set discretization
-[ X ] = makeTargetSet(N,theta,eta);
+SetODAAParamED
+
 tic
 [U,J] = DPalgorithmDES(N,X,J_jump,param,model);
-toc
+time = toc
 
 for k = 2 : 10
 	idx = find(X{k} <= 1.8 & X{k} >= 0.5);
@@ -49,12 +48,13 @@ for k = 2 : 10
 	title(strcat('k = ',num2str(k-1)))
 	grid on
 end
-saveas(gcf,'/home/andrea/Thesis/Latex/thirdWIP/mapsBasic.png');
+print(strcat('/home/andrea/Thesis/Latex/final/Images/maps',model),...
+	'-dpng', '-r900');
 p_star = J{1};
-% save variables J, U, X and p_star
-save('/home/andrea/Thesis/MatlabCode/DiscreteEvent/basic.mat','J', 'U', 'X', 'p_star')
 Nsim = 1e+6;
 [p_starMC,Times] = ValidationDES(X,U,Nsim,N,param,J_jump);
+save(strcat('/home/andrea/Thesis/MatlabCode/DiscreteEvent/',model,'.mat'),'J',...
+	'U', 'X', 'p_star','p_starMC')
 %% plot
 u = 0.8;
 x = 1.2;
