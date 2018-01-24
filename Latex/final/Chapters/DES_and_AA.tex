@@ -1,4 +1,4 @@
-\chapter{Discrete Event Systems and Asset Allocation}
+\chapter{Discrete Event Systems and Asset Allocation}\label{chpt:ED}
 From this chapter on, we will adopt a different approach to the asset allocation problem: time will no longer be the driver of portfolio rebalancing but instead portfolio weights  will be updated whenever a predefined \textbf{event} occurs. This new point of view stems from the fact that when developing the stochastic reachability approach in Chapter \ref{chpt:Model_Description}, we let the system dynamics be indexed by an independent variable $k \in \mathbb{N}$ which we interpreted as discrete time but, as a matter of fact, the theory did not rely on this particular interpretation. This gives us the freedom to think of $k$ as an abstract index (for instance it could be an event counter). This observation is the basis for embedding the asset allocation problem in a \gls{DES} environment. 
 
 In this chapter we will present the basics of \gls{DES} modeling (Section \ref{sec:Introduction_to_DES}) which are essential for discussing the \gls{ED} approach to asset allocation (Section \ref{sec:EventDrivenAA}). As far as the \gls{DES} is concerned, the main reference is the rich monograph \cite{cassandras2009}, whereas the \gls{ED} asset allocation model is taken from \cite{specchio2011}.
@@ -149,15 +149,15 @@ As far as the risk-free asset in concerned, denoting by $C_{k+1}$ its price afte
 	&C_{k+1} = C_k(1+w_{k+1}^{C})^{\tau_{k+1}} = C_k \exp\{r \tau_{k+1}\}\\
 	& \implies \quad w_{k+1}^{C} = \exp\{r \tau_{k+1}\}-1
 \end{align}
-where $r$ is the deterministic interest rate of the risk-free asset continuously compounded. By plugging (\ref{eq:risky_return}) and (\ref{eq:riskfree_return}) into (\ref{eq:general_ptf_dynamics}) the portfolio dynamics becomes
+where $r$ is the deterministic interest rate of the risk-free asset, continuously compounded. By plugging (\ref{eq:risky_return}) and (\ref{eq:riskfree_return}) into (\ref{eq:general_ptf_dynamics}) the portfolio dynamics becomes
 \begin{equation}\label{eq:ptf_dynamic_ED}
 \boxed{x_{k+1}= x_k(\exp\{r\tau_{k+1}\} + u_{k}J\widetilde{N}_{k+1} ) } \qquad k \in \mathbb{N}
 \end{equation}	
 where we dropped the superscript $S$ from $u_{k}^S$ and set $u_k^C=1$. This reflexes what is usually done in the derivative trading practice, namely keeping a 100\% cash position plus a long or short exposure to the derivative. Consequently, the weight $u_{k}$ is allowed to take values in the compact set $[-1,1]$. 
 
 \subsection{The density of $x_{k+1}$}
-In order to apply the ODAA algorithm (see Theorem \ref{thm:rec_algo}) the explicit form of the density of the random variable $x_{k+1}$ is required. The result is given in the following lemma
-\begin{lemma}
+In order to apply the ODAA algorithm (see Theorem \ref{thm:rec_algo}), the explicit form of the density of the random variable $x_{k+1}$ is required. The result is given in the following proposition
+\begin{proposition}\label{prop:density_portfolio_basic}
 	The probability density function of random variable (\ref{eq:ptf_dynamic_ED}) is
 	\begin{equation*}
 	f_{x_{k+1}}(z)= 
@@ -168,7 +168,7 @@ In order to apply the ODAA algorithm (see Theorem \ref{thm:rec_algo}) the explic
 	\end{cases}
 	\end{equation*}
 	where $\xi=xJu_{k+1}$.
-\end{lemma}
+\end{proposition}
 \begin{proof}
 	Let $F_{\tau_{k+1}}(t)= (1-e^{-\lambda t})\mathbbm{1}_{[0,\infty)}(t)$ be the cdf of $\tau_{k+1}$. The first step consists in finding the cdf $F_Y$ of $Y=x\exp\{r \tau_{k+1}\}$. By simple calculations we obtain
 	\[F_Y(y)=\Big(1-\Big(\frac{y}{x}\Big)^{-\frac{\lambda}{r}}\Big)\mathbbm{1}_{[x,\infty)}. \]
