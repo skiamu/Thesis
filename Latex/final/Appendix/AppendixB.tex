@@ -47,3 +47,27 @@ where \[ c=\frac{2\lambda^{\lambda}\big(2\lambda+\bm{\gamma}^T\bm{\Sigma}^{-1}\b
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Mean and Variance of an Integrated Ornstein–Uhlenbeck process}\label{app:IntegratedOU}
+In this appendix we compute $\mathbb{E}[v_t]$ and $\Var{v_t}$ where $v_t$ is the random variable (\ref{eq:v_t}).
+\section{The mean}
+Given that the mean of a stochastic integral in 0 (see \cite{baldi2017}), the mean function is simply
+\begin{equation}
+\mathbb{E}[v_t]= \frac{1}{a}\Big[(r_k - b)\big(1-e^{-a(t-t_k)}\big)+ab(t-t_k)\Big].
+\end{equation}
+
+
+\section{The variance}
+\begin{align*}
+\nonumber
+\Var{v_t} & = \Var{\frac{\sigma}{a}\int_{t_k}^{t}(1-e^{-a(t-s)})dW_s}\\
+& = \Big(\frac{\sigma}{a}\Big)^2\mathbb{E}\Big[\Big(W_t-W_{t_k}-e^{-at}\int_{t_k}^{t}e^{as}dW_s\Big)^2\Big]\\
+& = \big(\frac{\sigma}{a}\Big)^2\bigg[(t-t_k)+e^{-2at}\mathbb{E}\Big[\big(\int_{t_k}^{t}e^{as}dW_s\big)^2\Big]-2e^{-at}\mathbb{E}\Big[\int_{t_k}^{t}dW_s\int_{t_k}^{t}e^{as}dW_s\Big] \bigg]\\
+& = \Big(\frac{\sigma}{a}\Big)^2\bigg[(t-t_k)+e^{-2at}\int_{t_k}^{t}e^{2as}\mathrm{d}s-2e^{-at}\int_{t_k}^{t}e^{as}\mathrm{d}s\bigg]\\
+& = \Big(\frac{\sigma}{a}\Big)^2\bigg[(t-t_k)+\frac{1}{2a}(1-e^{-2a(t-t_k)})-\frac{2}{a}(1-e^{-a(t-t_k)})\bigg] \\
+& = \frac{\sigma^2}{2a^3}\bigg[2a(t-t_k)-e^{-2a(t-t_k)}+4e^{-a(t-t_k)}-3\bigg]
+\end{align*}
+where in the fourth equality we used Ito's lemma (\cite{baldi2017},Theorem 7.1) and (\cite{baldi2017}, Remark 7.1)
+

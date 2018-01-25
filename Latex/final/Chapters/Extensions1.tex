@@ -50,7 +50,7 @@ Following the same path of Chapter \ref{chpt:ED}, we are left to compute the eve
 \begin{equation}\label{eq:GBM_portfolio_dynamics}
 \boxed{x_{k+1}=x_k\big(\exp\{r\tau_{k+1}\} + u_k\widetilde{X}_{\tau_{k+1}}\big)} \qquad k \in \mathbb{N}
 \end{equation}
-where $r$ is the risk-free asset constant return, $\tau$ is the stopping time (\ref{eq:stopping_time}), $u_k$ is the risky asset portfolio weight and $\widetilde{X}_{\tau_{k+1}}$ is the return process computed at the random time $\tau_{k+1}$. $\widetilde{X}_{\tau_{k+1}}$ can only assume the value $J$ or $-J$, therefore it is a Bernoullian random variable. Its parameter $p$ is given in the following lemma (which closely follows exercise 5.20 in \cite{baldi2017})
+where $r$ is the risk-free asset constant return, $\tau_{k+1}$ is the stopping time (\ref{eq:stopping_time}), $u_k$ is the risky asset portfolio weight and $\widetilde{X}_{\tau_{k+1}}$ is the return process computed at the random time $\tau_{k+1}$. $\widetilde{X}_{\tau_{k+1}}$ can only assume the value $J$ or $-J$, therefore it is a Bernoullian random variable. Its parameter $p$ is given in the following lemma (which closely follows exercise 5.20 in \cite{baldi2017})
 \begin{lemma}\label{lemma:probability_positive_jump}
 	Let $\widetilde{X}_t$ be the return process (\ref{eq:translatedGBM}) and $\tau_{k+1}$ the stopping time in (\ref{eq:stopping_time}). Then $\widetilde{X}_{\tau_{k+1}} \sim B(p)$ where 
 	\begin{align}
@@ -110,7 +110,7 @@ In order to apply the \gls{ODAA} algorithm we need the probability density funct
 	\mathbb{P}\Big(Y\leq z-\xi\widetilde{X}_{\tau_{k+1}}\lvert\widetilde{X}_{\tau_{k+1}}=-J\Big)\mathbb{P}\Big(\widetilde{X}_{\tau_{k+1}}=-J\Big)\\[2ex]
 	& = F_Y(z-\xi)p + F_Y(z+\xi)(1-p)\\[2ex]
 	& = p\bigg\{ 1-\Big[2\cosh(\widetilde{\mu}J/\sigma^2)K_{\frac{1}{r}\log(\frac{z-\xi}{x})}^{\infty}(J)\Big]\bigg\}\mathbbm{1}_{[x+\xi,\infty)}+\\
-	&+ (1-p)\bigg\{ 1-\Big[2\cosh(\widetilde{\mu}J/\sigma^2)K_{\frac{1}{r}\log(\frac{z+\xi}{x})}^{\infty}(J)\Big]\bigg\}\mathbbm{1}_{[x-\xi,\infty)}
+	&+ (1-p)\bigg\{ 1-\Big[2\cosh(\widetilde{\mu}J/\sigma^2)K_{\frac{1}{r}\log(\frac{z+\xi}{x})}^{\infty}(J)\Big]\bigg\}\mathbbm{1}_{[x-\xi,\infty)}.
 	\end{align*}
 	Now, the density is obtained differentiating the cdf above. This amounts to compute $\frac{d}{dz}K_{\frac{1}{r}\log(\frac{z-\xi}{x})}^{\infty}(J)$ and $\frac{d}{dz}K_{\frac{1}{r}\log(\frac{z+\xi}{x})}^{\infty}(J)$. As an example, let us compute the first derivative
 	\begin{align*}
@@ -127,11 +127,6 @@ In order to apply the \gls{ODAA} algorithm we need the probability density funct
 
 
 
-\subsection{Numerical results}
-
-\section{Interest rate dynamics for the risk-free asset}\label{sec:Interest_rate_dynamics}
-
-\subsection{The calibration of the Vasiceck model}
 \subsection{Numerical results}
 
 
