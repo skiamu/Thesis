@@ -71,7 +71,80 @@ F_{x_{k+1}}(z) & = \mathbb{P}\big(Y+\xi\widetilde{N}_{k+1}\big) \\
 \end{align*}
 where $\Phi$ is the cdf of a standard normal and $p$ the probability that $\widetilde{N}_{k+1}$ is equal to 1. Finally, deriving with respect to $z$ under the integral sign gives us the result.
 \end{proof}
-\subsection{The calibration of the Vasiceck model}
+\subsection{The calibration of the Vasicek model}
+In this section we see how parameters $a$, $b$ and $\sigma$ of the Vasicek model can be calibrated to data using the linear regression. We closely follow \cite{Bernal2016}.
+
+The first step is to discretize Equation (\ref{eq:VasicekSDE}) in order to find a linear relation 
+\begin{align}\label{eq:Vasicek_discretized}
+\nonumber
+r_{t+\Delta t} & = r_t + a(b-r_t)\Delta t+\sigma\sqrt{\Delta t}Z \\
+& = (1-a\Delta t)r_t+ab\Delta t+\sigma\sqrt{\Delta t}Z
+\end{align}
+where $Z \sim \mathcal{N}(0,1)$. From (\ref{eq:Vasicek_discretized}) is clear the linear relation between $r_{t+\Delta t}$ and $r_t$. Therefore, the above equation can be rewritten in a fashion suitable for the linear regression estimation as follows
+\[
+r_{t+\Delta t} = \alpha r_t + \beta + \varepsilon
+\]
+where 
+\begin{equation*}
+\begin{cases*}
+\alpha = 1-a\Delta t\\
+\beta = ab\Delta t
+\end{cases*}
+\end{equation*}
+and $\varepsilon \sim \mathcal{N}(0,\sigma^2\Delta t)$ is the error term. Let us suppose to have a random sample $\{r_1,\ldots,r_n\}$ (for example daily 3-month LIBOR). The independent variable and the response are
+\[ \bm{y} = \begin{bmatrix}
+r_2\\
+\vdots\\
+r_n
+\end{bmatrix} \qquad
+\bm{x}= \begin{bmatrix}
+r_1\\
+\vdots\\
+r_{n-1}
+\end{bmatrix}.
+\]
+The linear relation between $\bm{y}$ and $\bm{x}$ is reported in Figure (\ref{fig:linear_regression}).
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Images/LinearRegression}
+	\caption{linear relation between consecutive daily 3-month LIBOR rate quotes. }
+	\label{fig:linear_regression}
+\end{figure}
+
+
+Once the least square estimates $\widehat{\alpha}$ and $\widehat{\beta}$ have been found, we can recover the estimates of the Vasicek model parameters in the following way
+\begin{equation*}
+\begin{cases*}
+\widehat{a}=\frac{1}{\Delta t}(1-\widehat{\alpha})\\[2ex]
+\widehat{b}= \widehat{\beta}/(\widehat{a}\Delta t)\\[2ex]
+\widehat{\sigma}=\frac{RSE}{\Delta t}
+\end{cases*}
+\end{equation*}
+where $RSE$ is the residual standard error of the fitting.
+
+Applying this method to daily ($\Delta t = 1/252$) quotes of 3-month LIBOR starting from 22 January 2010 to 25 April 2016 brings the following estimates
+\begin{equation*}
+\begin{cases*}
+\widehat{a}=0.1670\\
+\widehat{b}=0.0280 \\
+\widehat{\sigma}=0.0160
+\end{cases*}.
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Numerical results}
 
 

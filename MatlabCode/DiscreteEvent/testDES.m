@@ -9,7 +9,7 @@ idx2 = find(DateSP500Fut == '25-Apr-2016');
 S = SP500Fut(idx1:idx2);
 Returns = S(2:end) ./ S(1:end-1) - 1;
 %% discrete dynamics
-model = 'basic'; % select from {'basic','ext1','ext2'}
+model = 'ext1'; % select from {'basic','ext1','ext2'}
 % freq = 'd';
 % M = 3;
 % [Returns,~,stocks] = getReturns( freq, M );
@@ -52,9 +52,14 @@ print(strcat('/home/andrea/Thesis/Latex/final/Images/maps',model),...
 	'-dpng', '-r900');
 p_star = J{1};
 Nsim = 1e+6;
-[p_starMC,Times] = ValidationDES(X,U,Nsim,N,param,J_jump);
-save(strcat('/home/andrea/Thesis/MatlabCode/DiscreteEvent/',model,'.mat'),'J',...
-	'U', 'X', 'p_star','p_starMC')
+if strcmp(model,'basic')
+	[p_starMC,Times] = ValidationDES(X,U,Nsim,N,param,J_jump);
+	save(strcat('/home/andrea/Thesis/MatlabCode/DiscreteEvent/',model,'.mat'),'J',...
+		'U', 'X', 'p_star','p_starMC')
+else
+	save(strcat('/home/andrea/Thesis/MatlabCode/DiscreteEvent/',model,'.mat'),'J',...
+		'U', 'X', 'p_star')
+end
 %% plot
 u = 0.8;
 x = 1.2;

@@ -13,11 +13,16 @@ switch CalibrationMethod
 		y = Returns(2:end); % response
 		figure
 		plot(X,y,'.')
+		xlabel('r_{i-1}')
+		ylabel('r_i')
+		print('/home/andrea/Thesis/Latex/final/Images/LinearRegression','-dpng', '-r900');
 		mdl = fitlm(X,y) % 
 		Coeff = mdl.Coefficients.Estimate; % [beta, alpha]
 		param.a = (1 - Coeff(2)) / dt;
 		param.b = Coeff(1) / (param.a * dt);
 		param.sigma = sqrt(mdl.MSE / dt);
+		param.RSEa = (1 - sqrt(mdl.CoefficientCovariance(2,2))) / dt;
+		param.RSEb = sqrt(mdl.CoefficientCovariance(1,1)) / (param.RSEa * dt);
 	case 'MLE'
 		n = length(Returns);
 		Sx = sum(Returns(1:end-1));

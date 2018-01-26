@@ -3,9 +3,9 @@ close all;
 width = 7;     % Width in inches
 height = 5;    % Height in inches
 alw = 0.75;    % AxesLineWidth
-fsz = 4;      % Fontsize
+fsz = 6;      % Fontsize
 lw = 1.5;      % LineWidth
-msz = 4;       % MarkerSize
+msz = 6;       % MarkerSize
 % The properties we've been using in the figures
 set(0,'defaultLineLineWidth',lw);   % set the default line width to lw
 set(0,'defaultLineMarkerSize',msz); % set the default line marker size to msz

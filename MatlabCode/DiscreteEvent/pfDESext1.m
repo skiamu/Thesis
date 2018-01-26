@@ -45,24 +45,41 @@ function [f] = Gamma(y,mu_tilde,sigma,r,J_jump)
 %      J_jump = jump size
 
 epsilon = 1e-8; % series truncation tolerance
-
-t = log(y(2)) / r;
-Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
-	(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
-	- J_jump * mu_tilde / sigma^2))); % number of series terms
-
-MaxN = min(100,Ntrunc);
-% N = (1:MaxN);
-% N = (1:90); % truncate the series at the 100-th terms
-N = 1:MaxN;
-f = zeros(size(y));
-% y is a column vector, N must be a row vector. In this case the operation
-% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
-% sum we need to sum by rows (e.g. sum(,2))
-f(2:end) = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
-	y(2:end).^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
-	.* sin(pi * N / 2),2));
-
+n = length(y);
+if n > 1
+	t = log(y(2)) / r;
+	Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
+		(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
+		- J_jump * mu_tilde / sigma^2))); % number of series terms
+	
+	MaxN = min(100,Ntrunc);
+	% N = (1:MaxN);
+	% N = (1:90); % truncate the series at the 100-th terms
+	N = 1:MaxN;
+	f = zeros(size(y));
+	% y is a column vector, N must be a row vector. In this case the operation
+	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
+	% sum we need to sum by rows (e.g. sum(,2))
+	f(2:end) = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
+		y(2:end).^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
+		.* sin(pi * N / 2),2));
+else
+	t = log(y) / r;
+	Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
+		(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
+		- J_jump * mu_tilde / sigma^2))); % number of series terms
+	
+	MaxN = min(100,Ntrunc);
+	% N = (1:MaxN);
+	% N = (1:90); % truncate the series at the 100-th terms
+	N = 1:MaxN;
+	% y is a column vector, N must be a row vector. In this case the operation
+	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
+	% sum we need to sum by rows (e.g. sum(,2))
+	f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
+		y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
+		.* sin(pi * N / 2),2));
+end
 % the numerical truncation of the series may produce negative values,
 % espicially for values of z close do x+csi or x-csi.
 % f(f<0) = 0;
