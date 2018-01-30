@@ -1,4 +1,4 @@
-function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump)
+function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump,model)
 %ValidationDES is a function for the validation of the model in a
 %event-driven approach
 %   INPUT:
@@ -10,22 +10,17 @@ function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump)
 %      p = trend parameter
 %      r = cash yearly interest rate (cont compounded)
 %      J_jump = jump size
+%      model = {basic,ext1,ext2}
 %   OUTPUT:
 %      p_star = probability of reaching the target sets
-
-% parameters extraction
-p = param.p; lambda = param.lambda;r = param.r;
+r = param.r;
 %% 1) simulation random variables
-% 1.1) simulation exponential r.v.
-tau = exprnd(1 / lambda, [Nsim Nstep]);
-% 1.2) simulation bernoulli r.v.
-deltaN = -ones([Nsim Nstep]);
-deltaN(rand([Nsim Nstep]) < p) = 1;
+[Binomial, tau] = SimulationED(param,Nsim, Nstep,J_jump,model);
 
 %% 2) validation
 xk = X{1}; % initial wealth
 u0 = U{1}; % initial asset allocation
-xk = xk * (exp(r * tau(:,1)) + u0 * J_jump * deltaN(:,1));
+xk = xk * (exp(r * tau(:,1)) + u0 * J_jump * Binomial(:,1));
 for k = 2 : Nstep
 	Uinterp = zeros([Nsim 1]);
 	idx1 = xk > X{k}(end); % indexes ptf realizations greater than target set upper bound
@@ -38,7 +33,7 @@ for k = 2 : Nstep
 		Uinterp(idx2) = U{k}(1);
 	end
 	Uinterp(idx3) = interp1(X{k},U{k},xk(idx3));
-	xk = xk .* (exp(r * tau(:,k)) + Uinterp .* J_jump .* deltaN(:,k));
+	xk = xk .* (exp(r * tau(:,k)) + Uinterp .* J_jump .* Binomial(:,k));
 end
 p_star = length(xk(xk > X{end}(1))) / Nsim;
 Times = sum(tau,2); % time to reach the target in years

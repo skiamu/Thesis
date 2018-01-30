@@ -5,8 +5,8 @@ function[U,Floor,Cushion] = CPPI(u0,X,r,m,N,param,model,VaR,alpha)
 %   INPUT:
 %      u0 = initial portfolio allocation [column vector]
 %      X = cell array of discretized target sets
-%      r = expected cash return
-%      m = CPPI multiplier
+%      r = expected cash return (in the right frequency)
+%      m = CPPI multiplier 
 %      N = number of time steps
 %      param = cell array or struct of parameters
 %      model =
@@ -25,7 +25,9 @@ idxRiskyBasket = 3;
 Floor = zeros([N 1]);
 Floor(1) = x0 * (1 - u0(idxRiskyBasket) / m); % floor that guarantees exposure E0
 U = cell([N 1]); U{1} = u0';
-Cushion = cell([N 1]); Cushion{1} = subplus(x0 - Floor(1));
+Cushion = cell([N 1]); Cushion{1} = max(x0 - Floor(1),0);
+Aeq = ones([1 M]); beq = 1;
+ub = ones([M 1]); lb = zeros([M 1]);
 options = optimoptions(@fmincon,'Algorithm','sqp','Display','off');
 for k = 2 : N
 	k
@@ -33,10 +35,9 @@ for k = 2 : N
 	dimXk = length(X{k});
 	Uk = zeros([dimXk M]);
 	for j = 1 : dimXk
-		Cushion{k}(j) = subplus(X{k}(j) - Floor(k));
-		[Uk(j,:), ~] = fmincon(@(u)objfun(u,idxRiskyBasket,M), ...
-			u0,[],[],[],[],[],[],@(u)confuneq(u,param,model,VaR,alpha,X{k}(j),...
-			Cushion{k}(j),m,idxRiskyBasket,M),options);
+		Cushion{k}(j) = max(X{k}(j) - Floor(k),0);
+		[Uk(j,:), ~] = fmincon(@(u)-objfun(u,idxRiskyBasket,M),u0,[],[],Aeq,beq,...
+			lb,ub,@(u)confuneq(u,param,model,VaR,alpha,X{k}(j),Cushion{k}(j),m,idxRiskyBasket,M),options);
 		u0 = Uk(j,:)';
 	end
 	U{k} = Uk;
@@ -50,7 +51,6 @@ function f = objfun(u,indexRiskyBasket,M)
 A = zeros([1 M]);
 A(indexRiskyBasket) = 1;
 f = A * u;
-f = -f;
 end % objfun
 
 
@@ -62,40 +62,31 @@ function [c, ceq] = confuneq(u,param,model,VaR,alpha,x,Cushion,m,indexRiskyBaske
 %   OUTPUT:
 %      c = inequality constraints
 %      ceq = equality constraints
-VaRConstraintType = '2';
 A = zeros([1 M]); A(indexRiskyBasket) = 1;
 switch model
 	case 'Gaussian'
 		S = param.S; mu = param.mu;
-		ceq = u' * ones(size(u)) - 1; % budget constraint
+		ceq = []; 
 		mu_p = -u' * mu; sigma_p = sqrt(u' * S * u);
-		c = [-u;                                        % long-only constraint
-			-VaR + (mu_p + norminv(1-alpha) * sigma_p);  % variance constraint
-			A*u*x - m*Cushion];  
+		c = [-VaR + (mu_p + norminv(1-alpha) * sigma_p);  % variance constraint
+			A*u*x - m*Cushion];
 	case 'Mixture'
-		n = length(param);
-		switch VaRConstraintType
-			case '1' % analytic method
-				
-			case '2' % quadratic method
-				% 1) compute covariance matrix of asset return w(k+1)
-				W = zeros(length(u));
-				for i = 1 : n
-					W = W + param{i}{3} * param{i}{2};
-					for j = 1 : i-1
-						W = W + param{i}{3}*param{j}{3}*(param{i}{1}-param{j}{1})...
-							*(param{i}{1}-param{j}{1})';
-					end
-				end
-				% 2) setup the constrints
-				% By using this formula we suppose gaussianity, mu = 0 and
-				% scaling rule, see how it can be improved
-				sigma_max = VaR / norminv(1-alpha);
-				ceq = u' * ones(size(u)) - 1; % budget constraint
-				c = [-u;            % long-only constraint
-					u' * W * u - sigma_max^2; % variance constraint
-					A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
+		% 1) compute covariance matrix of asset return w(k+1)
+		W = 0;
+		for i = 1 : length(param)
+			W = W + param(i).lambda * param(i).S;
+			for j = 1 : i-1
+				W = W + param(i).lambda * param(j).lambda * ...
+					(param(i).mu - param(j).mu) * (param(i).mu - param(j).mu)';
+			end
 		end
+		% 2) setup the constrints
+		% By using this formula we suppose gaussianity, mu = 0 and
+		% scaling rule, see how it can be improved
+		sigma_max = VaR / norminv(1-alpha);
+		ceq = []; 
+		c = [u' * W * u - sigma_max^2; % variance constraint
+			A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
 	case 'GH'
 		% scrivere vincolo var in forma analitica
 		lambda = param.lambda; Chi = param.Chi; Psi = param.Psi;
@@ -110,9 +101,8 @@ switch model
 		% By using this formula we suppose gaussianity, mu = 0 and
 		% scaling rule, see how it can be improved
 		sigma_max = VaR / norminv(1-alpha);
-		ceq = u' * ones(size(u)) - 1; % budget constraint
-		c = [-u;            % long-only constraint
-			u' * W * u - sigma_max^2; % variance constraint
+		ceq = []; 
+		c = [u' * W * u - sigma_max^2; % variance constraint
 			A*u*x - m*Cushion];  % exposure bounded by m*Cuschion
 	otherwise
 		error('invalid model %s',model);

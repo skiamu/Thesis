@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%  Sample Portfolio Return Statistics ODAA strategy  %%%%%%%%%%%%%
+Means (ann) : 0.058323
+StDevs (ann) : 0.049936
+Median (ann) : 0.072157
+Skeweness : 0.70918
+Kurtosis : 6.4235
+Monthly VaR_0.95: 0.054865
+Max Drawdown: 0.46152
+Mean Drawdown: 0.019682
+Sharpe Ratio: 1.1677
+%%%%%%%%%%%%%  Sample Portfolio Return Statistics ConstantMix strategy  %%%%%%%%%%%%%
+Means (ann) : 0.034689
+StDevs (ann) : 0.051523
+Median (ann) : 0.033035
+Skeweness : 0.66171
+Kurtosis : 5.5058
+Monthly VaR_0.95: 0.038255
+Max Drawdown: 0.22803
+Mean Drawdown: 0.018913
+Sharpe Ratio: 0.67302
+%%%%%%%%%%%%%  Sample Portfolio Return Statistics CPPI strategy  %%%%%%%%%%%%%
+Means (ann) : 0.094549
+StDevs (ann) : 0.13213
+Median (ann) : 0.086911
+Skeweness : -0.061284
+Kurtosis : 3.2277
+Monthly VaR_0.95: 0.087852
+Max Drawdown: 0.45065
+Mean Drawdown: 0.040801
+Sharpe Ratio: 0.71549

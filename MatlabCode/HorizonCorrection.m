@@ -1,7 +1,9 @@
-function [param] = HorizonCorrection(freq,param,model)
+function [param,t] = HorizonCorrection(freq,param,model)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 switch freq
+	case 'wk'
+		t = 1;
 	case 'm'
 		t = 4;
 	case 'q'
@@ -11,7 +13,7 @@ switch freq
 	case 'y'
 		t = 52;
 	otherwise
-		return
+		error('invalid frequency in input');
 end
 
 % we approximate linear returns with log returns

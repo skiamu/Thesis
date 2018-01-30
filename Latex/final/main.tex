@@ -37,6 +37,11 @@
 \newcommand{\Var}[1]{\operatorname{Var}\left[#1\right]}
 
 
+\newcommand*{\MyIncludeGraphics}[2][]{%
+	\begin{adjustbox}{max size={\textwidth}{\textheight}}
+		\includegraphics[#1]{#2}%
+	\end{adjustbox}
+}
 \makeglossaries
 \include{Glossary/Glossary}
 

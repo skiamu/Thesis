@@ -36,7 +36,7 @@ Given that eventually the density function of $x_{k+1}$ will be needed, we are i
 	\]
 	where
 	\[
-	K_T^N(k)= \frac{\sigma^2\pi}{(a-b)^2}\sum_{n=1}^{N}\frac{n(-1)^{n+1}}{\frac{\mu^2}{2\sigma^2}+\frac{\sigma^2n^2\pi^2}{2(a-b)^2}}\exp\bigg\{-\bigg(\frac{n(-1)^{n+1}}{\frac{\mu^2}{2\sigma^2}+\frac{\sigma^2n^2\pi^2}{2(a-b)^2}}\bigg)t\bigg\}\sin\Big(\frac{n\pi k}{a-b}\Big).
+	K_T^N(k)= \frac{\sigma^2\pi}{(a-b)^2}\sum_{n=1}^{N}\frac{n(-1)^{n+1}}{\frac{\mu^2}{2\sigma^2}+\frac{\sigma^2n^2\pi^2}{2(a-b)^2}}\exp\bigg\{-\bigg(\frac{\mu^2}{2\sigma^2}+\frac{\sigma^2n^2\pi^2}{2(a-b)^2}\bigg)t\bigg\}\sin\Big(\frac{n\pi k}{a-b}\Big).
 	\]
 	Applying the theorem to our case ($a=J, b=-J$) we get 
 	\begin{equation}
@@ -128,7 +128,13 @@ In order to apply the \gls{ODAA} algorithm we need the probability density funct
 
 
 \subsection{Numerical results}
-
+\begin{figure}
+	%\centering
+	\makebox[\textwidth][c]{
+		\includegraphics[]{Images/mapsext1}}
+	\caption{allocation maps}
+	\label{fig:ext1_maps}
+\end{figure}
 
 
 

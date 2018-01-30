@@ -1,4 +1,4 @@
-function [p_star,Statistics] = Validation(w,X,U,Nsim,M,Nstep,freq)
+function [p_star,Statistics] = Validation(w,X,U,Nsim,M,Nstep,freq,policy,r)
 %Validation is a function for model validation. By giving in inputs asset
 %allocation maps,target sets and simulated asset class returns this function
 %builds up the paths and computes the probability of reaching the target set.
@@ -9,6 +9,9 @@ function [p_star,Statistics] = Validation(w,X,U,Nsim,M,Nstep,freq)
 %      Nsim = number of MC simulation
 %      M = asset allocation dimension
 %      Nstep = number of time steps
+%      freq =
+%      policy = {'ODAA','CPPI','ConstantMix'}
+%      r = annualized cash return (for the Sharpe index computation)
 %   OUTPUT:
 %      p_star = probability of reaching the target sets
 
@@ -28,18 +31,22 @@ for k = 2 : Nstep
 	if ~isempty(Uinterp(idx2,:))
 		Uinterp(idx2,:) = repmat(U{k}(1,:), [sum(idx2) 1]);
 	end
-	Uinterp(idx3,:) = interp1(X{k},U{k},xk(idx3,k)); % interpolate input maps on portfolio realizations
-	xk(:,k+1) = xk(:,k) .* (1 + sum(Uinterp .* w(:,:,k),2)); % update portfolio value
+	[m,~]=size(U{k});
+	if m ==1 % in the constant-mix case there's no need to interpolate
+		xk(:,k+1) = xk(:,k) .* (1 + sum(U{k} .* w(:,:,k),2));
+	else
+		Uinterp(idx3,:) = interp1(X{k},U{k},xk(idx3,k)); % interpolate input maps on portfolio realizations
+		xk(:,k+1) = xk(:,k) .* (1 + sum(Uinterp .* w(:,:,k),2)); % update portfolio value
+	end
 end
 p_star = sum(xk(:,end) > X{end}(1)) / Nsim;
 
 %% Results
 % compure portfolio returns
 Returns = xk(:,2:end) ./ xk(:,1:end-1) - 1;
-Flag = 0; % plot results
-Statistics = PortfolioStatistics(Returns',freq,Flag);
+Statistics = PortfolioStatistics(Returns',freq,policy,r,Nstep);
 % print results
-disp('%%%%%%%%%%%%%  Sample Portfolio Return Statistics  %%%%%%%%%%%%%')
+disp(['%%%%%%%%%%%%%  Sample Portfolio Return Statistics ',policy,' strategy  %%%%%%%%%%%%%'])
 disp(['Means (ann) : ',num2str(mean(Statistics.ExpReturnsAnn))])
 disp(['StDevs (ann) : ',num2str(mean(Statistics.VolatilityAnn))])
 disp(['Median (ann) : ',num2str(mean(Statistics.Median))])
@@ -48,7 +55,7 @@ disp(['Kurtosis : ',num2str(mean(Statistics.Kurt))])
 disp(['Monthly VaR_0.95: ', num2str(mean(Statistics.VaR))])
 disp(['Max Drawdown: ', num2str(max(Statistics.MaxDrawdown))])
 disp(['Mean Drawdown: ', num2str(mean(Statistics.MeanDrawdown))])
-% disp(['Sharpe Ratio: ', num2str(mean(Statistics.Sharpe))]) % da sistemare
+disp(['Sharpe Ratio: ', num2str(mean(Statistics.Sharpe))]) % da sistemare
 
 end % validation
 

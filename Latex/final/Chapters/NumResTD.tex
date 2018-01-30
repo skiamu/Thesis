@@ -79,6 +79,7 @@ X_{104} & = [(1+\theta)^2,\infty) = [1.07^2,\infty)
 In practice, these sets are discretized with a discretization step of $10^{-3}$ and truncated where the probability measure is negligible; the actual sets used in the implementation thus are $X_k = [0.5,1.9]$ $k=1,\ldots,103$, $X_{104}=[(1.07)^2,1.9]$. As stated in Problem \ref{prb:ODAA}, we are looking for a sequence of allocation maps which maximize the following joint probability
 \[ \mathbb{P}\big(\{\omega \in \Omega : x_0 \in X_0,\ldots,x_{104} \in X_N \} \big).\]
 The final choice to be made before running the algorithm is picking a model for the asset class returns. As a first example, we opt for the GM model which has been fitted to data applying the Expectation-Maximization method (see Subsection \ref{subsec:EM}) which brings the following results:
+
 \begin{align*}
 \bm{\mu}_1 & = 
 \begin{bmatrix}
@@ -103,7 +104,7 @@ The final choice to be made before running the algorithm is picking a model for 
 and $\lambda = 0.9908$.
 By applying the backward algorithm enunciated in Theorem \ref{thm:rec_algo}, we obtained the maps reported in Figure \ref{fig:mapsMixture}
 \begin{figure}[]
-	\includegraphics[scale = 1]{Images/mapsMixturewk.png}
+	\makebox[\textwidth][c]{\includegraphics[scale = 0.8]{Images/mapsMixturewk.png}}
 	\caption{Optimal allocation maps, weekly rebalancing, GM model}
 	\label{fig:mapsMixture}
 \end{figure}
@@ -165,13 +166,45 @@ Let us now take the time to analyze the kind of investment strategy these maps i
 	\end{tabular}
 \end{wraptable}
 
+\subsection{ODAA vs CPPI vs Constant-mix}
+\begin{figure}[h]
+	\makebox[\textwidth][c]{\includegraphics[scale = 0.8]{Images/mapsCPPIMixturewk.png}}
+	\caption{Optimal allocation maps CPPI strategy, weekly rebalancing, GM model,}
+	\label{fig:mapsMixtureCPPI}
+\end{figure}
 
-%\begin{figure}[h]\label{fig:mapsGaussian}
-%	\includegraphics[scale = 0.7]{Images/mapsGaussianwk.png}
-%	\caption{Optimal allocation maps, weekly rebalancing, G model}
-%\end{figure}
-%\begin{figure}[h]\label{fig:mapsNIG}
-%	\includegraphics[scale = 0.7]{Images/mapsNIGwk.png}
-%	\caption{Optimal allocation maps, weekly rebalancing, NIG model}
-%\end{figure}
 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{@{}lccc@{}} \toprule
+		Statistic & ODAA & CPPI & Constant-mix \\ \midrule
+		$p_{MC}$ &  78.59\%    &  57.44\%    &  15.16\%    \\
+		\addlinespace[0.5em]
+		Mean Return (ann) & 5.83\%  & 9.45\% & 3.46\%\\
+		\addlinespace[0.5em]
+		Volatility (ann) & 4.99\%  & 13.21\% & 5.15\% \\
+		\addlinespace[0.5em]
+		Median (ann) &	7.21\% & 8.69\% & 3.30\% \\
+		\addlinespace[0.5em]
+		Skewnwss & 0.709 & -0.061 & 0.661 \\
+		\addlinespace[0.5em]
+		Kurtosis & 6.42 & 3.22 & 5.50 \\
+		\addlinespace[0.5em]
+		Monthly $V@R_{0.95}$ & 5.48\% & 8.78\% & 3.82\%\\
+		\addlinespace[0.5em]
+		Max Drawdown & 46.15\% & 45.06\% & 22.80\% \\
+		\addlinespace[0.5em]
+		Mean Drawdown & 1.96\% & 4.08\% & 1.89\% \\
+		\addlinespace[0.5em]
+		Sharpe ratio & 1.167 & 0.715 & 0.673 \\ \bottomrule
+		\addlinespace[0.5em]
+	\end{tabular}
+	\caption{Investment performance for strategies ODAA, CPPI and Constant-mix obtained via Monte-Carlo simulation.}
+	\label{tab:MC_statistics}
+\end{table}
+
+
+
+\begin{figure}[h]
+	\includegraphics[scale = 0.5]{Images/DensitiesMixturewk}
+\end{figure}

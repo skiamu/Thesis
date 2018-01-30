@@ -2,13 +2,13 @@ function [ f ] = pfDESext1(z,x,u,J_jump,param)
 %pfDES computes the density function of the random variable x(k+1)
 %(portdolio value at event number k+1)
 %   INPUT:
-%      z = indipendent variable
-%      x = portfolio value last event
-%      u = cash weigth
+%      z = indipendent variable [column vector]
+%      x = portfolio value last event [scalar]
+%      u = cash weigth [scalar]
 %      J_jump = jump treshold
-%      param = struct of model parameters
+%      param = struct of model parameters (mu, sigma, r and p)
 %   OUTPUT:
-%      f = density computed in z
+%      f = density function computed in z
 f = zeros(size(z));
 
 csi = x * J_jump * u;
@@ -79,6 +79,7 @@ else
 	f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
 		y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
 		.* sin(pi * N / 2),2));
+	f(f<0) = 0;
 end
 % the numerical truncation of the series may produce negative values,
 % espicially for values of z close do x+csi or x-csi.

@@ -66,7 +66,7 @@ disp(['return length =  ',num2str(minLength)]);
 
 %% 4) sample statistics
 Flag = 1; % plot results
-SampleStats = PortfolioStatistics(Returns,freq,Flag);
-save('/home/andrea/Thesis/MatlabCode/testScript/Yahoo.mat','Returns')
+SampleStats = AssetClassStatistics(Returns,freq,Flag);
+% save('/home/andrea/Thesis/MatlabCode/testScript/Yahoo.mat','Returns')
 end % getReturns
 
