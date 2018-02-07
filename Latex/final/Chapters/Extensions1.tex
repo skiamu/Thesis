@@ -128,14 +128,45 @@ In order to apply the \gls{ODAA} algorithm we need the probability density funct
 
 
 \subsection{Numerical results}
-\begin{figure}
+\begin{figure}[h]
 	%\centering
 	\makebox[\textwidth][c]{
-		\includegraphics[]{Images/mapsext1}}
+		\includegraphics[scale = 0.8]{Images/mapsext1}}
 	\caption{allocation maps}
 	\label{fig:ext1_maps}
 \end{figure}
 
 
-
+\begin{figure}[h]
+	\includegraphics[scale = 0.5]{Images/Densityext1}
+	\caption{Investment return empirical density function}
+\end{figure}
+\begin{wraptable}{l}{7cm}
+		\begin{tabular}{@{}lc@{}}
+			\toprule
+			Statistics & value  \\
+			%\addlinespace[0.5em]
+			\midrule
+			$p^{\star}$ & 0.9163\\
+			\addlinespace[0.5em]	
+			$p_{MC}$ & 0.9160\\
+			\addlinespace[0.5em]
+			Mean Return (ann) & 8.74\%\\
+			\addlinespace[0.5em]
+			Volatility (ann) & 5.07\%\\
+			\addlinespace[0.5em]
+			Median Return (ann) & 9.18\%\\
+			\addlinespace[0.5em]
+			Skewness & -3.43\\
+			\addlinespace[0.5em]
+			Kurtosis & 17.59\\
+			\addlinespace[0.5em]
+			Sharpe Ratio & 0.610\\
+			\addlinespace[0.5em]
+			Avg horizon [years] & 1.86 \\	
+			\bottomrule
+		\end{tabular}
+		\caption{Investment performance obtained via Monte-Carlo simulation}
+		\label{tab:performance_ext1}
+\end{wraptable}
 

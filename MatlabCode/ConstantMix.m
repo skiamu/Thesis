@@ -11,7 +11,7 @@ switch model
 		Sigma = 0;
 		mu = 0;
 		for i = 1 : length(param)
-			mu = param(i).lambda * param(i).mu;
+			mu = mu + param(i).lambda * param(i).mu;
 			Sigma = Sigma + param(i).lambda * param(i).S;
 			for j = 1 : i-1
 				Sigma = Sigma + param(i).lambda * param(j).lambda * ...

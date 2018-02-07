@@ -23,15 +23,22 @@ X2 = mvnrnd(mu2,Sigma2,ceil((1-lambda) * 1e+4));
 X = [X1; X2];
 %% model calibration
 model = 'Mixture'; % select from {'Gaussian','Mixture','GH'}
-CalibrationType = 'EM'; % select from {'MM','ML','EM'} (only for GM model)
-[param,CalibrationData] = modelCalibration( X,model,M,CalibrationType);
+CalibrationType = 'ML'; % select from {'MM','ML','EM'} (only for GM model)
+[param,CalibrationData] = modelCalibration(X,model,M,CalibrationType);
 
-ErrorMu1 = abs((param(1).mu - mu1') ./ mu1' * 100);
-ErrorMu2 = abs((param(2).mu - mu2') ./ mu2' * 100);
-ErrorSigma1 = abs((param(1).S - Sigma1) ./ Sigma1 * 100);
-ErrorSigma2 = abs((param(2).S - Sigma2) ./ Sigma2 * 100);
-ErrorLambda = abs(param(1).lambda - lambda) / lambda * 100;
-
+if param(1).lambda == max(param(1).lambda,param(2).lambda)
+	ErrorMu1 = abs((param(1).mu - mu1') ./ mu1' * 100);
+	ErrorMu2 = abs((param(2).mu - mu2') ./ mu2' * 100);
+	ErrorSigma1 = abs((param(1).S - Sigma1) ./ Sigma1 * 100);
+	ErrorSigma2 = abs((param(2).S - Sigma2) ./ Sigma2 * 100);
+	ErrorLambda = abs(param(1).lambda - lambda) / lambda * 100;
+else
+	ErrorMu1 = abs((param(2).mu - mu1') ./ mu1' * 100);
+	ErrorMu2 = abs((param(1).mu - mu2') ./ mu2' * 100);
+	ErrorSigma1 = abs((param(2).S - Sigma1) ./ Sigma1 * 100);
+	ErrorSigma2 = abs((param(1).S - Sigma2) ./ Sigma2 * 100);
+	ErrorLambda = abs(param(2).lambda - lambda) / lambda * 100;
+end
 
 
 

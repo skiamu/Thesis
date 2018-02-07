@@ -21,9 +21,11 @@ function[U,Floor,Cushion] = CPPI(u0,X,r,m,N,param,model,VaR,alpha)
 %% CPPI synthesis
 M = length(u0); % asset class dimension
 x0 = X{1}; % initial portfolio value
-idxRiskyBasket = 3;
-Floor = zeros([N 1]);
-Floor(1) = x0 * (1 - u0(idxRiskyBasket) / m); % floor that guarantees exposure E0
+idxRiskyBasket = [2 3];
+A = zeros([1 M]);
+A(idxRiskyBasket) = 1;
+Floor = zeros([N 1]); 
+Floor(1) = x0 * (1 - A * u0 / m); % floor that guarantees exposure E0
 U = cell([N 1]); U{1} = u0';
 Cushion = cell([N 1]); Cushion{1} = max(x0 - Floor(1),0);
 Aeq = ones([1 M]); beq = 1;
@@ -35,9 +37,9 @@ for k = 2 : N
 	dimXk = length(X{k});
 	Uk = zeros([dimXk M]);
 	for j = 1 : dimXk
-		Cushion{k}(j) = max(X{k}(j) - Floor(k),0);
-		[Uk(j,:), ~] = fmincon(@(u)-objfun(u,idxRiskyBasket,M),u0,[],[],Aeq,beq,...
-			lb,ub,@(u)confuneq(u,param,model,VaR,alpha,X{k}(j),Cushion{k}(j),m,idxRiskyBasket,M),options);
+		Cushion{k}(j) = max(X{k}(j) - Floor(k),0); % define portoflio cushion
+		[Uk(j,:), ~] = fmincon(@(u)-objfun(u,A),u0,[],[],Aeq,beq,...
+			lb,ub,@(u)confuneq(u,param,model,VaR,alpha,X{k}(j),Cushion{k}(j),m,A),options);
 		u0 = Uk(j,:)';
 	end
 	U{k} = Uk;
@@ -45,16 +47,14 @@ end
 
 end % CPPI
 
-function f = objfun(u,indexRiskyBasket,M)
+function f = objfun(u,A)
 % the goal is to invest as much as possible in the risk asset (Equity asset
 % class)
-A = zeros([1 M]);
-A(indexRiskyBasket) = 1;
 f = A * u;
 end % objfun
 
 
-function [c, ceq] = confuneq(u,param,model,VaR,alpha,x,Cushion,m,indexRiskyBasket,M)
+function [c, ceq] = confuneq(u,param,model,VaR,alpha,x,Cushion,m,A)
 %confuneq states the max problem's constraints
 %   INPUT:
 %      u = asset allocation vector
@@ -62,7 +62,6 @@ function [c, ceq] = confuneq(u,param,model,VaR,alpha,x,Cushion,m,indexRiskyBaske
 %   OUTPUT:
 %      c = inequality constraints
 %      ceq = equality constraints
-A = zeros([1 M]); A(indexRiskyBasket) = 1;
 switch model
 	case 'Gaussian'
 		S = param.S; mu = param.mu;

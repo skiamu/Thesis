@@ -33,7 +33,7 @@ for i = 1 : N-1
 	i
 	[x(:,i),f(i)] = fmincon(@(x)-obj(x,Returns,k,lambda(i)),x0,[],[],[],[],lb,ub,...
 		@(x)nonlinconst(x,k,lambda(i)),options);
-% 	x0 = x(:,i);
+	x0 = x(:,i);
 end
 f = -f;
 [~,idxMax] = max(f);

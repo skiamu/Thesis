@@ -27,7 +27,7 @@ csi = x * J_jump * u;
 idx1 = z >= x + csi;
 idx2 = z >= x - csi;
 
-t = (-2:0.001/3:2)';
+t = (-2:0.001/2:2)';
 % 4) compute t-integrals
 if ~isempty(z(idx1))
 	psi = @(t,z) Integrand(exp(t - exp(-t)),z,f_tau,-1,mu_tilde,sigma_tilde,csi,x) .* ...
@@ -45,7 +45,7 @@ end % pfDES
 function I = Integrand(t,z,f_tau,sign,mu_tilde,sigma_tilde,csi,x)
 sigma_tilde = sigma_tilde(t);
 t = t(sigma_tilde>0); % keep only times where sigma_tilde is not zero
-I =  (exp(-0.5 * ((log((z + sign * csi) / x) - mu_tilde(t)) ./ sigma_tilde).^2 )...
-	./ (sqrt(2*pi) * sigma_tilde)  ) .* (f_tau(t));
+I =  sparse((exp(-0.5 * ((log((z + sign * csi) / x) - mu_tilde(t)) ./ sigma_tilde).^2 )...
+	./ (sqrt(2*pi) * sigma_tilde)  ) .* (f_tau(t)));
 end
 % * ones([1 length(z)]))

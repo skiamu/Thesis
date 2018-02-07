@@ -251,7 +251,7 @@ The point $(\widehat{p},\widehat{\lambda})$ is actually a maximizer since the He
 	As $\alpha+\beta+\gamma$ equals $n$ (the sample size), the estimator of $\lambda$ depends only on the number of interval in which there are no jumps ($\alpha$). Conversely, the estimator of $p$ depends only on the number of positive and negative jumps, as it was reasonable to expect.  
 \end{remark}
 \section{Numerical Results}
-\begin{figure}
+\begin{figure}[h]
 	%\centering
 	\makebox[\textwidth][c]{
 	\includegraphics[scale = 0.6]{Images/mapsbasic}}
@@ -259,4 +259,36 @@ The point $(\widehat{p},\widehat{\lambda})$ is actually a maximizer since the He
 	\label{fig:basic_maps}
 \end{figure}
 
+\begin{figure}[h]
+	\includegraphics[scale = 0.5]{Images/Densitybasic}
+	\caption{Investment return empirical density function}
+\end{figure}
 
+\begin{wraptable}{l}{7cm}
+	\begin{tabular}{@{}lc@{}}
+		\toprule
+		Statistics & value  \\
+		%\addlinespace[0.5em]
+		\midrule
+		$p^{\star}$ & 0.9812\\
+		\addlinespace[0.5em]	
+		$p_{MC}$ & 0.9747\\
+		\addlinespace[0.5em]
+		Mean Return (ann) & 7.03\%\\
+		\addlinespace[0.5em]
+		Volatility (ann) & 3.25\%\\
+		\addlinespace[0.5em]
+		Median Return (ann) & 6.65\%\\
+		\addlinespace[0.5em]
+		Skewness & 0.561\\
+		\addlinespace[0.5em]
+		Kurtosis & 6.30\\
+		\addlinespace[0.5em]
+		Sharpe Ratio & 0.425\\
+		\addlinespace[0.5em]
+		Avg horizon [years] & 2.87 \\	
+		\bottomrule
+	\end{tabular}
+	\caption{Investment performance obtained via Monte-Carlo simulation}
+	\label{tab:performance_basic}
+\end{wraptable}

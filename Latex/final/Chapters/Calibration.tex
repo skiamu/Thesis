@@ -89,7 +89,9 @@ In this subsection we put the calibration methods into practice to see which one
 \begin{align*}
 \bm{\mu}_1 & = 
 \begin{bmatrix}
-\num{6.11e-4} &  \num{1.373e-3} &  \num{2.34e-3}
+\num{6.11e-4} \\
+\num{1.373e-3} \\  
+\num{2.34e-3}
 \end{bmatrix}
 \quad & \bm{\Sigma}_1 &= 
 \begin{bmatrix}
@@ -98,7 +100,9 @@ In this subsection we put the calibration methods into practice to see which one
                &                & \num{3.656e-4}
 \end{bmatrix} \\
 \bm{\mu}_2 & = \begin{bmatrix}
-\num{6.83e-4} &  \num{-1.61e-2} &  \num{-1.75e-2}
+\num{6.83e-4} \\
+\num{-1.61e-2} \\
+\num{-1.75e-2}
 \end{bmatrix}
 \quad & \bm{\Sigma}_2 &= 
 \begin{bmatrix}
@@ -119,27 +123,27 @@ The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2}
 \begin{table}
 	\centering
 	\resizebox{\textwidth}{!}{
-		\begin{tabular}{@{}lcccccc@{}} \toprule
-			Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
-			$\widehat{\mu}_{1}$  & $\num{6.167e-4}$ & $0.94$ &  & & $\num{6.11e-4}$ & 0.0264 \\ 
-			\addlinespace[0.5em]
-			$\widehat{\mu}_{2}$  & $\num{1.578e-3}$ & $14.98$ &  & & $\num{1.368e-3}$ & 0.366\\
-			\addlinespace[0.5em]
-			$\widehat{\mu}_{3}$  & $\num{2.396e-3}$ & $2.40$ &  & & $\num{2.174e-3}$ & 7.066\\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{11}$ &  $\num{2.757e-8}$ & $479.2$ &  & & $\num{4.704e-9}$ & 1.189   \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{22}$ & $\num{3.215e-5}$ & $0.14$ &  & & $\num{3.155e-5}$ & 1.699   \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{33}$ & $\num{3.092e-4}$  & $15.4$ &   & & $\num{3.661e-4}$ & 0.146  \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{12}$ & $\num{-3.554e-8}$ & $243.6$  &  & & $\num{2.249e-8}$ & 9.123 \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{13}$ & $\num{-3.1e-8}$  & $213.5$  &  & & $\num{3.487e-8}$ & 27.68  \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{23}$ & $\num{-4.805e-7}$ & $81.20$  &  & & $\num{-2.756e-4}$ & 7.788  \\\bottomrule
-			\addlinespace[0.5em]
-		\end{tabular}
+\begin{tabular}{@{}lcccccc@{}} \toprule
+	Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
+	$\widehat{\mu}_{1}$  & $\num{6.167e-4}$ & $0.94$ &$\num{6.097e-4}$  & 0.213 & $\num{6.11e-4}$ & 0.0264 \\ 
+	\addlinespace[0.5em]
+	$\widehat{\mu}_{2}$  & $\num{1.578e-3}$ & $14.98$ & $\num{1.464e-3}$ & 6.66 & $\num{1.368e-3}$ & 0.366\\
+	\addlinespace[0.5em]
+	$\widehat{\mu}_{3}$  & $\num{2.396e-3}$ & $2.40$ & $\num{2.209e-3}$  & 5.57 & $\num{2.174e-3}$ & 7.066\\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{11}$ &  $\num{2.757e-8}$ & $479.2$ & $\num{4.632e-9}$ & 2.70 & $\num{4.704e-9}$ & 1.189   \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{22}$ & $\num{3.215e-5}$ & $0.14$ & $\num{3.071e-5}$  & 4.31 & $\num{3.155e-5}$ & 1.699   \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{33}$ & $\num{3.092e-4}$  & $15.4$ & $\num{3.532e-4}$  &  3.38 & $\num{3.661e-4}$ & 0.146  \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{12}$ & $\num{-3.554e-8}$ & $243.6$  & $\num{2.617e-8}$ & 5.75 & $\num{2.249e-8}$ & 9.123 \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{13}$ & $\num{-3.1e-8}$  & $213.5$  & $\num{3.546e-8}$ & 29.86 & $\num{3.487e-8}$ & 27.68  \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{23}$ & $\num{-4.805e-7}$ & $81.20$  & $\num{-1.973e-6}$ & 22.82 & $\num{-2.756e-4}$ & 7.788  \\\bottomrule
+	\addlinespace[0.5em]
+\end{tabular}
 		}
 		\caption{estimates for the first mixing component and respective estimation errors}
 		\label{tab:calibration1}
@@ -149,26 +153,26 @@ The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2}
 \begin{table}
 	\centering
 	\resizebox{\textwidth}{!}{
-		\begin{tabular}{@{}lcccccc@{}} \toprule
-			Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
-			$\widehat{\mu}_{1}$  & $\num{5.461e-4}$  & 20.03 & & & $\num{6.843e-4}$ & 0.193 \\ \addlinespace[0.5em]
-			$\widehat{\mu}_{2}$  & $\num{-7.26e-3}$     & 54.91 & & & $\num{-1.554e-2}$ & 3.481\\
-			\addlinespace[0.5em]
-			$\widehat{\mu}_{3}$  & $\num{-8.11e-3}$   & 53.65 & & & $\num{-1.953e-2}$ & 11.605 \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{11}$ & $\num{1.157e-8}$ & 201.07 & & & $\num{3.223e-9}$ & 16.131  \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{22}$ & $\num{8.133e-5}$ & 113.79  & & & $\num{4.156e-5}$ & 9.254    \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{33}$ & $\num{2.108e-3}$ & 23.52   & & & $\num{2.941e-3}$ & 6.674   \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{12}$ & $\num{-3.662e-8}$ & 251.31 & & & $\num{1.545e-8}$  & 36.164 \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{13}$ & $\num{-5.244e-8}$ & 177.81 & & & $\num{2.693e-7}$ & 299.6  \\
-			\addlinespace[0.5em]
-			$\widehat{\Sigma}_{23}$ & $\num{-1.996e-6}$ & 73.88  & & & $\num{3.435e-5}$ & 549.4  \\\bottomrule
-			\addlinespace[0.5em]
-		\end{tabular}
+\begin{tabular}{@{}lcccccc@{}} \toprule
+	Parameter & MM & $e_{MM}$ (\%) & ML & $e_{ML}$ (\%) & EM & $e_{EM}$ (\%) \\ \midrule
+	$\widehat{\mu}_{1}$  & $\num{5.461e-4}$  & 20.03 & $\num{6.772e-4}$ & 0.843 & $\num{6.843e-4}$ & 0.193 \\ \addlinespace[0.5em]
+	$\widehat{\mu}_{2}$  & $\num{-7.26e-3}$  & 54.91 & $\num{-8.424e-3}$ & 47.70 & $\num{-1.554e-2}$ & 3.481\\
+	\addlinespace[0.5em]
+	$\widehat{\mu}_{3}$  & $\num{-8.11e-3}$   & 53.65 & $\num{-8.365e-3}$ & 52.21 & $\num{-1.953e-2}$ & 11.605 \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{11}$ & $\num{1.157e-8}$ & 201.07 & $\num{3.643e-9}$ & 5.21 & $\num{3.223e-9}$ & 16.131  \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{22}$ & $\num{8.133e-5}$ & 113.79  & $\num{8.792e-5}$ & 131.1 & $\num{4.156e-5}$ & 9.254    \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{33}$ & $\num{2.108e-3}$ & 23.52 & $\num{1.922e-3}$ & 30.30 & $\num{2.941e-3}$ & 6.674   \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{12}$ & $\num{-3.662e-8}$ & 251.31 & $\num{3.926e-8}$ & 62.21 & $\num{1.545e-8}$  & 36.164 \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{13}$ & $\num{-5.244e-8}$ & 177.81 & $\num{7.336e-8}$ & 8.86 & $\num{2.693e-7}$ & 299.6  \\
+	\addlinespace[0.5em]
+	$\widehat{\Sigma}_{23}$ & $\num{-1.996e-6}$ & 73.88  & $\num{-7.787e-6}$ & 1.87 & $\num{3.435e-5}$ & 549.4  \\\bottomrule
+	\addlinespace[0.5em]
+\end{tabular}
 	}
 	\caption{estimates for the second mixing component and respective estimation errors}
 	\label{tab:calibration2}
@@ -178,9 +182,9 @@ The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2}
 	\centering
 	\begin{tabular}{@{}lcccccr@{}} \toprule
 		Parameter & MM & $e_{MM}$ & ML & $e_{ML} (\%)$ & EM & $e_{EM}$ (\%)\\ \midrule
-		$\widetilde{\lambda}$  & 0.94  & 4.08 & & & 0.9812 & 0.119 \\
+		$\widetilde{\lambda}$  & 0.94  & 4.08 & 0.95 & 3.06 & 0.9812 & 0.119 \\
 		\addlinespace[0.5em]
-		$\log L^{\star}$ & $\num{1.3903e+5}$ & & & & $\num{1.438e+5}$ & \\ \bottomrule
+		$\log L^{\star}$ & $\num{1.390e+5}$ & & $\num{1.437e+5}$ & & $\num{1.438e+5}$ & \\ \bottomrule
 		\addlinespace[0.5em]
 	\end{tabular}
 	\caption{mixing proportion estimate and log-likelihood}
