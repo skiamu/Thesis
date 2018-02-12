@@ -13,9 +13,9 @@ f = zeros(size(z));
 
 csi = x * J_jump * u;
 
-idx1 = z > x + csi;
+idx1 = z > x + csi + eps;
 
-idx2 = z > x - csi;
+idx2 = z > x - csi + eps;
 
 mu = param.mu; sigma = param.sigma; r = param.r; % extract parameters
 p = param.p;
@@ -43,47 +43,36 @@ function [f] = Gamma(y,mu_tilde,sigma,r,J_jump)
 %      sigma = volatility
 %      r = cash yearly return
 %      J_jump = jump size
-
+min_t = 1e-3;
+flag = false;
 epsilon = 1e-8; % series truncation tolerance
-n = length(y);
-if n > 1
-	t = log(y(2)) / r;
-	Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
-		(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
-		- J_jump * mu_tilde / sigma^2))); % number of series terms
-	
-	MaxN = min(100,Ntrunc);
-	% N = (1:MaxN);
-	% N = (1:90); % truncate the series at the 100-th terms
-	N = 1:MaxN;
-	f = zeros(size(y));
-	% y is a column vector, N must be a row vector. In this case the operation
-	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
-	% sum we need to sum by rows (e.g. sum(,2))
-	f(2:end) = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
-		y(2:end).^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
-		.* sin(pi * N / 2),2));
-else
-	t = log(y) / r;
-	Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
-		(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
-		- J_jump * mu_tilde / sigma^2))); % number of series terms
-	
-	MaxN = min(100,Ntrunc);
-	% N = (1:MaxN);
-	% N = (1:90); % truncate the series at the 100-th terms
-	N = 1:MaxN;
-	% y is a column vector, N must be a row vector. In this case the operation
-	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
-	% sum we need to sum by rows (e.g. sum(,2))
-	f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
-		y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
-		.* sin(pi * N / 2),2));
-	f(f<0) = 0;
+t = min(log(y)/r);
+if t <= min_t
+	n = length(y); % save the length of y
+	idx = log(y)/r > min_t; % index of element  not too small
+	y = y(idx); % remove elemets too small
+	t = min(log(y)/r); % compute new t
+	flag = true; % flag there're small elements
 end
-% the numerical truncation of the series may produce negative values,
-% espicially for values of z close do x+csi or x-csi.
-% f(f<0) = 0;
+Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
+	(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
+	- J_jump * mu_tilde / sigma^2))); % number of series terms
+
+MaxN = ceil(Ntrunc);
+N = (1:MaxN);
+% N = (1:90); % truncate the series at the 100-th terms
+% y is a column vector, N must be a row vector. In this case the operation
+% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
+% sum we need to sum by rows (e.g. sum(,2))
+f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
+	y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
+	.* sin(pi * N / 2),2));
+
+if flag
+	g = zeros([n 1]);
+	g(idx) = f;
+	f = g;
+end
 end % Gamma
 
 

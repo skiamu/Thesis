@@ -1,26 +1,36 @@
 \chapter{Model Description}\label{chpt:Model_Description}
 In this chapter, first the basic financial quantities are introduced and the asset allocation problem is stated, then the same problem will be embedded in a dynamical control system framework which will allows us to develop the stochastic reachability approach to portfolio construction. We closely follow \cite{Pola12},\cite{Pola06} and \cite{Pola}.
 \section{Portfolio construction}
-In the financial industry, a group of securities that exhibits similar characteristics in the market place and is subject to the same regulation is called \textbf{asset class}. Typical asset classes include stocks, bonds, real estate, cash and commodities. The discipline consisting in allocating investor's wealth among different asset classes is called \textbf{asset allocation}. We will now introduce the financial quantities and a formal mathematical setting suitable for describing the asset allocation problem. Let $(\Omega,\mathcal{F},\mathbb{P})$ be the underlying  probability space and consider a discrete set of time indexed by $k \in \mathbb{N}$. Moreover, let us consider a universe of $m \in \mathbb{N}$ asset classes. Asset classes' performance at period $k$ is described by a $m$-dimensional random vector $\bm{w}_k = [w_k(1),\ldots,w_k(m)]^T$ where $$ w_k(i) = \frac{z_k(i)-z_{k-1}(i)}{z_{k-1}(i)}, \quad i = 1,\ldots,m$$
+In the financial industry, a group of securities that exhibits similar characteristics in the market place and is subject to the same regulation is called \textbf{asset class}. Typical asset classes include stocks, bonds, real estate, cash and commodities. The discipline consisting in allocating investor's wealth among different asset classes is called \textbf{asset allocation}. We will now introduce the financial quantities and a formal mathematical setting suitable for describing the asset allocation problem. Let $(\Omega,\mathcal{F},\mathbb{P})$ be the underlying  probability space and consider a discrete set of time indexed by $k \in \mathbb{N}$. Moreover, let us consider a universe of $m \in \mathbb{N}$ asset classes. Asset classes' performance at period $k$ is described by a $m$-dimensional random vector 
+$\bm{w}_k = \begin{bmatrix} w_k(1),\ldots,w_k(m)\end{bmatrix}^T $ 
+where 
+$$ w_k(i) = \frac{z_k(i)-z_{k-1}(i)}{z_{k-1}(i)}, \quad i = 1,\ldots,m$$
 is the rate of return of the $i$-th asset class and $\{z_k(i)\}_{k \in \mathbb{N}}$ the $i$-th asset class price process. In general, the correlation of $\bm{w}_k$ can be of two kinds:
 \begin{itemize}
-	\item \textit{synchronous} correlation, that is the correlation among different asset class at the same time period
-	\item \textit{time-lagged} correlation, that is the correlation among different asset class at different time period.
+	\item \textit{synchronous} correlation, that is the correlation among different asset class at the same time period (i.e. correlation between $w_k(i)$ and $w_k(j)$ for $i,j=1,\ldots,m$)
+	\item \textit{time-lagged} correlation, that is the correlation among different asset class at different time period (i.e. correlation between $w_k(i)$ and $w_{k'}(j)$, with $k\neq k'$ for $i,j=1,\ldots,m$).
 \end{itemize}
-As the time-lagged correlation is usually negligible for short time period, $\bm{w}_k$ is a synchronous-correlated random vector. Standard notation is used for Expected Returns and Covariance Matrix $$\mu_k(i) = \mathbb{E}[w_k(i)], \quad i = 1,\ldots,m \quad k \in \mathbb{N}$$
- $$\Sigma_k(i,j) = \mathbb{E}\Big[\big(w_k(i)-\mu_k(i)\big)\big(w_k(j)-\mu_k(j)\big)\Big], \quad i,j = 1,\ldots,m \quad k \in \mathbb{N}$$
- An asset allocation at period $k \in \mathbb{N}$ is a vector $\bm{u}_k \in \mathbb{R}^m$ whose $i$-th element indicates the percentage of wealth to be invested in asset class $i$. This vector is the leverage the asset manager has at his disposal for driving the portfolio value towards his goals. Finally, portfolio performance over the period $[k-1,k]$ is measured by the portfolio return $$r_{k+1}=\frac{x_{k+1}-x_{k}}{x_k}$$ where $\{x_k\}_{k \in \mathbb{N}}$ is the portfolio value process. The portfolio return can also be expressed as a weighted average of each asset class return  as $$ r_{k+1} = \bm{u}_k^T \bm{w}_{k+1}$$
+As the time-lagged correlation is usually negligible for short time period, $\bm{w}_k$ is a synchronous-correlated random vector. Standard notation is used for Expected Returns and Covariance Matrix 
+
+\begin{align*}
+\mu_k(i) & = \mathbb{E}\big[w_k(i)\big], \quad i = 1,\ldots,m \quad k \in \mathbb{N} \\[1.5ex]
+\Sigma_k(i,j) &  = \mathbb{E}\bigg[\Big(w_k(i)-\mu_k(i)\Big)\Big(w_k(j)-\mu_k(j)\Big)\bigg], \quad i,j = 1,\ldots,m \quad k \in \mathbb{N}.
+\end{align*}
+
+ An asset allocation at period $k \in \mathbb{N}$ is a vector $\bm{u}_k \in \mathbb{R}^m$ whose $i$-th element indicates the percentage of wealth to be invested in asset class $i$. This vector is the leverage the asset manager has at his disposal for driving the portfolio value towards his goals. The portfolio performance over the period $[k-1,k]$ is measured by the portfolio return $$r_{k+1}=\frac{x_{k+1}-x_{k}}{x_k}$$ where $\{x_k\}_{k \in \mathbb{N}}$ is the portfolio value process. The portfolio return can also be expressed as a weighted average of each asset class return  as $$ r_{k+1} = \bm{u}_k^T \bm{w}_{k+1}.$$
  By combining the two previous relations we get the following recursive equation 
  \begin{equation}
  \boxed{x_{k+1} = x_k (1 + \bm{u}_k^T \bm{w}_{k+1})}
  \end{equation}
- which describes the time evolution of portfolio value. In plain words, the \textbf{asset allocation problem} consists in choosing the vector $\bm{u}_k$ at each time period $k \in \mathbb{N}$ so as to achieve investor's goal (i.e. beating a benchmark, maximizing the return and so on). As a matter of fact, the asset allocation vector $\bm{u}_k$ is bound to stay within a feasible set $U_k$, for each $k \in \mathbb{N}$. In this work, the feasible set $U_k$ is obtained by imposing the following constraints
+ which describes the time evolution of portfolio value. In plain words, the \textbf{asset allocation problem} consists in choosing the vector $\bm{u}_k$ at each time period $k \in \mathbb{N}$ (called \textbf{rebalancing time}) so as to achieve the  investor's goal. If the investor is mainly concerned about the final return, the allocation strategy is called \textbf{total-return allocation}. On the other hand, if his objective is beating a benchmark (index created to include multiple securities representing some aspect of the total market), the strategy is called \textbf{benchmark allocation}. In the following, we will consider only total-return portfolios.
+ 
+ As well as setting the target return, the investor specifies other requirements that the portfolio manager must take into consideration. This means that  the asset allocation vector $\bm{u}_k$ is bound to stay within a feasible set $U_k$, for each $k \in \mathbb{N}$. In this work, the feasible set $U_k$ is obtained by imposing the following set of constraints
  \begin{itemize}
  	\item \textit{budget} constraint: $\sum_{i=1}^{m}u_k(i)=1$, all the wealth is invested in the portfolio
- 	\item \textit{long-only} constraint: $u_k(i) \geq 0,\quad i = 1,\ldots,m$, no short-selling are allowed
+ 	\item \textit{long-only} constraint: $u_k(i) \geq 0,\quad i = 1,\ldots,m$, no short-selling is allowed
  	\item \textit{risk} constraint: the metric value-at-risk ($V@R$) is used to limit portfolio risk. 
  \end{itemize}
-
+The form of the \textit{risk} constraint will actually depend on the model used to describe the probabilistic properties of vector $\bm{w}_k$. In Chapter \ref{chpt:assetclass_returns} we will tackle this issue.
 \section{Stochastic Reachability Approach}
 In the previous section the financial setting has been laid, now it will be embedded in a more general framework by employing the theory of dynamical systems. We will see that this formalism will allow us to formulate the asset allocation problem as a \textbf{stochastic reachability} problem which will be solved by using \textbf{dynamic programming} (DP) techniques. Let us introduce the following stochastic discrete-time dynamic control system
 \begin{equation}
@@ -29,22 +39,22 @@ x_{k+1} = f(x_k,\bm{u}_k,\bm{w}_{k+1}) = x_k (1 + \bm{u}_k^T \bm{w}_{k+1})
 \end{equation}
 where, for any $k \in \mathbb{N}$
 \begin{itemize}
-	\item $x_k \in \mathcal{X} = \mathbb{R}$ is the system state (portfolio value), $\mathcal{X}$ the system space
-	\item $\bm{u}_k \in U \subset \mathbb{R}^m$ is the control input (asset allocation vector), $U$ the control input space
-	\item $\bm{w}_{k}$ is a $m$-dimensional random vector (asset class returns) with density function $p_{\bm{w}_k}$
+	\item $x_k \in \mathcal{X} = \mathbb{R}$ is the system state, $\mathcal{X}$ the system space
+	\item $\bm{u}_k \in U \subset \mathbb{R}^m$ is the control input, $U$ the control input space
+	\item $\bm{w}_{k}$ is a $m$-dimensional random vector with density function $p_{\bm{w}_k}$
 \end{itemize}
 
-Let $\mathcal{U} = \big\{ \mu : \mathcal{X} \times \mathbb{N} \rightarrow U \big\}$ be the class of controls. In other words, $\mu \in \mathcal{U}$ is a map such that for any $x \in \mathcal{X}$ and any $k \in \mathbb{N}$, associates an asset allocation vector $\bm{u}_k \in U$.
-Given $N \in \mathbb{N}$ we define the set of control sequences as $\mathcal{U}_N = \big\{\pi = \{\mu_k\}_{k=0,\ldots,N}  : \mu_k \in \mathcal{U} \big\}$ and call any $\pi \in \mathcal{U}_N$ a \textbf{control policy}. Denote by $\pi^k$ a control policy starting at period $k$, that is $\pi^k=\{\mu_k,\ldots,\mu_N\}$. We are now ready to formulate the asset allocation problem in stochastic reachability terms
+Let $\mathcal{U} = \big\{ \mu : \mathcal{X} \times \mathbb{N} \rightarrow U \big\}$ be the class of controls we focus on. Any $\mu \in \mathcal{U}$ is a map such that for any $x \in \mathcal{X}$ and any $k \in \mathbb{N}$, it associates an asset allocation vector $\bm{u}_k \in U$.
+Given $N \in \mathbb{N}$ we define the set of control sequences as \[\mathcal{U}_N = \Big\{\pi = \{\mu_k\}_{k=0,\ldots,N}  : \mu_k \in \mathcal{U} \Big\}\] and call any $\pi \in \mathcal{U}_N$ a \textbf{control policy}. Moreover, let us denote by $\pi^k$ a control policy starting at period $k$, that is $\pi^k=\{\mu_k,\ldots,\mu_N\}$. We have all the ingredients to formulate the asset allocation problem in stochastic reachability terms.
 \begin{problem}[Optimal Dynamic Asset Allocation]\label{prb:ODAA}
 Given a finite time horizon $N \in \mathbb{N}$ and a sequence of target sets $\{X_1,\ldots,X_N \} $ such that each target set is a subset of the state space $\mathcal{X}$, find the optimal control policy $\pi^{\star} \in \mathcal{U}_{N-1}$ that maximizes the following objective function 
 \begin{equation}\label{eq:obj_fun_ODAA}
-\mathbb{P}\big(\{\omega \in \Omega : x_0 \in X_0,\ldots,x_N \in X_N \} \big)
+\mathbb{P}\Big(\big\{\omega \in \Omega : x_0 \in X_0,\ldots,x_N \in X_N \big\} \Big).
 \end{equation}
 \end{problem}
-The target sets $\{X_1,\ldots,X_N \}$ represent the investor's goal and we can think of them as the "good" states where we want the portfolio value to belongs to. For instance, a target set could be $X_k = [\underline{x}_k,\infty)$. Problem (\ref{prb:ODAA}) is solved by resorting to dynamic programming. To this end, let $p_{f(x,\bm{u},\bm{w}_{k+1})}$ be the probability density function of random variable $f(x_k,\bm{u}_k,\bm{w}_{k+1}) = x_k (1 + \bm{u}_k^T \bm{w}_{k+1})$.
-\begin{definition}[value function]
-	Given a sequence of target sets $\{X_k\}_{k\geq0}$, the \textbf{value function} is the following real map
+The target sets $\{X_1,\ldots,X_N \}$ represent the investor's goal and we can think of them as the "good" states where we want the portfolio value to belongs to. For instance, a target set could be $X_k = [\underline{x}_k,\infty)$. Problem (\ref{prb:ODAA}) is going to be solved by resorting to dynamic programming. However, before doing that, we need to make explicit the dependence of (\ref{eq:obj_fun_ODAA}) on the control policy $\pi$. To this end, let $p_{f(x,\bm{u},\bm{w}_{k+1})}$ be the density of random variable (\ref{eq:state_equation}) and let us introduce the following function.
+\begin{definition}[Value function]
+	Given a sequence of target sets $\{X_k\}_{k\geq0}$, the \textbf{value function} associated with Problem \ref{prb:ODAA} is the following real map
 	\begin{align*}
 	V \colon \mathbb{N}\times \mathcal{X}\times \mathcal{U} & \rightarrow [0,1]\\
 	(k,x,\pi^k) & \mapsto V(k,x,\pi^k)
@@ -53,25 +63,25 @@ The target sets $\{X_1,\ldots,X_N \}$ represent the investor's goal and we can t
 	\[V(k,x,\pi^k)=
 	\begin{cases}
 	    \mathbbm{1}_{X_N}(x) & \quad \text{if} \quad k = N \\
-	    \int_{X_{k+1}}V(k+1,z,\pi^{k+1})p_{f(x,\bm{u},\bm{w}_{k+1})}(z)\mathrm{d}z & \quad \text{if} \quad k = N-1,\ldots,0
+	    \int_{X_{k+1}}V(k+1,z,\pi^{k+1})p_{f(x,\bm{u},\bm{w}_{k+1})}(z)\mathrm{d}z & \quad \text{if} \quad k = N-1,\ldots,0.
 	\end{cases}
 	\]
 	\end{definition}
-It is now possible to link the objective function (\ref{eq:obj_fun_ODAA}) to the value function (see \cite{Pola}) in the following way \[\mathbb{P}\big(\{\omega \in \Omega : x_0 \in X_0,\ldots,x_N \in X_N \} \big) = V(0,x_0,\pi). \]
+It is now possible to link the objective function (\ref{eq:obj_fun_ODAA}) to the value function in the following way (see \cite{Pola}) \[\mathbb{P}\big(\{\omega \in \Omega : x_0 \in X_0,\ldots,x_N \in X_N \} \big) = V(0,x_0,\pi). \]
 This result is extremely important since it allows us to rewrite the ODAA problem in terms of the value function as follows
 \begin{problem}[Optimal Dynamic Asset Allocation 2]\label{prb:ODAA2}
   Given a finite time horizon $N \in \mathbb{N}$ and a sequence of target sets $\{X_1,\ldots,X_N \}$, find $$\pi^{\star} = \argmax_{\pi \in \mathcal{U}_{N-1}}V(0,x_0,\pi). $$	
 \end{problem}
-So far, we have reached an intermediate point where the ODAA problem has been restated in terms of a value function $V$. The tool of dynamic programming gives us the final step, which is synthesized in the following theorem
+So far, we have reached an intermediate point where the ODAA problem has been restated in terms of a value function $V$. In this way, we can directly apply dynamic programming tools and solve it. The result is given in the following theorem, that is the cornerstone on which this work is based on.
 \begin{theorem}[ODAA algorithm]\label{thm:rec_algo}
 	the optimal value of the ODAA Problem \ref{prb:ODAA2} is \[p^{\star} = J_0(x_0),\] where for any $x \in \mathcal{X},$ $J_0(x)$ is the final step of the following algorithm
 	\begin{empheq}[box=\fbox]{align} \label{eq:rec_algo}
 	J_N(x) & = \mathbbm{1}_{X_N}(x) \nonumber \\
 	J_k(x) & = \sup_{\bm{u}_k \in U_k}\int_{X_{k+1}}J_{k+1}(z)p_{f(x,\bm{u}_k,\bm{w}_{k+1})}(z)\mathrm{dz} \\
-	& k = N-1,\ldots,1,0 \nonumber
+	& k = N-1,\ldots,1,0. \nonumber
 	\end{empheq}
 \end{theorem}
-The previous result provides us with a backward procedure (it starts at time $N$ and ends at time $0$) whose outputs are the optimal control policy $\pi^{\star}=\{\mu_0^{\star},\ldots,\mu_{N-1}^{\star}\}$ and the optimal probability $p^{\star}$ of reaching the target sets. It is worth pointing out some interesting features of algorithm in (\ref{eq:rec_algo}):
+The previous result provides us with a backward procedure (it starts at time $N$ and ends at time $0$) whose outputs are the optimal control policy $\pi^{\star}=\{\mu_0^{\star},\ldots,\mu_{N-1}^{\star}\}$ and the optimal joint probability $p^{\star}$ of reaching the target sets. It is worth pointing out some interesting features of algorithm in (\ref{eq:rec_algo}):
 \begin{itemize}
 	\item $J_k(x)$ is a function of portfolio realization $x \in \mathcal{X}$ at time $k$. This dependence is hidden behind the probability density function $p_{f(x,\bm{u}_k,\bm{w}_{k+1})}$
 	\item the constrained optimization must be numerically carried out in a space ($U_k$) of dimension $m \in \mathbb{N}$. At each iteration $k = N-1,\ldots,1,0$, the optimization has to be repeated for each $x$ belonging to a suitable discretized grid

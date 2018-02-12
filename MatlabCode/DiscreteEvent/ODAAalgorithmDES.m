@@ -1,4 +1,4 @@
-function [U,J] = DPalgorithmDES(N,X,J_jump,param,model)
+function [U,J] = ODAAalgorithmDES(N,X,J_jump,param,model)
 %DPalgorithm implements a Dynamic Programming algorithm to solve a
 %stochastic reachability problem
 %   INPUT:
@@ -18,7 +18,7 @@ J = cell([N+1 1]); % optimal value function cell  array
 J{end} = ones([length(X{end}) 1]); % indicator function target set X_N
 options = optimoptions(@fmincon,'Algorithm','interior-point','Display','off');
 lb = -1; ub = 1; % short positions on the risky asset are allowed
-eta = 1e-4; % integretion interval discretization step (1e-4/2 for ext1)
+eta = 1e-4/3; % integretion interval discretization step (1e-4/2 for ext1)
 %% optimization
 for k = N : -1 : 1
 	k % print current iteration

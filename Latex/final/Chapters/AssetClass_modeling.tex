@@ -1,25 +1,25 @@
 \chapter{Asset Class Returns modeling}\label{chpt:assetclass_returns}
 	
-In this chapter, we address the asset class returns modeling issue. As it was noted above, the ODAA algorithm does not depend on a particular distribution for the asset class returns vector $\bm{w}_{k+1}$. However, by looking at equation  (\ref{eq:rec_algo}) we see that we need the explicit analytical form for the density function $p_{f(x,\bm{u}_k,\bm{w}_{k+1})}$. For this reason, we will be dealing exclusively with probability distributions closed under linear combination. In this work, we propose three such distributions:
+In this chapter, we address the asset class returns modeling issue. As it was noted above, the ODAA algorithm does not depend on a particular distribution of the asset class returns vector $\bm{w}_{k+1}$. However, by looking at (\ref{eq:rec_algo}) we see that we need the explicit analytical form for the density function $p_{f(x,\bm{u}_k,\bm{w}_{k+1})}$. For this reason, we will be dealing exclusively with probability distributions closed under linear combination. In this work, we propose three such distributions:
 \begin{itemize}
 	\item Gaussian
 	\item Gaussian Mixture
 	\item Generelized Hyperbolic
 \end{itemize}
-For each of them, first we will give a theoretical introduction, secondly derive the portfolio value density function $p_{f(x,\bm{u}_k,\bm{w}_{k+1})}$ and an expression for the risk constraint (which depends on the distribution chosen).
+For each of them, first we will give a theoretical introduction, secondly derive the portfolio value density function $p_{f(x,\bm{u}_k,\bm{w}_{k+1})}$ and finally, an expression for the risk constraint (which depends on the distribution chosen).
 \section{Gaussian model}
 The first probability distribution we considered is the Gaussian 
 \begin{definition}[Gaussian random vector]\label{def:gauss_rv}
-	A $m$-dimensional random vector $\bm{w} = [w_1,\ldots,w_m]^T$ is \textbf{Gaussian} if every linear combination $\sum_{i=0}^{m}u_iw_i = \bm{u}^T \bm{w}$ has a one-dimensional Gaussian distribution.
+	A $m$-dimensional random vector $\bm{w} = \begin{bmatrix}w_1,\ldots,w_m\end{bmatrix}^T$ is \textbf{Gaussian} if every linear combination $\sum_{i=0}^{m}u_iw_i = \bm{u}^T \bm{w}$ has a one-dimensional Gaussian distribution.
 \end{definition}
-Let the asset class returns random vector $\bm{w}_{k+1}$ follow a Gaussian distribution with mean $\bm{\mu}$ and covariance matrix $\bm{\Sigma}$  $\big(\bm{w}_{k+1} \sim \mathcal{N}(\bm{\mu},\bm{\Sigma})\big)$. By definition we have \[x(1 + \bm{u}_k^T \bm{w}_{k+1}) \sim \mathcal{N}\Big(\underbrace{x(1 + \bm{u}_k^T \bm{\mu})}_{\tilde{\mu}}, \underbrace{x^2\bm{u}_k^T \Sigma \bm{u}_k}_{\tilde{\sigma}^2}\Big)\]
+Let the asset class returns random vector $\bm{w}_{k+1}$ follow a Gaussian distribution with mean $\bm{\mu}$ and covariance matrix $\bm{\Sigma}$. By definition we have \[x(1 + \bm{u}_k^T \bm{w}_{k+1}) \sim \mathcal{N}\Big(\underbrace{x(1 + \bm{u}_k^T \bm{\mu})}_{\tilde{\mu}}, \underbrace{x^2\bm{u}_k^T \Sigma \bm{u}_k}_{\tilde{\sigma}^2}\Big)\]
 hence
 \begin{equation}
-\boxed{p_{f(x,\bm{u}_k,\bm{w}_{k+1})}(z) =  \frac{1}{\sqrt{2\pi}\tilde{\sigma}}\exp\big\{ -\frac{1}{2}\frac{(z-\tilde{\mu})^2}{\tilde{\sigma}^2}\big\}, \quad z \in \mathbb{R}.}
+\boxed{p_{f(x,\bm{u}_k,\bm{w}_{k+1})}(z) =  \frac{1}{\sqrt{2\pi}\tilde{\sigma}}\exp\bigg\{ -\frac{1}{2}\frac{(z-\tilde{\mu})^2}{\tilde{\sigma}^2}\bigg\}, \quad z \in \mathbb{R}.}
 \end{equation}
  
 
-Let us now introduce the two important concepts of loss function and value-at-risk that we will use to derive the portfolio risk constraint
+Let us now introduce the two important concepts of loss function and value-at-risk that we will use to derive the risk constraint.
 \begin{definition}[loss function]\label{def:loss_function}
 	Denoting the value of our portfolio at time $k \in \mathbb{N}$ by $x_{k+1}$, the \textbf{loss function} of the portfolio over the period $[k,k+1]$ is given by \[ L_{k+1}:= -\frac{(x_{k+1}-x_k)}{x_k}= -r_{k+1} = -\bm{u}_k^T \bm{w}_{k+1}.  \]
 \end{definition}
@@ -28,7 +28,7 @@ Let us now introduce the two important concepts of loss function and value-at-ri
 \end{definition}
 	
 
-The V@R is a risk measure commonly use by financial institutions to asses the risk they run to carry a portfolio for a specified period of time (the portfolio must be kept constant during this time period). For instance, if our portfolio has a $V@R_{0.99} = 7\%$, this means that with a confidence level of $99\%$ our portfolio does not suffer a loss greater or equal than $7\%$ over per period $[k,k+1]$ (e.g. a month). In our case, we receive the V@R specification ($V@R_{0.99} = 7\%$) in input by the investor (it is an indicator of its risk-aversion) and we will construct an asset allocation $\bm{u}_k$ that satisfies this risk constraint at each $k \in \mathbb{N}$.
+The V@R is a risk measure commonly use by financial institutions to assess the risk they run to carry a portfolio for a specified period of time (the portfolio must be kept constant during this time period). For instance, if our portfolio has a $V@R_{0.99} = 7\%$, this means that with a confidence level of $99\%$ our portfolio does not suffer a loss greater or equal than $7\%$ over per period $[k,k+1]$ (e.g. a month). In our case, we receive the V@R specification ($V@R_{0.99} = 7\%$) in input by the investor (it is an indicator of its risk-aversion) and we will construct an asset allocation $\bm{u}_k$ that satisfies this risk constraint at each $k \in \mathbb{N}$.
 
 Using definition (\ref{def:gauss_rv}) we have \[ L_{k+1} \sim \mathcal{N}\big(\underbrace{-\bm{u}_k^T \bm{\mu}}_{\mu_p},\underbrace{\bm{u}_k^T \bm{\Sigma} \bm{u}_k}_{\sigma^2_p} \big)\] therefore
 \begin{align*}
@@ -48,11 +48,12 @@ The standard assumption that asset returns have a multivariate Gaussian distribu
 	\item the skewed (asymmetric around the mean) and leptokurtic (more fat-tailed than the Gaussian) nature of marginal probability density function
 	\item the asymmetric correlation between asset returns, that is the tendency of volatilities and correlations to depend on the prevailing market conditions.
 \end{enumerate}
-To overcome this shortcomings, the Gaussian Mixture distribution is a validate alternative to the Gaussian one. Loosely speaking, the pdf of a GM random vector id a linear combination of Gaussian pdfs (called Gaussian regimes or mixing components). This closeness to the Normal distribution offers a good trade-off between analytical tractability and parsimony in the number of parameters. By adopting a GM model, it is possible to represent protuberances on the probability iso-density contour, as can be seen in the following figure
-\begin{figure}[H]
-	\caption{Example of a GM density contour plot with two mixing components.}
+To overcome this shortcomings, the Gaussian Mixture distribution is a validate alternative to the Gaussian one. Loosely speaking, the pdf of a GM random vector is a linear combination of Gaussian pdfs (called Gaussian regimes or mixing components). This closeness to the Normal distribution offers a good trade-off between analytical tractability and parsimony in the number of parameters. By adopting a GM model, it is possible to represent protuberances on the probability iso-density contour, as can be seen in Figure \ref{fig:countour_GM}.
+\begin{figure}[]
 	\centering
 	\includegraphics[width=0.7\textwidth]{Images/GMdensity.png}
+	\caption{Example of a GM density contour plot with two mixing components.}
+	\label{fig:countour_GM}
 \end{figure}
 To obtain this highly non-linear dependence structure, we would usually need cross-moments of all order; a big advantage of the GM distribution is that its dependence structure is fully and conveniently captured by the means, covariance matrices and weights of each Gaussian regime (as we will see in the following).
 
@@ -74,20 +75,20 @@ The following proposition is crucial for our purposes since it tells us that lin
 \begin{proof}
 	The characteristic function (CF) of a GM random vector is the linear combination of the CF of the Gaussian mixing components. Indeed 
 	\begin{align*}
-	\phi_{\bm{Z}}(\bm{u}) &= \mathbb{E}[\exp\{i \bm{u}^T \bm{Z}\} ] = \int_{\mathbb{R}^m}\exp\{i \bm{u}^T \bm{z}\}p_{\bm{Z}}(\bm{z})\mathrm{d}\bm{z} = \\
+	\phi_{\bm{Z}}(\bm{u}) &= \mathbb{E}\big[\exp\{i \bm{u}^T \bm{Z}\} \big] = \int_{\mathbb{R}^m}\exp\{i \bm{u}^T \bm{z}\}p_{\bm{Z}}(\bm{z})\mathrm{d}\bm{z} = \\
 	& = \int_{\mathbb{R}^m}\exp\{i \bm{u}^T \bm{z}\}\sum_{i=1}^{n}\lambda_i \varphi_{(\bm{\mu}_i,\bm{\Sigma}_i)}(\bm{z})\mathrm{d}\bm{z} = \\
 	& = \sum_{i=1}^{n}\lambda_i \phi_{\bm{X}_i}(\bm{u}), \quad \bm{u} \in \mathbb{R}^m
 	\end{align*}
 	where $\bm{X}_i \sim \mathcal{N}\big(\bm{\mu}_i,\bm{\Sigma}_i\big)$. Therefore, $\forall \bm{\theta} \in \mathbb{R}^m$ we have
 	\begin{align*}
-	\phi_{\bm{\theta}^T \bm{Z}}(u) & = \mathbb{E}[\exp\{iu(\bm{\theta}^T\bm{Z})\}] = \mathbb{E}[\exp\{i(u\bm{\theta}^T)\bm{Z}\}] = 
+	\phi_{\bm{\theta}^T \bm{Z}}(u) & = \mathbb{E}\big[\exp\{iu(\bm{\theta}^T\bm{Z})\}\big] = \mathbb{E}\big[\exp\{i(u\bm{\theta}^T)\bm{Z}\}\big] = 
     \phi_{\bm{Z}}(u\bm{\theta}) = \\
-    & = \sum_{i=1}^{n}\lambda_i \phi_{X_i}(u\bm{\theta}) = \sum_{i=1}^{n}\lambda_i \exp\{iu\underbrace{\bm{\theta}^T\bm{\mu}_i}_{\mu_i}-\frac{1}{2}u^2\underbrace{\bm{\theta}^T\bm{\Sigma}_i\bm{\theta}}_{\sigma_i^2}\} = \\
+    & = \sum_{i=1}^{n}\lambda_i \phi_{\bm{X}_i}(u\bm{\theta}) = \sum_{i=1}^{n}\lambda_i \exp\{iu\underbrace{\bm{\theta}^T\bm{\mu}_i}_{\mu_i}-\frac{1}{2}u^2\underbrace{\bm{\theta}^T\bm{\Sigma}_i\bm{\theta}}_{\sigma_i^2}\} = \\
 	& = \sum_{i=1}^{n}\lambda_i \phi_{\widetilde{X}_i}(u), \quad u \in \mathbb{R}
 	\end{align*}
-	where $\widetilde{X}_i \sim \mathcal{N}\big(\mu_i,\sigma_i^2 \big)$. Since the CF completely characterizes the distribution (see theorem 14.1 in \cite{jacod2000probability}) we have the result.
+	where $\widetilde{X}_i \sim \mathcal{N}\big(\mu_i,\sigma_i^2 \big)$. Since the CF completely characterizes the distribution (see \cite{jacod2000probability}, theorem 14.1) we have the result.
 \end{proof}
-Suppose the asset class returns vector\footnote{for the sake of clarity we drop the subscript $k+1$ when it is not needed} $\bm{w}$ follow a Gaussian Mixture distribution ($\bm{w} \sim GM $). We want to compute the density of random variable $f(x,\bm{u},\bm{w}) = x(1 + \bm{u}^T\bm{w})$. Thanks to proposition (\ref{prop:GM_lin_comb}) we know that the random variable $\bm{u}^T\bm{w}$ follows itself a GM (univariate) distribution. Moreover, by integration we easily derive its cumulative distribution function (CDF) allowing us to write
+Suppose the asset class returns vector\footnote{for the sake of clarity we drop the subscript $k+1$ when it is not needed} $\bm{w}$ follow a Gaussian Mixture distribution. We want to compute the density of random variable $f(x,\bm{u},\bm{w}) = x(1 + \bm{u}^T\bm{w})$. Thanks to proposition (\ref{prop:GM_lin_comb}) we know that the random variable $\bm{u}^T\bm{w}$ follows itself a GM (univariate) distribution. Moreover, by integration we easily derive its cumulative distribution function (CDF) allowing us to write
 \begin{align*}
 F_{f(x,\bm{u},\bm{w})}(z) & = \mathbb{P}\big(x(1+\bm{u}^T\bm{w})\leq z \big) = F_{x\bm{u}^T\bm{w}}(z-x)\\
 & = \sum_{i=1}^{n}\lambda_i \Phi\Big(\frac{z - x(1+\bm{u}^T\bm{\mu}_i)}{\sqrt{x^2\bm{u}^T\bm{\Sigma}_i\bm{u}}}\Big), \quad z \in \mathbb{R}
@@ -127,14 +128,14 @@ To answer the latter, we use a Guassian approximation and the fact that if the r
 \[ \sigma_{max} = \frac{V@R_{1-\alpha}}{z_{1-\alpha}}. \] 
 \section{Generelized Hyperbolic model}
 The last distribution we propose for our asset class returns modeling purposes is the Generalized Hyperbolic (GH). Like the GM, in its general form also the GH presents a non-elliptical behaviour with asymmetric and fat-tailed marginals. We proceed to give the formal definition and then derive the density of $f(x,\bm{u}_k,\bm{w}_{k+1})$
-and the \textit{risk} constraint.
+and the \textit{risk} constraint. References for this section are \cite{Brey2013} and \cite{McNeil2005}.
 \begin{definition}[GH distribution]\label{def:GH}
 	A $m$-dimensional random vector $\bm{X}$ is said to follow a \textbf{multivariate GH distribution} ($\bm{X} \sim GM_m(\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma})$) if \[ \bm{X} = \bm{\mu}+W\bm{\gamma}+\sqrt{W}A\bm{Z} \] where 
 	\begin{itemize}
 		\item $\bm{Z} \sim \mathcal{N}\big(\bm{0},I_d\big)$
 		\item $A \in \mathbb{R}^{m \times d} $ is the Cholesky factor of dispersion matrix $\bm{\Sigma}$ ($A^TA = \bm{\Sigma}$)
 		\item $\bm{\mu}, \bm{\gamma} \in \mathbb{R}^m$
-		\item $W \sim \mathcal{N}^-(\lambda,\chi,\psi)$, $W \geq 0$ and $W \perp \bm{Z}$ (see Appendix \ref{app:B} for the definition of the GIG distribution). $W$ is sometimes called mixing random variable.
+		\item $W \sim \mathcal{N}^-(\lambda,\chi,\psi)$, $W \geq 0$ and $W \perp \bm{Z}$ (see Appendix \ref{app:B} for the definition of the GIG distribution). $W$ is called mixing random variable.
 	\end{itemize}
 \end{definition}
 \begin{remark}

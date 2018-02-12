@@ -21,7 +21,7 @@ class GM(mixture.GaussianMixture):
         mixture.GaussianMixture.__init__(self,**args)
         self.fit(X)
         self.M = X.shape[1] # asset allocation dimension
-        self.alpha = alpha
+        self.alpha = alpha 
         self.VaR = VaR
         self.W = self.compute_W()
     def pf(self,z,u,x):
@@ -40,7 +40,7 @@ class GM(mixture.GaussianMixture):
             f = f + self.weights_[i] * norm.pdf(z,mu,sigma)
         return f
     
-    def VaR_cons(self,VaR,alpha=0.01):
+    def VaR_cons(self,VaR,alpha=0.01): # needed only when scipy.optimize is used
         W = self.compute_W()
         sigmaMax = VaR / norm.ppf(1-alpha)
         cons = {'type' : 'ineq',

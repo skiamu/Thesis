@@ -1,9 +1,9 @@
 \chapter{Model Calibration}
-In this chapter we show how to calibrate the models introduced in Chapter \ref{chpt:assetclass_returns} to market data. The asset class menu we will consider consists in equity, bond and cash and a suitable index will be used to represent each of these markets (the dataset is discussed in Section ). We focus our attention only on GM and GH since calibrating the Gaussian model is trivial (it amounts to compute the sample mean and covariance matrix). As far as the GM model is concerned, we set the number of mixing Gaussian components to 2. In financial terms, the two mixing components could be interpreted as economic regimes, namely a \textit{tranquil} regime and a \text{distressed} one (see \cite{Brey2013}). Different calibration methods are available, namely the \textbf{Method of Moments} (MM), \textbf{Maximum Likelihood} (ML) estimation  and the \textbf{Expectation-Maximization} (EM) algorithm. Each of them will be discussed in Section \ref{sec:GM_calibration} and also a comparison between them will be provided. Finally, in Section \ref{sec:GH_calibration} the GH model will be fitted to data using the multi-cycle expectation conditional estimation (MCECM) algorithm. 
+In this chapter we show how to calibrate the models introduced in Chapter \ref{chpt:assetclass_returns} to market data. The asset class menu we will consider consists in equity, bond and cash and a suitable index will be used to represent each of these markets (the dataset will be discussed in Section \ref{sec:The_Dataset}). We focus our attention only on GM and GH since calibrating the Gaussian model is trivial (it amounts to compute the sample mean and covariance matrix). As far as the GM model is concerned, we set the number of mixing Gaussian components to 2. In financial terms, the two mixing components could be interpreted as economic regimes, namely a \textit{tranquil} regime and a \text{distressed} one (see \cite{Brey2013}). Different calibration methods are available for the GM model, namely the \textbf{Method of Moments} (MM), \textbf{Maximum Likelihood} (ML) estimation  and the \textbf{Expectation-Maximization} (EM) algorithm. Each of them will be discussed in Section \ref{sec:GM_calibration} and also a comparison between them will be provided. Finally, in Section \ref{sec:GH_calibration} the GH model will be fitted to data using the multi-cycle expectation conditional estimation (MCECM) algorithm. 
 \section{GM calibration} \label{sec:GM_calibration}
 The problem of estimating the parameters of a Gaussian Mixture distribution dates back to \cite{Pearson1894} and still nowadays it raises in a wide spectrum of different disciplines (Finance and Classification just to name a few). Thanks to the computational power available today, the EM algorithm is considered to be the state-of-the-art method for fitting the GM distribution. Nevertheless, MM and ML are worth studying as they shed light on different aspect of the problem at hand and they could provide the starting point for the EM algorithm. The main reference for the MM method is \cite{Everitt81}, for the ML \cite{casella2002} and for EM \cite{McNeil2005}.
 \subsection{Method of Moments}\label{subsec:MM}
-In this subsection we present the Method of Moments for calibrating a 3-dimensional Gaussian Mixture distribution with $n=2$ mixing component. The idea behind MM is to match observed and theoretical moments; this translates into a system of polynomial equations that most of the times, for real-size problems, has to be solved numerically. Since we need to fit a 3-dimensional distribution, we will work component-wise: moment-matching equations will be written  for each component together with unimodality on each marginal. In order to keep the number of parameters to a reasonable degree, we will suppose a common correlation matrix between the two Gaussian mixing components.
+In this subsection we present the Method of Moments for calibrating a 3-dimensional Gaussian Mixture distribution with $n=2$ mixing components. The idea behind MM is basically to match observed and theoretical moments; this translates into a system of polynomial equations that most of the times, for big-size problems, has to be solved numerically. Since we need to fit a 3-dimensional distribution, we will work component-wise: moment-matching equations will be written  for each component together with unimodality constraints on each marginal. In order to keep the number of parameters to a reasonable degree, we will suppose a common correlation matrix between the two Gaussian mixing components.
 
 Let $\{\bm{X}_1,\ldots,\bm{X}_n \}$ be a random sample from a GM distribution whose density function is 
 \begin{equation}\label{eq:calibration_density}
@@ -21,7 +21,7 @@ To set the notation we give the following definition
 	\end{align*}
 \end{definition}
 Let $\bm{X}$ be a random vector with density (\ref{eq:calibration_density}), its $i$-th marginal is \[f_{X_i}(z) = \varphi_{(\mu_{1i},\sigma^2_{1i})}(z)+(1-\lambda)\varphi_{(\mu_{2i},\sigma^2_{2i})}(z), \quad z \in \mathbb{R} \quad  i \in \{1,2,3\} \]
-where $\mu_{ji}$ and $\sigma^2_{ji}$ denote respectively the $j$-th element of the $i$-th mixing component mean vector  and the $j$-th diagonal entry of the $i$-th mixing component covariance matrix, $i \in \{1,2,3\}$, $j \in \{1,2\}$ (namely the first subscripts indicates the dimension, the second the mixing component). Computing explicitly the theoretical moments we obtain
+where $\mu_{ji}$ and $\sigma^2_{ji}$ denote respectively the $j$-th element of the $i$-th mixing component mean vector  and the $j$-th diagonal entry of the $i$-th mixing component covariance matrix, $i \in \{1,2,3\}$, $j \in \{1,2\}$ (namely, the first subscript indicates the dimension, the second the mixing component). Computing explicitly the theoretical moments we obtain
 \begin{align*}
 \mu_{X_i} & = \lambda\mu_{1i}+(1-\lambda)\mu_{2i}\\[15pt] 
 \sigma^2_{X_i} & = \lambda(\sigma^2_{1i}+\mu^2_{1i})+(1-\lambda)(\sigma^2_{2i}+\mu^2_{2i})\\[15pt]
@@ -42,7 +42,7 @@ In this section we introduce the EM algorithm for calibrating a GM model. Before
 	Let $\bm{x}=\{x_1,\ldots,x_N\}$ be a realization of a random sample from a population with pdf $f(x\lvert\bm{\theta})$ parametrized by $\bm{\theta}=[\theta_1,\ldots,\theta_k]^T$. The \textbf{likelihood function} is defined by \[ L(\bm{\theta}\lvert\bm{x}) = L(\theta_1,\ldots,\theta_N\lvert x_1,\ldots,x_k) = \prod_{i=1}^{N}f(x_i\lvert\bm{\theta}). \]	
 \end{definition}
 The following definition of a maximum likelihood estimator is taken from \cite{casella2002}
-\begin{definition}[maximum-likelihood estimator]
+\begin{definition}[Maximum-likelihood estimator]
 	For each sample point $\bm{x}$, let $\widehat{\bm{\theta}}(\bm{x})$ be the parameters value at which $L(\bm{\theta}\lvert\bm{x})$  attains its maximum as a function of $\bm{\theta}$, with $\bm{x}$ held fixed. A \textbf{maximum-likelihood estimator} (MLE) of the parameters vector $\bm{\theta}$ based on a random sample $\bm{X}$ is $\widehat{\bm{\theta}}(\bm{X})$
 \end{definition}
 Intuitively, the MLE is a reasonable estimator since is the parameter point for which the observed sample is most likely. However, its main drawback is that finding the maximum of the likelihood function (or its logarithmic transformation) might be difficult both analytically and numerically. Consequently, the idea is to adopt an iterative procedure that converges to a local maximum.
@@ -117,10 +117,9 @@ and $\lambda = 0.98$. In order to have a fair comparison, the two Gaussian regim
         & \num{1}       & \num{-2.36e-2} \\
         &                & \num{1}
 \end{bmatrix}\]
-
-The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2} and \ref{tab:calibration3}.
+Then, we applied the three calibration methods introduced in the previous section. The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2} and \ref{tab:calibration3}.
 % first table
-\begin{table}
+\begin{table}[h]
 	\centering
 	\resizebox{\textwidth}{!}{
 \begin{tabular}{@{}lcccccc@{}} \toprule
@@ -143,14 +142,14 @@ The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2}
 	\addlinespace[0.5em]
 	$\widehat{\Sigma}_{23}$ & $\num{-4.805e-7}$ & $81.20$  & $\num{-1.973e-6}$ & 22.82 & $\num{-2.756e-4}$ & 7.788  \\\bottomrule
 	\addlinespace[0.5em]
-\end{tabular}
+\end{tabular}[H]
 		}
 		\caption{estimates for the first mixing component and respective estimation errors}
 		\label{tab:calibration1}
 \end{table}
 
 % second table
-\begin{table}
+\begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{
 \begin{tabular}{@{}lcccccc@{}} \toprule
@@ -190,7 +189,7 @@ The result is summarized in Table \ref{tab:calibration1}, \ref{tab:calibration2}
 	\caption{mixing proportion estimate and log-likelihood}
 	\label{tab:calibration3}
 \end{table}
-From the tables above we see that the EM method is definitely the most accurate one. Therefore, we decide to adopt it for calibrating the GM model to market data. As far as the MM method is concerned, the formulation given in Section \ref{subsec:MM} relies on the assumption of a common correlation matrix between the two Gaussian regimes. Although this assumption reduces the number of parameter to be estimated, there is empirical evidence (see \cite{Campbell2002}) that this is not the case in global financial markets where correlation between asset classes is actually increased during bear markets. Nonetheless, even if MM is not as accurate as EM, it is still a valuable method since it does require full time series but only their sample statistics. This turns out to be particularly useful when distribution parameters are set via market hypothesis and economic views (e.g. bull market in the next investment period) instead of using historical data.
+From the tables above we see that the EM method is definitely the most accurate. Therefore, we decide to adopt it for calibrating the GM model to market data. As far as the MM method is concerned, the formulation given in Section \ref{subsec:MM} relies on the assumption of a common correlation matrix between the two Gaussian regimes. Although this assumption reduces the number of parameter to be estimated, there is empirical evidence (see \cite{Campbell2002}) that this is not the case in global financial markets where correlation between asset classes is actually increased during bear markets. Nonetheless, even if MM is not as accurate as EM, it is still a valuable method since it does not require full time series but only their sample statistics. This turns out to be particularly useful when distribution parameters are set via market hypothesis and economic views (e.g. bull market in the next investment period) instead of using historical data.
 \section{GH calibration} \label{sec:GH_calibration}
 In this section we present a modified EM scheme (the MCECM algorithm) for fitting a GH model to data. In Definition (\ref{def:GH}) we introduced the GH distribution using the so-called $(\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma})$-parametrization. Although this is the most convenient one from a modeling perspective, it comes with an identification issue: the distributions $GH(\lambda,\chi,\psi,\bm{\mu},\bm{\Sigma},\bm{\gamma})$ and $GH(\lambda,\chi /k,k\psi,\bm{\mu},k\bm{\Sigma},k\bm{\gamma})$ are the same (it is easily seen by writing the density (\ref{eq:GHdensity}) in the two cases). To solve this problem, we require the mixing random variable $W$ (see Definition (\ref{def:GH})) to have expectation equal to 1. From Equation (\ref{eq:GIG_moment}) we have 
 \[ \mathbb{E}[W]=\sqrt{\dfrac{\chi}{\psi}}\frac{K_{\lambda+1}\big(\sqrt{\chi\psi}\big)}{K_{\lambda}\big(\sqrt{\chi\psi}\big)} = 1  \] 

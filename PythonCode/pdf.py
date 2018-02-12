@@ -45,7 +45,7 @@ def pfDESext2(z,x,u,J_jump):
     f = np.zeros(z.shape)
     csi = x*J_jump*u
     idx1 = z >= x+csi
-    idx2 = z >= z-csi
+    idx2 = z >= x-csi
     eta = 0.001
     t = np.arange(-1.6,2,eta)
     if z[idx1].size != 0:

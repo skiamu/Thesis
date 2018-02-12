@@ -91,7 +91,7 @@ In order to apply the \gls{ODAA} algorithm we need the probability density funct
 	\end{equation}
 	where $\xi = xu_kJ$, $p$ is the probability given by Lemma \ref{lemma:probability_positive_jump} and
 	\begin{align*}
-	\Gamma^\infty_{z}(J) &=\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}n(-1)^{n+1}z^{-\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)-1}\sin(\frac{\pi}{2}n)
+	\Gamma^\infty_{z}(J) &=\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}n(-1)^{n+1}z^{-\big(\frac{\tilde{\mu}^2}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)-1}\sin(\frac{\pi}{2}n)
 	\end{align*}
 \end{proposition}
 \begin{proof}
@@ -114,8 +114,8 @@ In order to apply the \gls{ODAA} algorithm we need the probability density funct
 	\end{align*}
 	Now, the density is obtained differentiating the cdf above. This amounts to compute $\frac{d}{dz}K_{\frac{1}{r}\log(\frac{z-\xi}{x})}^{\infty}(J)$ and $\frac{d}{dz}K_{\frac{1}{r}\log(\frac{z+\xi}{x})}^{\infty}(J)$. As an example, let us compute the first derivative
 	\begin{align*}
-	\frac{d}{dz}K_{\frac{1}{r}\log(\frac{z-\xi}{x})}^{\infty}(J) & = \frac{d}{dz}\bigg(\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}\frac{n(-1)^{n+1}}{\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}}\Big(\frac{z-\xi}{x}\Big)^{-\frac{1}{r}\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)}\sin\big(\frac{\pi}{2}n\big)  \bigg)\\[2ex]
-	& = \big(-\frac{1}{rx}\big)\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}n(-1)^{n+1} \Big(\frac{z-\xi}{x}\Big)^{-\frac{1}{r}\big(\frac{\tilde{\mu}}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)-1}\sin\big(\frac{\pi}{2}n\big)\\[2ex]
+	\frac{d}{dz}K_{\frac{1}{r}\log(\frac{z-\xi}{x})}^{\infty}(J) & = \frac{d}{dz}\bigg(\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}\frac{n(-1)^{n+1}}{\frac{\tilde{\mu}^2}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}}\Big(\frac{z-\xi}{x}\Big)^{-\frac{1}{r}\big(\frac{\tilde{\mu}^2}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)}\sin\big(\frac{\pi}{2}n\big)  \bigg)\\[2ex]
+	& = \big(-\frac{1}{rx}\big)\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}n(-1)^{n+1} \Big(\frac{z-\xi}{x}\Big)^{-\frac{1}{r}\big(\frac{\tilde{\mu}^2}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}\big)-1}\sin\big(\frac{\pi}{2}n\big)\\[2ex]
 	& = \big(-\frac{1}{rx}\big)\Gamma_{\frac{z-\xi}{x}}^{\infty}(J).
 	\end{align*}
 	Substituting into
