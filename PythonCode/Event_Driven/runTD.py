@@ -9,11 +9,14 @@ import scipy.io
 from models import BasicModel,GBMmodel
 import odaaOptED
 import numpy as np
+import shelve
+import time
+import matplotlib.pyplot as plt
 
 # ========================================================================
 #   RUN SCRIPT
 # ========================================================================
-modelUsed = 'basic'
+modelUsed = 'ext1'
 Data = scipy.io.loadmat('Data.mat') # it's a dictionary
 Returns = Data['Returns']
 S = Data['S']
@@ -29,10 +32,40 @@ N = 10;theta = 0.07; LB = 0.5; UB = 1.9
 eta = 1e-3
 X = [0]*(N+1)
 for k in range(1,N):
-    X[k] = np.arange(LB,UB,eta)
+    X[k] = np.arange(LB,UB+eta,eta)
 X[0] = np.array([1]); X[-1] = np.arange((1+theta)**2,UB,eta)    
 
-
-
+# run ODAA algorithm
+start = time.clock()
 J,U = odaaOptED.ODAAalgorithmED(N,X,model)
+t = time.clock()-start
+# saving the results is a shelf
+#db = shelve.open('ext1') # open a shelve
+#db['J'] = J 
+#db['U'] = U
+#db.close() # close the shelve
+#
+#i = 1
+#for k in range(N-1,0,-2):
+#    plt.figure()
+#    plt.subplot(3,2,i)
+#    plt.stackplot(X[k],U[k])
+#    plt.title('k = ' + str(k))
+#    i+=1
+#
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -18,7 +18,7 @@ J = cell([N+1 1]); % optimal value function cell  array
 J{end} = ones([length(X{end}) 1]); % indicator function target set X_N
 options = optimoptions(@fmincon,'Algorithm','interior-point','Display','off');
 lb = -1; ub = 1; % short positions on the risky asset are allowed
-eta = 1e-4/3; % integretion interval discretization step (1e-4/2 for ext1)
+eta = 1e-4; % integretion interval discretization step (1e-4/2 for ext1)
 %% optimization
 for k = N : -1 : 1
 	k % print current iteration
@@ -27,17 +27,17 @@ for k = N : -1 : 1
 	Uk = zeros([dimXk 1]);
 	Jk = zeros([dimXk 1]);
 	int_domain = (X{k+1}(1):eta:X{k+1}(end))'; % integretion domain with more points
-	Jinterp = interp1(X{k+1},J{k+1},int_domain);
+	Jinterp = interp1(X{k+1},J{k+1},int_domain,'spline');
 	for j = dimXk:-1:1
 		j % print current iteration
 		[Uk(j),Jk(j)] = fmincon(@(u) -objfun(u,X{k}(j),int_domain,Jinterp,param,J_jump,model),...
 			u0,[],[],[],[],lb,ub,[],options);
-    u0 = Uk(j);
+		u0 = Uk(j);
 	end
 	U{k} = Uk; J{k} = -Jk;
 	% print allocation maps
 	if k ~= 1
-		idx = find(X{k} <= 1.9 & X{k} >= 0.6);
+		idx = find(X{k} <= 2.4 & X{k} >= 0.1);
 		figure
 		area(X{k}(idx),U{k}(idx))
 		title(strcat('k = ',num2str(k-1)))

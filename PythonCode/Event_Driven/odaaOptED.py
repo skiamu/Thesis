@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Feb  7 14:48:00 2018
-
-@author: andrea
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb  6 19:09:02 2018
-
-@author: andrea
-"""
 
 # -*- coding: utf-8 -*-
 """
@@ -32,6 +19,13 @@ from pyOpt import SDPEN
 from pyOpt import KSOPT # (*)
 from pyOpt import ALGENCAN
 from pyOpt import SDPEN
+from pyOpt import FILTERSD
+try:
+    from mpi4py import MPI
+    comm = MPI.COMM_WORLD
+    myrank = comm.Get_rank()
+except:
+    raise ImportError('mpi4py is required for parallelization')
 import matplotlib.pyplot as plt
 
 # ========================================================================
@@ -51,8 +45,8 @@ def ODAAalgorithmED(N,X,model):
     U = [0]*N 
     J = [0]*(N+1)
     J[-1] = np.ones(len(X[-1]))
-    eta = 1e-5/5 # discretization step
-    for k in range(N-1,N-4,-1):
+    eta = 1e-4/3 # discretization step
+    for k in range(N-1,N-6,-1):
         print k # print current iteration
         u0 = -1
         dimXk = len(X[k])
@@ -68,9 +62,10 @@ def ODAAalgorithmED(N,X,model):
             u0 = Uk[j]
         U[k] = Uk
         J[k] = -Jk
-        plt.figure()
-        plt.stackplot(X[k],Uk)
-        plt.title('k = '+ str(k))
+        if k is not 0:
+            plt.figure()
+            plt.stackplot(X[k],Uk)
+            plt.title('k = '+ str(k))
     return J,U
     
     
@@ -102,13 +97,13 @@ def solveOpt(int_domain,J,a,model,u0,sign):
     opt_prob = Optimization('ODAA problem',objfun)
     opt_prob.addObj('funz')
     solver = SLSQP() # choose the solver
-    solver.setOption('IPRINT',0)
+    solver.setOption('IPRINT',-1)
     opt_prob.addVar('u','c',lower=-1,upper=1,value=u0)
     #print opt_prob # print optimization problem                  
-    solver(opt_prob,sens_type='FD',int_domain=int_domain,J=J,
+    solver(opt_prob,int_domain=int_domain,J=J,
           a=a,model=model,sign = sign)
     #print opt_prob.solution(0) # print solution
     return opt_prob
       
-    
+        
     
