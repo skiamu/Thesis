@@ -20,7 +20,7 @@ modelUsed = 'ext1'
 Data = scipy.io.loadmat('Data.mat') # it's a dictionary
 Returns = Data['Returns']
 S = Data['S']
-J_jump = 0.07
+J_jump = 0.03
 r = 0.055
 dt = 1/252
 if modelUsed is 'basic':
@@ -29,7 +29,7 @@ elif modelUsed is 'ext1':
     LogReturns = np.log(1+Returns)
     model = GBMmodel(J_jump,r,dt,LogReturns)
 N = 10;theta = 0.07; LB = 0.5; UB = 1.9
-eta = 1e-3
+eta = 1e-3/2
 X = [0]*(N+1)
 for k in range(1,N):
     X[k] = np.arange(LB,UB+eta,eta)
@@ -40,20 +40,20 @@ start = time.clock()
 J,U = odaaOptED.ODAAalgorithmED(N,X,model)
 t = time.clock()-start
 # saving the results is a shelf
-#db = shelve.open('ext1') # open a shelve
-#db['J'] = J 
-#db['U'] = U
-#db.close() # close the shelve
-#
-#i = 1
-#for k in range(N-1,0,-2):
-#    plt.figure()
-#    plt.subplot(3,2,i)
-#    plt.stackplot(X[k],U[k])
-#    plt.title('k = ' + str(k))
-#    i+=1
-#
-#
+db = shelve.open('ext1') # open a shelve
+db['J'] = J 
+db['U'] = U
+db.close() # close the shelve
+
+i = 1
+plt.figure()
+for k in range(N-1,0,-2):
+    plt.subplot(3,2,i)
+    plt.stackplot(X[k],U[k])
+    plt.title('k = ' + str(k))
+    i+=1
+
+
 
 
 

@@ -41,7 +41,7 @@
 \include{Glossary/Glossary}
 
 
-%\includeonly{Chapters/AssetClass_modeling} 
+
 \begin{document}
 
 
@@ -49,7 +49,7 @@
 % COVER PAGE
 %----------------------------------------------------------------------------------------
 \pagestyle{empty}
-%\input{Cover/cover}
+\input{Cover/cover}
 
 %----------------------------------------------------------------------------------------
 % ABSTRACT
@@ -59,11 +59,20 @@
 \frontmatter
 \pagestyle{plain}
 %\include{Abstract/abstract}
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
 \tableofcontents
-%\listoftables
-%\listoffigures
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
 \listofalgorithms
-\printglossary[type=\acronymtype,nonumberlist]
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\printglossaries
+
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -73,7 +82,7 @@
 
 \include{Chapters/Introduction}
 
-\part{Time-driven approach}
+\part{Time-driven approach}\label{part:1}
 
 \include{Chapters/Model_Description}
 

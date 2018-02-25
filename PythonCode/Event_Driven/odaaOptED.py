@@ -45,8 +45,8 @@ def ODAAalgorithmED(N,X,model):
     U = [0]*N 
     J = [0]*(N+1)
     J[-1] = np.ones(len(X[-1]))
-    eta = 1e-4/3 # discretization step
-    for k in range(N-1,N-6,-1):
+    eta = 1e-4/5 # discretization step
+    for k in range(N-1,-1,-1):
         print k # print current iteration
         u0 = -1
         dimXk = len(X[k])
@@ -55,6 +55,7 @@ def ODAAalgorithmED(N,X,model):
         int_domain = np.arange(X[k+1][0],X[k+1][-1],eta)
         Jinterp = interp1d(X[k+1],J[k+1])(int_domain)
         for j in range(dimXk-1,-1,-1):
+        #for j in range(0,dimXk): 
             print j
             opt_prob = solveOpt(int_domain,Jinterp,X[k][j],model,u0,-1)
             Uk[j] = opt_prob.solution(0).getVar(0).value

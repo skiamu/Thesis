@@ -9,16 +9,15 @@ DefaultPlotting
 load('LIBOR.mat') % risk-free asset
 LIBOR = LIBOR(1:2000) / 100;
 load('SP500Fut.mat') % risky asset
-load('EuroStoxx50.mat');
 idx1 = find(DateSP500Fut == '22-Jan-2010');
 idx2 = find(DateSP500Fut == '25-Apr-2016');
-% S = SP500Fut(idx1:idx2);
-S = EuroStoxx50;
+S = SP500Fut(idx1:idx2);
+% S = SP500Fut;
 Returns = S(2:end) ./ S(1:end-1) - 1; % compute risky asset returns
 save('/home/andrea/Thesis/PythonCode/Event_Driven/Data.mat','S','Returns','LIBOR')
 %%  2) Calibration
 model = 'ext1'; % select from {'basic','ext1','ext2'}
-J_jump = 0.07; % jump size
+J_jump = 0.1; % jump size
 dt = 1 / 252; % time in years
 switch model
 	case 'basic'
@@ -26,7 +25,7 @@ switch model
 		p = param.p; lambda = param.lambda;param.r = 0.055;
 	case 'ext1'
 		[param] = Calibration(Returns,model,J_jump,dt);
-		param.r = 0.05; % cash return
+		param.r = 0.055; % cash return
 		mu = param.mu; sigma = param.sigma;
 		mu_tilde = mu - 0.5 * sigma^2;
 		param.p = (exp(2 * mu_tilde * J_jump / sigma^2) - 1 ) / ...
@@ -67,10 +66,10 @@ save(strcat('/home/andrea/Thesis/MatlabCode/DiscreteEvent/',model,'.mat'),'J',..
 	'U', 'X', 'p_star','p_starMC','time','Times')
 
 %% 6) check the density
-u = 0.5;
-x = 1;
+u = 0.8;
+x = 0.7;
 csi = x * J_jump * u;
-z = (0.5:1e-4:1.2)';
+z = (0.5:1e-3/5:1.2)';
 plot(z,pfDESext1(z,x,u,J_jump,param),'r.-')
 tic
 1 - trapz(z,pfDESext1(z,x,u,J_jump,param))

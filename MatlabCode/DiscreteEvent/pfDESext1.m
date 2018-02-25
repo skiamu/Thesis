@@ -10,26 +10,18 @@ function [ f ] = pfDESext1(z,x,u,J_jump,param)
 %   OUTPUT:
 %      f = density function computed in z
 f = zeros(size(z));
-
 csi = x * J_jump * u;
-
-idx1 = z > x + csi + eps;
-
-idx2 = z > x - csi + eps;
-
+idx1 = z > x + csi;
+idx2 = z > x - csi;
 mu = param.mu; sigma = param.sigma; r = param.r; % extract parameters
 p = param.p;
-
 mu_tilde = mu - 0.5 * sigma^2;
-
 if ~isempty(z(idx1))
 	f(idx1) = p * Gamma((z(idx1) - csi) / x,mu_tilde,sigma,r,J_jump);
 end
-
 if ~isempty(z(idx2))
 	f(idx2) = f(idx2) + (1-p) * Gamma((z(idx2) + csi) / x,mu_tilde,sigma,r,J_jump);
 end
-
 f = 2 * cosh(mu_tilde * J_jump / sigma^2) / (r * x) * f;
 
 end % pfDES
@@ -62,15 +54,16 @@ epsilon = 1e-8;
 arg = epsilon * pi * min(y) * log(min(y)) / r;
 logArg = log(arg)/log(min(y));
 NN = sqrt(-r*8*J_jump^2/(sigma^2*pi^2)*(mu_tilde^2/(2*r*sigma^2) + logArg));
-N = (1:NN);
 % N = (1:90); % truncate the series at the 100-th terms
 global freeMemory
 if 8 * NN * length(y) * 1e-6 >= freeMemory % check if there's enogh memory
 	f = [0; Gamma(y(2:end),mu_tilde,sigma,r,J_jump)];
 else
-% y is a column vector, N must be a row vector. In this case the operation
-% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
-% sum we need to sum by rows (e.g. sum(,2))
+	% y is a column vector, N must be a row vector. In this case the operation
+	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
+	% sum we need to sum by rows (e.g. sum(,2))
+	N = 1:NN;
+	
 	f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) .*  ...
 		y.^(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) / r - 1)...
 		.* sin(pi * N / 2),2));

@@ -1,4 +1,5 @@
 \chapter{Model Description}\label{chpt:Model_Description}
+\glsresetall
 In this chapter, first the basic financial quantities are introduced and the asset allocation problem is stated, then the same problem will be embedded in a dynamical control system framework which will allows us to develop the stochastic reachability approach to portfolio construction. We closely follow \cite{Pola12},\cite{Pola06} and \cite{Pola}.
 \section{Portfolio construction}
 In the financial industry, a group of securities that exhibits similar characteristics in the market place and is subject to the same regulation is called \textbf{asset class}. Typical asset classes include stocks, bonds, real estate, cash and commodities. The discipline consisting in allocating investor's wealth among different asset classes is called \textbf{asset allocation}. We will now introduce the financial quantities and a formal mathematical setting suitable for describing the asset allocation problem. Let $(\Omega,\mathcal{F},\mathbb{P})$ be the underlying  probability space and consider a discrete set of time indexed by $k \in \mathbb{N}$. Moreover, let us consider a universe of $m \in \mathbb{N}$ asset classes. Asset classes' performance at period $k$ is described by a $m$-dimensional random vector 
@@ -32,7 +33,13 @@ As the time-lagged correlation is usually negligible for short time period, $\bm
  \end{itemize}
 The form of the \textit{risk} constraint will actually depend on the model used to describe the probabilistic properties of vector $\bm{w}_k$. In Chapter \ref{chpt:assetclass_returns} we will tackle this issue.
 \section{Stochastic Reachability Approach}
-In the previous section the financial setting has been laid, now it will be embedded in a more general framework by employing the theory of dynamical systems. We will see that this formalism will allow us to formulate the asset allocation problem as a \textbf{stochastic reachability} problem which will be solved by using \textbf{dynamic programming} (DP) techniques. Let us introduce the following stochastic discrete-time dynamic control system
+In the previous section the financial setting has been laid, now it will be embedded in a more general framework by employing the theory of dynamical systems. We will see that this formalism will allow us to formulate the asset allocation problem as a \textbf{stochastic reachability} problem which will be solved by using \textbf{dynamic programming} (DP) techniques.
+\subsection{The concept of Stochastic Reachability}
+"In general terms, a reachability problem consists of determining if a given system trajectory will eventually enter a prespecified set starting from some initial state" \cite{Boj2012}. For deterministic systems, reachability analysis amounts to compute the set of states that can be reached by system trajectories. However, most of real-life problem are non-deterministic and uncertainty must be taken into account. In these cases, the main concern is determining the probability that the system reaches a prespecified set. "Typically, a certain part of the state space is "unsafe" and the control input of the system has to be chosen so as to keep the state away from it" \cite{Boj2012}. One of the most successful application of stochastic reachability techniques has been \gls{ATM}. "Within the \gls{ATM} context, safety-critical situation arise during flight when an aircraft comes closer than a minimum allowed distance to another aircraft or enters a forbidden region of the airspace. In the current \gls{ATM} system, air traffic controllers are in charge of guaranteeing safety by issuing to pilots corrective actions on their flight plans when a safety-critical situation is predicted" \cite{Boj2012}.
+
+Conversely, when Stochastic Reachability is applied to the financial asset allocation problem, a dual viewpoint is taken. In this context, the focus is on driving the system state (the value of a portfolio of securities) into a "safe" set, and computing the probability that this occurs. The air traffic controller becomes a portfolio manager and signals issued to the pilot turns into orders to traders to buy or sell assets so as to adjust the portfolio mix.
+\subsection{Mathematical Formulation}
+ Let us introduce the following stochastic discrete-time dynamic control system
 \begin{equation}
 \label{eq:state_equation}
 x_{k+1} = f(x_k,\bm{u}_k,\bm{w}_{k+1}) = x_k (1 + \bm{u}_k^T \bm{w}_{k+1}) 
@@ -74,7 +81,7 @@ This result is extremely important since it allows us to rewrite the ODAA proble
 \end{problem}
 So far, we have reached an intermediate point where the ODAA problem has been restated in terms of a value function $V$. In this way, we can directly apply dynamic programming tools and solve it. The result is given in the following theorem, that is the cornerstone on which this work is based on.
 \begin{theorem}[ODAA algorithm]\label{thm:rec_algo}
-	the optimal value of the ODAA Problem \ref{prb:ODAA2} is \[p^{\star} = J_0(x_0),\] where for any $x \in \mathcal{X},$ $J_0(x)$ is the final step of the following algorithm
+	the optimal value of the \gls{ODAA} Problem \ref{prb:ODAA2} is \[p^{\star} = J_0(x_0),\] where for any $x \in \mathcal{X},$ $J_0(x)$ is the final step of the following algorithm
 	\begin{empheq}[box=\fbox]{align} \label{eq:rec_algo}
 	J_N(x) & = \mathbbm{1}_{X_N}(x) \nonumber \\
 	J_k(x) & = \sup_{\bm{u}_k \in U_k}\int_{X_{k+1}}J_{k+1}(z)p_{f(x,\bm{u}_k,\bm{w}_{k+1})}(z)\mathrm{dz} \\
