@@ -11,7 +11,7 @@ function [Binomial, tau] = SimulationED(param,Nsim, Nstep,J_jump,model)
 %     Binomial = jump sign [matrix Nsim x Nstep]
 %     tau = holding times [matrix Nsim x Nstep]
 
-p = param.p; 
+p = param.p;
 %% simulation tau
 if strcmp(model,'basic')
 	lambda = param.lambda;
@@ -43,18 +43,16 @@ function [f] = Kappa(y,mu_tilde,sigma,J_jump)
 
 epsilon = 1e-8; % series truncation tolerance
 n = length(y);
-if n > 1
-	t = y;
-	Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
-		(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
-		- J_jump * mu_tilde / sigma^2))); % number of series terms
-	
-% 	MaxN = min(100,Ntrunc);
-   MaxN = max(Ntrunc);
-	assert(MaxN ~= inf,'error Ntrunc == inf');
-	% N = (1:MaxN);
-	% N = (1:90); % truncate the series at the 100-th terms
-	N = 1:MaxN;
+t = min(y);
+NN = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
+	(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
+	- J_jump * mu_tilde / sigma^2))); % number of series terms
+
+global freeMemory
+if 8 * NN * n * 1e-6 >= freeMemory % check if there's enogh memory
+	f = [0; Kappa(y(2:end),mu_tilde,sigma,J_jump)];
+else
+	N = 1:NN;
 	% y is a column vector, N must be a row vector. In this case the operation
 	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
 	% sum we need to sum by rows (e.g. sum(,2))
@@ -62,28 +60,8 @@ if n > 1
 		(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) .*  ...
 		exp(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) .* y)...
 		.* sin(pi * N / 2),2));
-else
-	t = y(2);
-	Ntrunc = sqrt(max(1, -8 * J_jump^2 ./ (pi^2 * sigma^2 * t) .* ...
-		(log((pi^3 * sigma^2 * t * epsilon) / (16 * J_jump^2))...
-		- J_jump * mu_tilde / sigma^2))); % number of series terms
-	
-	MaxN = min(100,Ntrunc);
-	% N = (1:MaxN);
-	% N = (1:90); % truncate the series at the 100-th terms
-	N = 1:MaxN;
-	% y is a column vector, N must be a row vector. In this case the operation
-	% y.^N gives a matrix [lenght(y) length(N)]. To get the sum of the partial
-	% sum we need to sum by rows (e.g. sum(,2))
-	f = sigma^2 * pi / (4 * J_jump^2) * (sum(N .* (-1).^(N+1) / ...
-		(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) .*  ...
-		exp(-(mu_tilde^2 / (2 * sigma^2) + (sigma^2 * N.^2 * pi^2) / (8 * J_jump^2)) .* y)...
-		.* sin(pi * N / 2),2));
-	f(f<0) = 0;
 end
-% the numerical truncation of the series may produce negative values,
-% espicially for values of z close do x+csi or x-csi.
-% f(f<0) = 0;
+
 end % Gamma
 
 

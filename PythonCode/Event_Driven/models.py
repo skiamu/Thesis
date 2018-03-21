@@ -72,8 +72,7 @@ class GBMmodel:
             f[idx1] = self.p * Gamma(self,(z[idx1]-csi)/x)
         if z[idx2].size is not 0:
             f[idx2] = f[idx2] + (1-self.p) * Gamma(self,(z[idx2]+csi)/x)
-        f = 2*np.cosh(mu_tilde*self.J_jump/self.sigma**2)/(self.r*x)*f
-        return f
+        return 2*np.cosh(mu_tilde*self.J_jump/self.sigma**2)/(self.r*x)*f
 
     def Simulate_rv(self,Nsim,Nstep):
         mu_tilde = self.mu-.5*self.sigma**2
@@ -116,14 +115,14 @@ def DiscretePrice(S,J):
             D[i] = 0
     return D,DiscreteS   
 
-THRESHOLD = psutil.virtual_memory().available
+THRESHOLD = psutil.virtual_memory().free
 def Gamma(model,y):
     eps = 1e-8
     mu_tilde = model.mu - 0.5*model.sigma**2
     Ntrunc = np.sqrt(-model.r*8*model.J_jump**2/(model.sigma**2*np.pi**2)*\
         (mu_tilde**2/(2*model.r*model.sigma**2)+\
         np.log(eps*np.pi*y[0]*np.log(y[0])/model.r)/np.log(y[0])))
-    if Ntrunc*len(y)*8 >= .7*THRESHOLD:
+    if Ntrunc*len(y)*8 >= .8*THRESHOLD:
         f = np.concatenate((np.array([0]),Gamma(model,y[1:])))
     else:
         N = np.arange(1,Ntrunc+1)
@@ -175,7 +174,7 @@ if __name__ == '__main__':
     Data = scipy.io.loadmat('Data.mat') # it's a dictionary
     Returns = Data['Returns']
     S = Data['S']
-    J_jump = 0.07
+    J_jump = 0.1
     r = 0.055
     dt = 1/252
     if modelUsed is 'basic':
@@ -191,7 +190,7 @@ if __name__ == '__main__':
         model = GBMmodel(J_jump,r,dt,LogReturns)
         #print model.p,model.mu,model.sigma
         xx = np.arange(.5,1.9,1e-4)
-        u = -0.8;x = 1
+        u = 0.8;x = 1.1
         print trapz(x = xx,y = model.pf(xx,u,x))
         plt.plot(xx,model.pf(xx,u,x),'.-')
         a,b = model.Simulate_rv(10,1)

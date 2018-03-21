@@ -40,8 +40,16 @@
 \makeglossaries
 \include{Glossary/Glossary}
 
-
-
+% define environment ABSTRACT
+\newenvironment {abstract}%
+{\cleardoublepage \null \vfill \begin{center}%
+	\bfseries \abstractname \end{center}}%
+{\vfill \null }
+% define envirnoment SOMMARIO
+\newenvironment {sommario}%
+{\cleardoublepage \null \vfill \begin{center}%
+		\bfseries \abstractname \end{center}}%
+{\vfill \null }
 \begin{document}
 
 
@@ -58,7 +66,8 @@
 %% Set page numbers of the introduction to roman  
 \frontmatter
 \pagestyle{plain}
-%\include{Abstract/abstract}
+\include{Abstract/abstract}
+
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
@@ -99,6 +108,8 @@
 \include{Chapters/Extensions1}
 
 \include{Chapters/Extensions2}
+
+\include{Chapters/Conclusion}
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------

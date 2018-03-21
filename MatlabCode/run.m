@@ -9,7 +9,7 @@ freq = 'wk'; % return frequency, select from {'d','wk','m','q','s','y'}
 [Returns,SampleStats] = getReturns( freq, M ); % download and compute asset returns
 save('/home/andrea/Thesis/PythonCode/AssetClassReturn.mat','Returns')
 %% 2) model Calibration
-model = 'Mixture'; % select from {'Gaussian','Mixture','GH'}
+model = 'NIG'; % select from {'Gaussian','Mixture','GH'}
 CalibrationType = 'EM'; % select from {'MM','ML','EM'} (only for GM model)
 [param,CalibrationData] = modelCalibration( Returns,model,M,CalibrationType);
 

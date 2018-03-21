@@ -7,7 +7,7 @@ Created on Wed Feb  7 10:43:36 2018
 from __future__ import division # import division operator from 3.X
 import scipy.io
 from models import BasicModel,GBMmodel
-import odaaOptED
+from odaaOptED import ODAAalgorithmED
 import numpy as np
 import shelve
 import time
@@ -16,11 +16,11 @@ import matplotlib.pyplot as plt
 # ========================================================================
 #   RUN SCRIPT
 # ========================================================================
-modelUsed = 'ext1'
+modelUsed = 'basic'
 Data = scipy.io.loadmat('Data.mat') # it's a dictionary
 Returns = Data['Returns']
 S = Data['S']
-J_jump = 0.03
+J_jump = 0.07
 r = 0.055
 dt = 1/252
 if modelUsed is 'basic':
@@ -29,21 +29,27 @@ elif modelUsed is 'ext1':
     LogReturns = np.log(1+Returns)
     model = GBMmodel(J_jump,r,dt,LogReturns)
 N = 10;theta = 0.07; LB = 0.5; UB = 1.9
-eta = 1e-3/2
+eta = 1e-3/5
 X = [0]*(N+1)
 for k in range(1,N):
     X[k] = np.arange(LB,UB+eta,eta)
-X[0] = np.array([1]); X[-1] = np.arange((1+theta)**2,UB,eta)    
+X[0] = np.array([1]); X[-1] = np.arange((1+theta)**2,UB+eta,eta)    
 
 # run ODAA algorithm
 start = time.clock()
-J,U = odaaOptED.ODAAalgorithmED(N,X,model)
+J,U = ODAAalgorithmED(N,X,model)
 t = time.clock()-start
 # saving the results is a shelf
-db = shelve.open('ext1') # open a shelve
-db['J'] = J 
-db['U'] = U
-db.close() # close the shelve
+#db = shelve.open('ext11') # open a shelve
+#db['J'] = J 
+#db['U'] = U
+#db['t'] = t
+#db.close() # close the shelve
+# get the results from the shelf
+#db = shelve.open('ext1')
+#J = db['J']
+#U = db['U']
+#db.close()
 
 i = 1
 plt.figure()

@@ -3,7 +3,7 @@
 %% 1) read data
 clc; close all; clear variables;
 global freeMemory 
-freeMemory = 0.8 * get_free_mem();
+freeMemory = 0.95 * get_free_mem();
 addpath(genpath(pwd))
 DefaultPlotting
 load('LIBOR.mat') % risk-free asset
@@ -22,10 +22,10 @@ dt = 1 / 252; % time in years
 switch model
 	case 'basic'
 		[param] = Calibration(S,model,J_jump,dt);
-		p = param.p; lambda = param.lambda;param.r = 0.055;
+		p = param.p; lambda = param.lambda; param.r = 0.03;
 	case 'ext1'
 		[param] = Calibration(Returns,model,J_jump,dt);
-		param.r = 0.055; % cash return
+		param.r = 0.01; % cash return
 		mu = param.mu; sigma = param.sigma;
 		mu_tilde = mu - 0.5 * sigma^2;
 		param.p = (exp(2 * mu_tilde * J_jump / sigma^2) - 1 ) / ...
@@ -54,6 +54,7 @@ for k = 10 : -2 : 2
 	idx = find(X{k} <= 1.9 & X{k} >= 0.6);
 	subplot(3,2,i)
 	area(X{k}(idx),U{k}(idx))
+	xlim([0.8 1.9]);
 	xlabel('portfolio value')
 	title(strcat('k = ',num2str(k-1)))
 	grid on
@@ -66,11 +67,23 @@ save(strcat('/home/andrea/Thesis/MatlabCode/DiscreteEvent/',model,'.mat'),'J',..
 	'U', 'X', 'p_star','p_starMC','time','Times')
 
 %% 6) check the density
-u = 0.8;
+u = 0.5;
 x = 0.7;
 csi = x * J_jump * u;
-z = (0.5:1e-3/5:1.2)';
-plot(z,pfDESext1(z,x,u,J_jump,param),'r.-')
+z = (0.5:1e-5:1.2)';
+f = pfDES(z,x,u,J_jump,param);
+plot(z,f,'r.-')
+xlim([0.6 1.9]);
 tic
-1 - trapz(z,pfDESext1(z,x,u,J_jump,param))
+1-trapz(z,pfDES(z,x,u,J_jump,param))
 toc
+
+% figure
+% for u = -1:0.5:1
+% 	plot(z,pfDESext1(z,x,u,J_jump,param),'.-','DisplayName',['u = ', num2str(u)])
+% 	hold on
+% end
+% legend('show')
+% title('Portfolio value density')
+% print('/home/andrea/Thesis/Latex/final/Images/PtfDensity','-dpng', '-r900');
+

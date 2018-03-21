@@ -20,12 +20,6 @@ from pyOpt import KSOPT # (*)
 from pyOpt import ALGENCAN
 from pyOpt import SDPEN
 from pyOpt import FILTERSD
-try:
-    from mpi4py import MPI
-    comm = MPI.COMM_WORLD
-    myrank = comm.Get_rank()
-except:
-    raise ImportError('mpi4py is required for parallelization')
 import matplotlib.pyplot as plt
 
 # ========================================================================
@@ -45,14 +39,14 @@ def ODAAalgorithmED(N,X,model):
     U = [0]*N 
     J = [0]*(N+1)
     J[-1] = np.ones(len(X[-1]))
-    eta = 1e-4/5 # discretization step
+    eta = 1e-5 # discretization step
     for k in range(N-1,-1,-1):
         print k # print current iteration
         u0 = -1
         dimXk = len(X[k])
         Uk = np.zeros(dimXk)
         Jk = np.zeros(dimXk)
-        int_domain = np.arange(X[k+1][0],X[k+1][-1],eta)
+        int_domain = np.arange(X[k+1][0],X[k+1][-2],eta)
         Jinterp = interp1d(X[k+1],J[k+1])(int_domain)
         for j in range(dimXk-1,-1,-1):
         #for j in range(0,dimXk): 
@@ -61,6 +55,7 @@ def ODAAalgorithmED(N,X,model):
             Uk[j] = opt_prob.solution(0).getVar(0).value
             Jk[j] = opt_prob.solution(0).getObj(0).value
             u0 = Uk[j]
+            print u0
         U[k] = Uk
         J[k] = -Jk
         if k is not 0:

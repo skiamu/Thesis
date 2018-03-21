@@ -2,7 +2,7 @@
 
 N = 10; % number of events
 theta = 0.07; % yearly target return
-eta = 1e-2/5; % target set discretization
+eta = 1e-4; % target set discretization
 [ X ] = makeTargetSet(N,theta,eta);
 
 function [ X ] = makeTargetSet(N,theta,eta)
@@ -21,5 +21,5 @@ for i = 2 : N
 	X{i} = (LB:eta:UB)';
 end
 X{1} = 1; 
-X{end} = ((1+theta)^2:eta:UB)';
+X{end} = ((1+theta)^3:eta:UB)';
 end
