@@ -24,8 +24,10 @@ x0 = X{1}; % initial portfolio value
 idxRiskyBasket = [2 3];
 A = zeros([1 M]);
 A(idxRiskyBasket) = 1;
+beta = .9; % percentage guaranteed capital
 Floor = zeros([N 1]); 
-Floor(1) = x0 * (1 - A * u0 / m); % floor that guarantees exposure E0
+% Floor(1) = x0 * (1 - A * u0 / m); % floor that guarantees exposure E0
+Floor(1) = beta * x0 / (1 + r)^N;
 U = cell([N 1]); U{1} = u0';
 Cushion = cell([N 1]); Cushion{1} = max(x0 - Floor(1),0);
 Aeq = ones([1 M]); beq = 1;

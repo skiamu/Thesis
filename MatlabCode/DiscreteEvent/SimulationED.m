@@ -29,7 +29,7 @@ end
 %% simulation Binomial
 Binomial = -ones([Nsim Nstep]);
 Binomial(rand([Nsim Nstep]) < p) = 1;
-
+%Binomial = Binomial(randperm(Nsim),randperm(Nstep));
 end % SimulationED
 
 function [f] = Kappa(y,mu_tilde,sigma,J_jump)

@@ -198,11 +198,11 @@ he can synthesized the \gls{CPPI} strategy as follows
 & \underset{\bm{u}_k}{\text{maximize}} & &  A\bm{u}_k \\
 & \text{subject to} & & \bm{u}_k^T\bm{1}=1, \\
 & & & u_i \geq 0 \qquad \forall i \in \{1,2,3\},\\
-& & &\bm{u}_k\bm{\Lambda}\bm{u}_k \leq \sigma_{max}^2,\\
+& & &\bm{u}_k^T\bm{\Lambda}\bm{u}_k \leq \sigma_{max}^2,\\
 & & & \underbrace{xA\bm{u}_k}_{E_k} \leq mC_k.
 \end{aligned}
 \end{equation*}
-where $A=\begin{bmatrix}0 & 1 & 1\end{bmatrix}$, $\sigma_{max}=\frac{V@R_{1-\alpha}}{z_{1-\alpha}}$, $x \in X_k$ and $k = 1,\ldots,N$. From this formulation we see that the investor aims at maximizing the allocation in the risky asset (matrix $A$ selects the allocation in Bond and Equity) while keeping under control the riskiness of the overall allocation and limiting the risky exposure to $m$ times the cushion. The covariance matrix $\bm{\Lambda}$ depends on the model chosen to describe the asset class returns distribution. In our analysis, we set $m=6$, $\bm{u}_0$ equal to the initial ODAA allocation, $F_0$ is chosen in such a way that also the initial exposure is $m$ times the initial cushion and the asset class return random vector follows a GM distribution with parameters (\ref{eq:GMparam1}) and (\ref{eq:GMparam2}). The others investment parameters are equal to the ones in the ODAA case. The CPPI allocation maps are reported in Figure \ref{fig:mapsMixtureCPPI}.
+where $A=\begin{bmatrix}0 & 1 & 1\end{bmatrix}$, $\sigma_{max}=\frac{V@R_{1-\alpha}}{z_{1-\alpha}}$, $x \in X_k$ and $k = 1,\ldots,N$. From this formulation we see that the investor aims at maximizing the allocation in the risky asset (matrix $A$ selects the allocation in Bond and Equity) while keeping under control the riskiness of the overall allocation and limiting the risky exposure to $m$ times the cushion. The covariance matrix $\bm{\Lambda}$ depends on the model chosen to describe the asset class returns distribution. In our analysis, we set $m=6$, $\bm{u}_0 = 1$ , $F_0$ is chosen in such a way to guarantee 90\% of the initial wealth at the end of the investment and the asset class return random vector follows a GM distribution with parameters (\ref{eq:GMparam1}) and (\ref{eq:GMparam2}). The others investment parameters are equal to the ones in the ODAA case. The CPPI allocation maps are reported in Figure \ref{fig:mapsMixtureCPPI}.
 
 
 
@@ -213,7 +213,7 @@ Following a Constant-Mix strategy means maintaining an exposure to the risky ass
 & \underset{\bm{u}}{\text{maximize}} & &  \bm{u}^T\bm{\mu} \\
 & \text{subject to} & & \bm{u}^T\bm{1}=1, \\
 & & & u_i \geq 0 \qquad \forall i \in \{1,2,3\},\\
-& & &\bm{u}\bm{\Lambda}\bm{u} \leq \sigma_{max}^2.\\
+& & &\bm{u}^T\bm{\Lambda}\bm{u} \leq \sigma_{max}^2.\\
 \end{aligned}
 \end{equation*}
 where $\sigma_{max}=\frac{V@R_{1-\alpha}}{z_{1-\alpha}}$ and $\bm{\mu}$ and $\bm{\Lambda}$ are the mean and the covariance matrix of the random vector $\bm{w}_{k+1}$ which represents the asset class returns.
@@ -223,7 +223,7 @@ The distribution of $\bm{w}_{k+1}$ could be any of the ones discussed in Chapter
 
 The ODAA and Constant-Mix belongs to the \textbf{concave} allocations strategies (see \cite{Plasse2013}). This means that their policy is to buy risky assets (Equity and Bond) when they fall and sell them when they raise. Concave strategies perform well in oscillating markets. Conversely, the \gls{CPPI} is an example of a \textbf{convex} strategy: risky assets are bought when they raise and sold when they fall. This behavior is clear from the allocation maps in Figure \ref{fig:mapsMixtureCPPI}. When portfolio performance is up, a more risky position is taken, when it is down, risky assets are sold and a more covered position is taken. Convex strategies perform well in trending markets.
 
-In order to compare the performance of this three different strategies we ran a Monte-Carlo simulation. Starting from an initial wealth $x_0=1$, $2\times 10^5$ portfolio trajectories are drawn assuming a GM distribution with parameters (\ref{eq:GMparam1}) and (\ref{eq:GMparam2}) for vectors $\bm{w}_{k+1}$. Performance and risk figures are reported in table \ref{tab:MC_statistics}. The empirical density function of the 2-year investment return is reported in Figure \ref{fig:epirical_densities}.
+In order to compare the performance of this three different strategies we ran a Monte-Carlo simulation. Starting from an initial wealth $x_0=1$, $2\times 10^5$ portfolio trajectories are drawn assuming a GM distribution with parameters (\ref{eq:GMparam1}) and (\ref{eq:GMparam2}) for vectors $\bm{w}_{k+1}$. Performance and risk figures are reported in table \ref{tab:MC_statistics}. The empirical density function of the 2-year investment return is reported in Figure \ref{fig:epirical_densities}. In figure \ref{fig:epirical_densityODAA} we show the empirical density function of the investment return in the \gls{ODAA} case along with the target return.
 
 
 
@@ -243,25 +243,23 @@ In order to compare the performance of this three different strategies we ran a 
 	\centering
 	\begin{tabular}{@{}lccc@{}} \toprule
 		Statistic & ODAA & CPPI & Constant-mix \\ \midrule
-		$p_{MC}$ &  78.93\%    &  52.70\%    &  61.41\%    \\
+		$p_{MC}$ &  78.96\%    &  52.69\%    &  61.38\%    \\
 		\addlinespace[0.5em]
-		Mean Return (ann) & 5.82\%  & 7.55\% & 10.05\%\\
+		Mean Return (ann) & 5.81\%  & 7.54\% & 10.02\%\\
 		\addlinespace[0.5em]
-		Volatility (ann) & 5.00\%  & 7.93\% & 13.21\% \\
+		Volatility (ann) & 5.00\%  & 7.93\% & 13.19\% \\
 		\addlinespace[0.5em]
-		Median (ann) &	7.20\% & 7.35\% & 9.41\% \\
+		Median (ann) &	7.20\% & 7.33\% & 9.38\% \\
 		\addlinespace[0.5em]
-		Skewnwss & 0.700 & -0.010 & 0.0146 \\
+		Skewnwss & -2.52 & 0.282 & 0.458 \\
 		\addlinespace[0.5em]
-		Kurtosis & 6.700 & 3.052 & 3.012 \\
+		Kurtosis & 9.10 & 3.10 & 3.36 \\
 		\addlinespace[0.5em]
-		Monthly $V@R_{0.95}$ & 5.49\% & 5.51\% & 9.42\%\\
+		yearly $V@R_{0.99}$ & 3.96\% & 1.83\% & 4.18\%\\
 		\addlinespace[0.5em]
-		Max Drawdown & 43.39\% & 25.77\% & 45.80\% \\
+		Max Drawdown & 7.16\% & 6.78\% & 12.77\% \\
 		\addlinespace[0.5em]
-		Mean Drawdown & 1.97\% & 2.12\% & 4.20\% \\
-		\addlinespace[0.5em]
-		Sharpe ratio & 1.163 & 0.951 & 0.760 \\ \bottomrule
+		Sharpe ratio & 1.163 & 0.950 & 0.760 \\ \bottomrule
 		\addlinespace[0.5em]
 	\end{tabular}
 	\caption{Investment performance for strategies ODAA, CPPI and Constant-mix obtained via Monte-Carlo simulation ($2\times 10^5$ replications).}
@@ -274,4 +272,9 @@ In order to compare the performance of this three different strategies we ran a 
 	\includegraphics[scale = 0.6]{Images/DensitiesMixturewk}
 	\caption{Empirical density functions of the 2-year return for the ODAA, CPPI and Constant-mix strategy.}
 	\label{fig:epirical_densities}
+\end{figure}
+\begin{figure}[]
+	\includegraphics[scale = 0.6]{Images/DensityODAAwk}
+	\caption{Empirical density functions of the 2-year return for the ODAA strategy. The red vertical line indicates the target return.}
+	\label{fig:epirical_densityODAA}
 \end{figure}

@@ -1,4 +1,4 @@
-function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump,model)
+function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump,model,theta,n)
 %ValidationDES is a function for the validation of the model in a
 %event-driven approach
 %   INPUT:
@@ -13,6 +13,7 @@ function [p_star,Times] = ValidationDES(X,U,Nsim,Nstep,param,J_jump,model)
 %      model = {basic,ext1,ext2}
 %   OUTPUT:
 %      p_star = probability of reaching the target sets
+rng default
 r = param.r;
 %% 1) simulation random variables
 [Binomial, tau] = SimulationED(param,Nsim, Nstep,J_jump,model);
@@ -41,14 +42,19 @@ Times = sum(tau,2); % time to reach the target in years
 
 %% 3) Compute statistics
 InvestmentReturns = xk(:,end) ./ xk(:,1) - 1;
-ExpReturnsAnn = mean((1 + InvestmentReturns).^(1./Times) - 1);
-VolatilityAnn = mean(std(InvestmentReturns) .* sqrt(1./Times));
-Median = median((1 + InvestmentReturns).^(1./Times) - 1);
+InvestmentReturnsAnn = (1+InvestmentReturns).^(1./Times)-1;
+ExpReturnsAnn = mean(InvestmentReturnsAnn);
+VolatilityAnn = std(InvestmentReturnsAnn);
+Median = median(InvestmentReturnsAnn);
 Sharpe = (ExpReturnsAnn - (exp(r)-1)) ./ VolatilityAnn;
-Skew = skewness(InvestmentReturns);
-Kurt = kurtosis(InvestmentReturns);
-
-
+Skew = skewness(InvestmentReturnsAnn);
+Kurt = kurtosis(InvestmentReturnsAnn);
+% VaR_monthly = quantile(-InvestmentReturnsAnn,0.99);
+[VaR,ES] = hHistoricalVaRES(InvestmentReturnsAnn,.99);
+% R = xk(:,2:end)./xk(:,1:end-1)-1;
+% CumR = cumprod(1+R,2)-1;
+% AD = cummax(CumR,2)-CumR;
+% MaxAD = max(AD,[],2);
 %% 4) print results
 
 % print results
@@ -60,13 +66,26 @@ disp(['Skeweness : ',num2str(Skew)])
 disp(['Kurtosis : ',num2str(Kurt)])
 disp(['Sharpe Ratio: ', num2str(Sharpe)]) % da sistemare
 disp(['Average investment horizon: ',num2str(mean(Times))]); 
+disp(['yearly VaR: ',num2str(VaR)]);
+disp(['yearly ES: ',num2str(ES)]);
+% disp(['Max DrawDown: ',num2str(mean(MaxAD))]);
+
 figure
-ksdensity(InvestmentReturns);
-title('empirical investment return density');
-xlabel('Investent returns');
+ksdensity(InvestmentReturnsAnn);
+% yL = get(gca,'YLim');
+% line([theta theta],yL,'Color','r');
+title('investment return empirical density');
+xlim([-0.2 0.2])
+xlabel('Investent return');
 print(strcat('/home/andrea/Thesis/Latex/final/Images/Density',model),'-dpng', '-r900');
-
-
+figure
+hist(InvestmentReturnsAnn,200)
+title('Histogram investment return');
+xlabel('Investent returns');
+xlim([-0.2 0.2])
+% yL = get(gca,'YLim');
+% line([theta theta],yL,'Color','r');
+print(strcat('/home/andrea/Thesis/Latex/final/Images/DensityHist',model),'-dpng', '-r900');
 
 end % ValidationDES
 

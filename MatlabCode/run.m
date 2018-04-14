@@ -9,7 +9,7 @@ freq = 'wk'; % return frequency, select from {'d','wk','m','q','s','y'}
 [Returns,SampleStats] = getReturns( freq, M ); % download and compute asset returns
 save('/home/andrea/Thesis/PythonCode/AssetClassReturn.mat','Returns')
 %% 2) model Calibration
-model = 'NIG'; % select from {'Gaussian','Mixture','GH'}
+model = 'Mixture'; % select from {'Gaussian','Mixture','GH'}
 CalibrationType = 'EM'; % select from {'MM','ML','EM'} (only for GM model)
 [param,CalibrationData] = modelCalibration( Returns,model,M,CalibrationType);
 
@@ -47,6 +47,10 @@ Nsim = 2e+5; % numero of montecarlo simulation for every time period
 % 5.4) validation CPPI strategy
 [p_starMC_CPPI,~] = Validation(w,X,U_CPPI,Nsim,M,N,freq,'CPPI',r);
 legend('ODAA','Constant-mix','CPPI');
+xlim([-0.5 0.7])
+xlabel('returns')
+% yL = get(gca,'YLim');
+% line([theta theta],yL,'Color','r');
 title('Investement return empirical density function');
 print(strcat('/home/andrea/Thesis/Latex/final/Images/Densities',model,freq),...
 	'-dpng', '-r900');
@@ -65,7 +69,7 @@ for i = N : -NstepPlot : 1
 	area(X{i}(idx),U_CPPI{i}(idx,:))
 	grid on
 	ylim([0 1])
-	xlim([0.7 1.3])
+	xlim([0.8 1.3])
 	xlabel('portfolio value')
 	title(strcat('k = ',num2str(i-1)))
 	% 	saveas(gcf,[pwd strcat('/Latex/thirdWIP/k',num2str(i-1),model,'.png')]);

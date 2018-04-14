@@ -1,0 +1,96 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian,english]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pifont}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{float,subfloat}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{empheq}
+\usepackage{mathtools}
+\usepackage{algorithm,algpseudocode}
+\usepackage{booktabs,longtable}
+\usepackage{array}
+\usetheme{Warsaw}
+\usecolortheme{orchid}
+%\setbeamerfont{frametitle}{size=\Large}
+%\setbeamertemplate{frametitle}
+
+\DeclareMathOperator*{\Optmax}{max}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[] % (optional, only for long titles)
+{\huge A Stochastic Reachability Approach to Asset Allocation.}
+\subtitle{\Large From time-based to event-driven systematic strategies.}
+\author[] % (optional, for multiple authors)
+{Andrea Schiavon\\
+	andrea.schiavon1992@gmail.com}
+
+\date[]{\today} % (optional)
+
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\insertsectionhead\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}	
+\begin{document}
+
+
+\begin{frame}[plain]
+	\begin{figure}[htpb]
+		\centering
+		\includegraphics[width=0.4\linewidth]{Images/polimi_name}
+	\end{figure}
+	\titlepage
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+%	INTRODUZIONE
+%---------------------------------------------------------------------------------------
+\input{Sections/Introduction}
+	
+	
+\begin{frame}{}
+	\frametitle{Piano della presentazione}
+	\tableofcontents
+\end{frame}	
+
+	
+\section{Approccio Time-Driven}
+\input{Sections/Section1}
+\section{Approccio Event-Driven}
+\input{Sections/Section2}
+
+\section{Conclusioni}
+\input{Sections/Conclusioni}
+%----------------------------------------------------------------------------------------
+%	BODY
+%----------------------------------------------------------------------------------------	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}

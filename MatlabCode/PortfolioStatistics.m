@@ -64,8 +64,8 @@ Kurt = kurtosis(Returns);
 
 %% 2) plot results
 
-ksdensity(InvestmentReturns);
-hold on
+% ksdensity(InvestmentReturns);
+% hold on
 % title([policy,' empirical investment return density'])
 
 %% 5) return results

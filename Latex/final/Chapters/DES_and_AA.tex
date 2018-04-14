@@ -253,12 +253,12 @@ Let us consider an investment with the following parameters:
 \begin{itemize}
 	\item $N = 10$ portfolio rebalancings
 	\item $J=10\%$
-	\item $r = 5.5\%$
-	\item The following target sets: $X_0 = \{1\}$, $X_k = [0,\infty)$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^4,\infty)$  with $\theta=7\%$. In the implementation, they were approximated by $X_k = [0.5,1.9]$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^4,1.9]$ and discretized with step length $5\times10^{-4}$.
+	\item $r = 1\%$
+	\item The following target sets: $X_0 = \{1\}$, $X_k = [0,\infty)$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^4,\infty)$  with $\theta=7\%$. In the implementation, they were approximated by $X_k = [0.8,2]$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^4,2]$ and discretized with step length $5\times10^{-4}$.
 \end{itemize}
 
-In Figure \ref{fig:basic_maps} are reported some allocation maps obtained by running the \gls{ODAA} algorithm with the investment parameters specified above and model parameters calibrated in the previous section. Each map shows how to allocate the risky asset at portfolio rebalancing number $k$. The \textit{contrarian} attitude of the strategy is the same as in the time-driven case: when performance is down, the policy prescribes to take a 100\% long position in the risky asset. Conversely, when performance is up, a 100\% short position on the risky asset in taken. In between, there is a range of long/short exposures which depends on portfolio performance. The joint probability of reaching the target sets is $p^{\star} = J(x_0) = 86.3\%$. This result is verified by running a Monte Carlo simulation with $10^6$ replications at each rebalancing time. Sample statistics regarding this 10-riallocation investment are reported in Table \ref{tab:performance_basic}. Finally, Figure \ref{fig:empirical density_basic} shows the empirical density function of the investment total return.
-\begin{figure}[h]
+In Figure \ref{fig:basic_maps} are reported some allocation maps obtained by running the \gls{ODAA} algorithm with the investment parameters specified above and model parameters calibrated in the previous section. Each map shows how to allocate the risky asset at portfolio rebalancing number $k$. The \textit{contrarian} attitude of the strategy is the same as in the time-driven case: when performance is down, the policy prescribes to take a 100\% long position in the risky asset. Conversely, when performance is up, a 100\% short position on the risky asset in taken. In between, there is a range of long/short exposures which depends on portfolio performance. The joint probability of reaching the target sets is $p^{\star} = J(x_0) = 73.52\%$. This result is verified by running a Monte Carlo simulation with $2\times10^6$ replications at each rebalancing time. Sample statistics regarding this 10-reallocation investment are reported in Table \ref{tab:performance_basic}. Finally, Figure \ref{fig:empirical density_basic} shows the histogram of the annualized investment  total return.
+\begin{figure}[]
 	%\centering
 	\makebox[\textwidth][c]{
 	\includegraphics[scale = 1]{Images/mapsbasic}}
@@ -266,38 +266,109 @@ In Figure \ref{fig:basic_maps} are reported some allocation maps obtained by run
 	\label{fig:basic_maps}
 \end{figure}
 
-\begin{figure}[h]
-	\includegraphics[scale = 0.4]{Images/Densitybasic}
-	\caption{Investment return empirical density function}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale = 0.4]{Images/DensityHistbasic}
+	\caption{Histogram of the annualized investment return.}
 	\label{fig:empirical density_basic}
 \end{figure}
 
-\begin{wraptable}{l}{7cm}
+\begin{table}[H]
+	\centering
 	\begin{tabular}{@{}lc@{}}
 		\toprule
 		Statistics & value  \\
 		%\addlinespace[0.5em]
 		\midrule
-		$p^{\star}$ & 0.863\\
+		$p^{\star}$ & 0.735\\
 		\addlinespace[0.5em]	
-		$p_{MC}$ & 0.865\\
+		$p_{MC}$ & 0.736\\
 		\addlinespace[0.5em]
-		Mean Return (ann) & 11.45\%\\
+		Mean Return (ann) & 12.21\%\\
 		\addlinespace[0.5em]
-		Volatility (ann) & 10.38\%\\
+		Volatility (ann) & 8.74\%\\
 		\addlinespace[0.5em]
-		Median Return (ann) & 11.14\%\\
+		Median Return (ann) & 11.75\%\\
 		\addlinespace[0.5em]
-		Skewness & -1.55\\
+		Skewness & 0.8532\\
 		\addlinespace[0.5em]
-		Kurtosis & 5.27\\
+		Kurtosis & 7.384\\
 		\addlinespace[0.5em]
-		Sharpe Ratio & 0
-		.558\\
+		Sharpe Ratio & 1.281\\
 		\addlinespace[0.5em]
-		Avg horizon [years] & 4.23 \\	
+		Avg horizon [years] & 4.23 \\
+		\addlinespace[0.5em]
+		yearly $V@R^{0.99}_{0.01}$ & 6.48\%\\	
 		\bottomrule
 	\end{tabular}
-	\caption{Investment performance obtained via Monte-Carlo simulation with $10^6$ replications at each rebalancing time}
+	\caption{Investment performance obtained via Monte-Carlo simulation with $2\times10^6$ replications at each rebalancing time. $p_{MC}$ is the probability of reaching the target return obtained via Monte-Carlo simulation while $p^{\star}$ the theoretical one.}
 	\label{tab:performance_basic}
-\end{wraptable}
+\end{table}
+\subsection{VaR constraint}\label{subsec:Var_basic}
+When synthesizing the maps reported in Figure \ref{fig:basic_maps}, no \textit{risk} constraint was considered, in fact a 100\% exposure on the risky asset were allowed. In this section, in order keep under control the downside risk , the computation of the allocation maps via \gls{ODAA} algorithm will be subject to a V@R constraint. The idea is to prevent the risky asset exposure from being to high. This is going to be accomplished by following the same logic used in the time-driven case, that is the variance of the portfolio return over the time period between two consecutive reallocations will be bounded according to a V@R specification given as input. The additional complication typical of the event-driven setting is that the time period over which portfolio return is calculated, it is not deterministic.
+
+Portfolio return between two successive reallocations is
+\begin{equation}
+\frac{x_{k+1}-x_k}{x_k} \colon= w_{k+1} = \exp\{r \tau_{k+1}\}  - 1 + u_k J \widetilde{N}_{k+1},
+\end{equation}
+therefore, using independence between $\tau_{k+1}$ and $\widetilde{N}_{k+1}$, the variance of portfolio return is simply
+\begin{align}
+\nonumber
+\Var{w_{k+1}} &= \Var{\exp\{r \tau_{k+1}\}} + (u_k J)^2\Var{\widetilde{N}_{k+1}}\\
+& = \frac{\lambda r^2}{(\lambda-2r)(\lambda-r)^2}+(u_k J)^24p(1-p)
+\end{align}
+provided that $\lambda > 2r$. The V@R constraint can be written as
+\begin{equation}\label{eq:bounded_volatility}
+\Var{w_{k+}} \leq \sigma_{max}^2,
+\end{equation}
+where the upper bound is obtained by scaling the monthly V@R specification over the expected interevent time as follows
+\begin{equation}\label{eq:var_scaling}
+V@R^{\mathbb{E}[\tau_{k+1}]}_{1-\alpha}=\sqrt{12\mathbb{E}[\tau_{k+1}]}V@R^{m}_{1-\alpha}= \sqrt{\frac{12}{\lambda}}V@R^{m}_{1-\alpha}
+\end{equation}
+and using the usual Gaussian approximation. In the end, the bound is $\sigma_{max}=\sqrt{12}V@R^{m}_{1-\alpha}/\sqrt{\lambda}z_{1-\alpha}$ where $z_{1-\alpha}$ is the $1-\alpha$-quantile of a standard normal.
+$\alpha$ has been set to $1\%$ and $V@R^{m}_{1-\alpha}$ to $7\%$.
+
+The allocations maps obtained in this case are similar to the ones reported in Figure \ref{fig:basic_maps}, the only difference is that the risky exposure never exceeds 76.51\%.
+In table \ref{tab:performance_VaRbasic} we report some sample statistics and risk figures of the same investment simulation carried out in the previous section with the addition of the V@R constraint.
+
+
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{@{}lc@{}}
+		\toprule
+		Statistics & value  \\
+		%\addlinespace[0.5em]
+		\midrule
+		$p^{\star}$ & 0.734\\
+		\addlinespace[0.5em]	
+		$p_{MC}$ & 0.735\\
+		\addlinespace[0.5em]
+		Mean Return (ann) & 10.20\%\\
+		\addlinespace[0.5em]
+		Volatility (ann) & 7.37\%\\
+		\addlinespace[0.5em]
+		Median Return (ann) & 9.42\%\\
+		\addlinespace[0.5em]
+		Skewness & 1.09\\
+		\addlinespace[0.5em]
+		Kurtosis & 7.96\\
+		\addlinespace[0.5em]
+		Sharpe Ratio & 1.247\\
+		\addlinespace[0.5em]
+		Avg horizon [years] & 4.23 \\
+		\addlinespace[0.5em]
+		yearly $V@R^{0.99}_{0.01}$ & 4.51\%\\	
+		\bottomrule
+	\end{tabular}
+	\caption{Investment performance obtained via Monte-Carlo simulation with $2\times10^6$ replications at each rebalancing time and the addition of the V@R constraint. $p_{MC}$ is the probability of reaching the target return obtained via Monte-Carlo simulation.}
+	\label{tab:performance_VaRbasic}
+\end{table}
+
+
+%\begin{figure}[]
+%	\includegraphics[scale = 0.4]{Images/DensityVaRbasic}
+%	\caption{Investment return empirical density function}
+%	\label{fig:empirical density_VaRbasic}
+%\end{figure}
+

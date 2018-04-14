@@ -39,7 +39,7 @@ Given that the density function of $x_{k+1}$ is needed in the \gls{ODAA} algorit
 	K_t^N(k)= \frac{\sigma^2\pi}{(a-b)^2}\sum_{n=1}^{N}\frac{n(-1)^{n+1}}{\frac{\mu^2}{2\sigma^2}+\frac{\sigma^2n^2\pi^2}{2(a-b)^2}}\exp\bigg\{-\bigg(\frac{\mu^2}{2\sigma^2}+\frac{\sigma^2n^2\pi^2}{2(a-b)^2}\bigg)t\bigg\}\sin\Big(\frac{n\pi k}{a-b}\Big).
 	\]
 	Applying the theorem to our case ($a=J, b=-J$) we get 
-	\begin{equation}
+	\begin{equation}\label{eq:cdf_ext1}
 	F_{\tau_{k+1}}(t)=1-\bigg[2\cosh\Big(\frac{\widetilde{\mu}J}{\sigma^2}\Big)K_t^{\infty}(J)\bigg],
 	\end{equation}
 	where we used the fact that $K_t^N(k)$ is odd as a function of $k$.
@@ -151,7 +151,7 @@ Let $x_1,\ldots,x_n$ be a random sample of log-returns from a normal population 
 \widehat{\sigma}^2 & = \frac{s^2}{\Delta t}\\[1.5ex]
 \widehat{\mu} & = \frac{\bar{x}}{\Delta t} + \frac{1}{2}\widehat{\sigma}^2
 \end{align*}
-where $s^2$ is the sample variance and $\bar{x}$ the sample mean. Setting $\Delta t = 1/252$ and applying the equations above to our data we get $\widehat{\mu} = 0.0594$ and $\widehat{\sigma} = 0.1923$.
+where $s^2$ is the sample variance and $\bar{x}$ the sample mean. Setting $\Delta t = 1/252$ and applying the equations above to our data we get $\widehat{\mu} = 0.1143$ and $\widehat{\sigma} = 0.1602$.
 
 
 \paragraph{Series truncation}
@@ -173,54 +173,133 @@ We considered an investment characterized by the following parameters:
 	\item Initial wealth $x_0 = 1$.
 	\item $J = 10\%$.
 	\item $N = 10$ portfolio rebalancings.
-	\item The following target sets: $X_0 = \{1\}$, $X_k = [0,\infty)$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^3,\infty)$  with $\theta=7\%$. In the implementation, they were approximated by $X_k = [0.5,1.9]$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^3,1.9]$ and discretized with a step length of $5 \times 10^{-4}$.
-	\item $r = 5.5\%$ (risk-free rate of return).
+	\item The following target sets: $X_0 = \{1\}$, $X_k = [0,\infty)$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^3,\infty)$  with $\theta=7\%$. In the implementation, they were approximated by $X_k = [0.7,2]$ for $k = 1,\ldots,9$ and $X_{10} = [(1+\theta)^3,2]$ and discretized with a step length of $2 \times 10^{-4}$.
+	\item $r = 1\%$ (risk-free rate of return).
 \end{itemize}
-Some of the allocation maps obtained via \gls{ODAA} algorithm are reported in Figure \ref{fig:ext1_maps}. They exhibit the \textit{contatrian} attitude typical of all the \gls{ODAA} strategies presented so far. The joint probability of reaching the target sets is $p^{\star}=J(x_0) = 0.9727$. This result is verified by running a Monte Carlo simulation with $10^6$ replications at each rebalancing period, the outcome, in terms of joint probability and other investment statistics, is reported in Table \ref{tab:performance_ext1}. Finally, in Figure \ref{fig:ext1_investment_return} we show the empirical density function of the investment return.
+The allocation maps obtained via \gls{ODAA} algorithm exhibit the \textit{contatrian} attitude typical of all the \gls{ODAA} strategies presented so far. The joint probability of reaching the target sets is $p^{\star}=J(x_0) = 0.8834$. This result is verified by running a Monte Carlo simulation with $2\times10^6$ replications at each rebalancing period. The outcome in terms of joint probability and other investment statistics, is reported in Table \ref{tab:performance_ext1}. Finally, in Figure \ref{fig:ext1_investment_return} we show the empirical density function of the annualized investment return.
 
 
 
 
-\begin{figure}[H]
-	%\centering
-	\makebox[\textwidth][c]{
-		\includegraphics[scale = 0.8]{Images/mapsext1}}
-	\caption{allocation maps for the risky asset, which is modeled according to a Geometric Brownian Motion }
-	\label{fig:ext1_maps}
-\end{figure}
+%\begin{figure}[]
+%	%\centering
+%	\makebox[\textwidth][c]{
+%		\includegraphics[scale = 0.8]{Images/mapsext1}}
+%	\caption{allocation maps for the risky asset, which is modeled according to a Geometric Brownian Motion }
+%	\label{fig:ext1_maps}
+%\end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}[]
 	\includegraphics[scale = 0.4]{Images/Densityext1}
-	\caption{Empirical density function of the investment return when the risky asset is modeled as a \gls{GBM}.}
+	\caption{Empirical density function of the annualized investment return when the risky asset is modeled as a \gls{GBM}.}
 	\label{fig:ext1_investment_return}
 \end{figure}
-\begin{wraptable}{l}{7cm}
+\begin{table}[]
+	\centering
 		\begin{tabular}{@{}lc@{}}
 			\toprule
 			Statistics & value  \\
 			%\addlinespace[0.5em]
 			\midrule
-			$p^{\star}$ & 0.9727\\
+			$p^{\star}$ & 0.8834\\
 			\addlinespace[0.5em]	
-			$p_{MC}$ & 0.9728\\
+			$p_{MC}$ & 0.8835\\
 			\addlinespace[0.5em]
-			Mean Return (ann) & 7.50\%\\
+			Mean Return (ann) & 5.40\%\\
 			\addlinespace[0.5em]
-			Volatility (ann) & 3.93\%\\
+			Volatility (ann) & 3.51\%\\
 			\addlinespace[0.5em]
-			Median Return (ann) & 7.46\%\\
+			Median Return (ann) & 5.94\%\\
 			\addlinespace[0.5em]
-			Skewness & -1.81\\
+			Skewness & -2.43\\
 			\addlinespace[0.5em]
-			Kurtosis & 16.61\\
+			Kurtosis & 12.30\\
 			\addlinespace[0.5em]
-			Sharpe Ratio & 0.471\\
+			Sharpe Ratio & 1.249\\
 			\addlinespace[0.5em]
-			Avg horizon [years] & 3.70 \\	
+			Avg horizon [years] & 3.70 \\
+			\addlinespace[0.5em]
+			yearly $V@R^{0.99}_{0.01}$ & 8.77\%\\	
 			\bottomrule
 		\end{tabular}
-		\caption{Investment performance obtained via Monte-Carlo simulation with $10^6$ replication at each rebalancing time.}
+		\caption{Investment performance obtained via Monte-Carlo simulation with $2\times10^6$ replication at each rebalancing time.}
 		\label{tab:performance_ext1}
-\end{wraptable}
+\end{table}
 
+\subsection{V@R constraint}
+Although the probability of reaching the target set after 10 reallocations is quite high, Figure \ref{fig:ext1_investment_return} and the V@R figure in Table \ref{tab:performance_ext1} show that in some scenarios the loss could be particularly severe. We could hedge the portfolio against this downfall of performance by imposing an \textit{ex-ante} V@R constraint when synthesizing the allocation maps in the \gls{ODAA} algorithm, as we already did in the time-driven case and in Section \ref{subsec:Var_basic}. Once the investor has given us his risk profile through a monthly value-at-risk specification ($V@R^m_{1-\alpha}$), the idea is to bound portfolio volatility in the time span between two reallocations. In formula $\Var{w_{k+1}} \leq \sigma_{max}$, where $w_{k+1}$ is defined as follows
+\begin{equation}\label{eq:return_ext1}
+\frac{x_{k+1}-x_k}{x_k}\colon=w_{k+1}=\exp\{r\tau_{k+1}\}-1+u_k\widetilde{X}_{\tau_{k+1}}.
+\end{equation}
+and $\sigma_{max} = \frac{\sqrt{12\mathbb{E}[\tau_{k+1}]}V@R^m_{1-\alpha}}{z_{1-\alpha}}$.
+We now want to compute the variance of random variable $w_{k+1}$. Using the fact that $\tau_{k+1} \perp \widetilde{X}_{\tau_{k+1}}$ (see \cite{baldi2017}), we have
+\begin{equation}\label{eq:variance_ext1}
+\Var{w_{k+1}} = \Var{\exp\{r\tau_{k+1}\}} + u_k^2\Var{\widetilde{X}_{\tau_{k+1}}}.
+\end{equation}
+Unfortunately, variance (\ref{eq:variance_ext1}) cannot be computed because $\exp\{r\tau_{k+1}\} \notin L^1(\Omega)$, which implies $\exp\{r\tau_{k+1}\} \notin L^2(\Omega)$. However, as the quantity $r\tau_{k+1}$ is small enough in our applications, we consider the first-order approximation of the exponential term in (\ref{eq:return_ext1}). In this way, portfolio variance becomes
+\begin{equation}\label{eq:variance_ext1_approx}
+\Var{w_{k+1}} = r^2\Var{\tau_{k+1}} + u_k^2\Var{\widetilde{X}_{\tau_{k+1}}}.
+\end{equation}
+The second term in (\ref{eq:variance_ext1_approx}) presents no particular difficulties, indeed we have $\Var{\widetilde{X}_{\tau_{k+1}}} = 4J^2p(1-p)$, where $p$ is given in Lemma \ref{lemma:probability_positive_jump}. More delicate is the computation of the first term. This means calculating $\mathbb{E}[\tau_{k+1}^2]$ and $\mathbb{E}[\tau_{k+1}]$.
+In the following, we will give the detailed derivation of the first expectation, the second follows the same logic.
+
+
+Using the well-known formula for the expectation of positive random variables together with the cdf (\ref{eq:cdf_ext1}), we obtain
+\begin{align*}
+\mathbb{E}[\tau_{k+1}^2] & = \int_{0}^{\infty}\mathbb{P}\big(\tau_{k+1}^2>t\big)\mathrm{d}t = \int_{0}^{\infty}\mathbb{P}\big(\tau_{k+1}>\sqrt{t}\big)\mathrm{d}t\\[1.5ex]
+& = 2\cosh\Big(\frac{\widetilde{\mu}J}{\sigma^2}\Big)\int_{0}^{\infty}K_{\sqrt{t}}^{\infty}(J)\mathrm{d}t \\[1.5ex]
+& = 2\cosh\Big(\frac{\widetilde{\mu}J}{\sigma^2}\Big)\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}\frac{n(-1)^{n+1}}{\alpha(n)}\sin(\frac{\pi}{2}n)
+\underbrace{\int_{0}^{\infty}\exp\big\{-\alpha(n)\sqrt{t} \big\}\mathrm{d}t}_{2/\alpha(n)^2}\\
+& = 2\cosh\Big(\frac{\widetilde{\mu}J}{\sigma^2}\Big)\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}\frac{2n(-1)^{n+1}}{\alpha(n)^3}\sin(\frac{\pi}{2}n)
+\end{align*}
+where we defined $\alpha(n) = \frac{\tilde{\mu}^2}{2\sigma^2} + \frac{\sigma^2n^2\pi^2}{8J^2}$. The expected interevent time is equal to
+
+\begin{equation*}
+\mathbb{E}[\tau_{k+1}] = 2\cosh\Big(\frac{\widetilde{\mu}J}{\sigma^2}\Big)\frac{\sigma^2\pi}{4J^2}\sum_{n=1}^{\infty}\frac{n(-1)^{n+1}}{\alpha(n)^2}\sin(\frac{\pi}{2}n).
+\end{equation*}
+The \textit{risk} constraint is now fully characterized, and therefore it can be used in the event-driven \gls{ODAA} algorithm to control the risky asset exposure. As a matter of fact, in order to implement it, we still need to address the issue related to the truncation of series $\sum_{n=1}^{\infty}\frac{n(-1)^{n+1}}{\alpha(n)^m}\sin(\frac{\pi}{2}n)$, where $m= 2,3$. The minimum number of terms $N$ required to obtained a residual smaller than $\epsilon$ could be derived as follows
+\begin{align*}
+\bigg\lvert \sum_{n=N+1}^{\infty}\frac{n(-1)^{n+1}}{\alpha(n)^m}\sin(\frac{\pi}{2}n)  \bigg\lvert   &\leq \sum_{n=N+1}^{\infty}\frac{n}{\alpha(n)^m}\\
+& \leq \int_{N}^{\infty}\frac{n}{\big(\frac{\sigma^2n^2\pi^2}{8J^2}\big)^m}\mathrm{d}n\\
+& = \Big(\frac{8J^2}{\sigma^2\pi^2}\Big)^m\frac{1}{(2m-2)}N^{-(2m-2)}\leq \epsilon
+\end{align*}
+which brings
+\begin{equation}
+N \geq \bigg\{\Big(\frac{8J^2}{\sigma^2\pi^2}\Big)^m\frac{1}{(2m-2)\epsilon}  \bigg\}^{\frac{1}{2m-2}}.
+\end{equation}
+
+
+The allocation maps obtained by adding the V@R constraint do not let the risky exposure exceed $68.41\%$.
+In figure \ref{tab:performance_VaRext1} we report some sample statistics obtained by running a Monte Carlo simulation with $2\times10^6$ replications at each reallocation and the same investment parameters of the previous case. The \textit{ex-ante} monthly V@R specification has been set to $7\%$. 
+\begin{table}[]
+	\centering
+	\begin{tabular}{@{}lc@{}}
+		\toprule
+		Statistics & value  \\
+		%\addlinespace[0.5em]
+		\midrule
+		$p^{\star}$ & 0.7865\\
+		\addlinespace[0.5em]	
+		$p_{MC}$ & 0.7866\\
+		\addlinespace[0.5em]
+		Mean Return (ann) & 5.12\%\\
+		\addlinespace[0.5em]
+		Volatility (ann) & 3.18\%\\
+		\addlinespace[0.5em]
+		Median Return (ann) & 5.63\%\\
+		\addlinespace[0.5em]
+		Skewness & -1.62\\
+		\addlinespace[0.5em]
+		Kurtosis & 7.70\\
+		\addlinespace[0.5em]
+		Sharpe Ratio & 1.294\\
+		\addlinespace[0.5em]
+		Avg horizon [years] & 3.70 \\
+		\addlinespace[0.5em]
+		yearly $V@R^{0.99}_{0.01}$ & 6.10\%\\	
+		\bottomrule
+	\end{tabular}
+	\caption{Investment performance obtained via Monte-Carlo simulation with $2\times10^6$ replication at each rebalancing time and the addition of the V@R constraint.}
+	\label{tab:performance_VaRext1}
+\end{table}

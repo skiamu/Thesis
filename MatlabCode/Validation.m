@@ -44,18 +44,39 @@ p_star = sum(xk(:,end) > X{end}(1)) / Nsim;
 %% Results
 % compure portfolio returns
 Returns = xk(:,2:end) ./ xk(:,1:end-1) - 1;
+InvestmentReturns = xk(:,end) ./ xk(:,1) - 1;
+InvestmentReturnsAnn = (1+InvestmentReturns).^(1/2)-1;
 Statistics = PortfolioStatistics(Returns',freq,policy,r,Nstep);
-% print results
-disp(['%%%%%%%%%%%%%  Sample Portfolio Return Statistics ',policy,' strategy  %%%%%%%%%%%%%'])
-disp(['Means (ann) : ',num2str(mean(Statistics.ExpReturnsAnn))])
-disp(['StDevs (ann) : ',num2str(mean(Statistics.VolatilityAnn))])
-disp(['Median (ann) : ',num2str(mean(Statistics.Median))])
-disp(['Skeweness : ',num2str(mean(Statistics.Skew))])
-disp(['Kurtosis : ',num2str(mean(Statistics.Kurt))])
-disp(['Monthly VaR_0.95: ', num2str(mean(Statistics.VaR))])
-disp(['Max Drawdown: ', num2str(max(Statistics.MaxDrawdown))])
-disp(['Mean Drawdown: ', num2str(mean(Statistics.MeanDrawdown))])
-disp(['Sharpe Ratio: ', num2str(mean(Statistics.Sharpe))]) % da sistemare
 
+% print results
+% disp(['%%%%%%%%%%%%%  Sample Portfolio Return Statistics ',policy,' strategy  %%%%%%%%%%%%%'])
+% disp(['Means (ann) : ',num2str(mean(Statistics.ExpReturnsAnn))])
+% disp(['StDevs (ann) : ',num2str(mean(Statistics.VolatilityAnn))])
+% disp(['Median (ann) : ',num2str(mean(Statistics.Median))])
+% disp(['Skeweness : ',num2str(mean(Statistics.Skew))])
+% disp(['Kurtosis : ',num2str(mean(Statistics.Kurt))])
+% disp(['Monthly VaR_0.95: ', num2str(mean(Statistics.VaR))])
+% disp(['Max Drawdown: ', num2str(max(Statistics.MaxDrawdown))])
+% disp(['Mean Drawdown: ', num2str(mean(Statistics.MeanDrawdown))])
+% disp(['Sharpe Ratio: ', num2str(mean(Statistics.Sharpe))]) % da sistemare
+MeanReturn = (1+mean(InvestmentReturns)).^(1/2)-1;
+Volatility = std(InvestmentReturns)/(sqrt(2));
+MedianReturn = (1+median(InvestmentReturns)).^(1/2)-1;
+VaR = (1+quantile(-InvestmentReturnsAnn,0.99))^(1/2)-1;
+Skew = skewness(InvestmentReturns);
+Kurt = kurtosis(InvestmentReturns);
+disp(['%%%%%%%%%%%%%  Sample Portfolio Return Statistics ',policy,' strategy  %%%%%%%%%%%%%'])
+disp(['Means (ann) : ',num2str(MeanReturn)])
+disp(['StDevs (ann) : ',num2str(Volatility)])
+disp(['Median (ann) : ',num2str(MedianReturn)])
+disp(['Skeweness : ',num2str(Skew)])
+disp(['Kurtosis : ',num2str(Kurt)])
+disp(['yearly VaR_0.99: ', num2str(VaR)])
+disp(['Max Drawdown: ', num2str(mean(Statistics.MaxDrawdown))])
+disp(['Sharpe Ratio: ', num2str((MeanReturn-r)/Volatility)]) % da sistemare
+
+
+ksdensity(InvestmentReturns);
+hold on
 end % validation
 
